@@ -13,6 +13,11 @@ class ConnectedAccountsModal {
     );
   }
 
+  get container() {
+    return Matchers.getElementByID(
+      ConnectedAccountsSelectorsIDs.CONTAINER,
+    );
+  }
   get networkPicker() {
     return Matchers.getElementByID(
       ConnectedAccountsSelectorsIDs.NETWORK_PICKER,

@@ -13,6 +13,8 @@ import fs from 'fs';
 
 import Assertions from '../utils/Assertions';
 import PermissionSummaryBottomSheet from '../pages/Browser/PermissionSummaryBottomSheet';
+import BrowserView from '../pages/Browser/BrowserView';
+import ConnectedAccountsModal from '../pages/Browser/ConnectedAccountsModal';
 
 const getBase64FromPath = async (path) => {
   const data = await fs.promises.readFile(path);
@@ -24,10 +26,12 @@ export default class ConfirmationsRejectRule {
     this.driver = options.driver; // Pass element for detox instead of all the driver
     this.only = options.only;
     this.allCapsCancel = ['wallet_watchAsset'];
+    this.permissionConnectionSheet = ['wallet_revokePermissions'];
     this.requiresEthAccountsPermission = [
       'personal_sign',
       'eth_signTypedData_v4',
       'eth_getEncryptionPublicKey',
+      'wallet_revokePermissions',
     ];
   }
 
@@ -153,6 +157,10 @@ export default class ConfirmationsRejectRule {
           await TestHelpers.delay(3000);
           if (this.allCapsCancel.includes(call.methodName)) {
             await AssetWatchBottomSheet.tapCancelButton();
+          } else if (call.methodName === 'wallet_revokePermissions') {
+            // Handle revoke permissions specifically
+            await BrowserView.tapLocalHostDefaultAvatar();
+            await Assertions.checkIfNotVisible(ConnectedAccountsModal.title);
           } else {
             cancelButton = await Matchers.getElementByText('Cancel');
             await Gestures.waitAndTap(cancelButton);
