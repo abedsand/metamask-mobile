@@ -266,7 +266,7 @@ stages:
       - build_flask_e2e_ios: {}
   run_e2e_flask_ios_android:
     workflows:
-       - ios_run_regression_tests: {}
+      - ios_run_regression_tests: {}
       - android_run_regression_tests: {}
       - run_tag_smoke_confirmations_ios: {}
       - run_tag_smoke_confirmations_android: {}
