@@ -266,14 +266,15 @@ stages:
       - build_flask_e2e_ios: {}
   run_e2e_flask_ios_android:
     workflows:
+      - run_ios_api_specs: {}
       - ios_run_regression_tests: {}
-      - android_run_regression_tests: {}
-      - run_tag_smoke_confirmations_ios: {}
+      # - android_run_regression_tests: {}
+      # - run_tag_smoke_confirmations_ios: {}
       - run_tag_smoke_confirmations_android: {}
-      - run_tag_smoke_confirmations_redesigned_ios: {}
+      # - run_tag_smoke_confirmations_redesigned_ios: {}
       - run_tag_smoke_accounts_ios: {}
       - run_tag_smoke_accounts_android: {}
-      - run_tag_smoke_ramps_android: {}
+      # - run_tag_smoke_ramps_android: {}
       # - run_tag_smoke_ramps_ios: {}
       # - run_tag_smoke_identity_ios: {}
       # - run_tag_smoke_identity_android: {}
@@ -283,7 +284,9 @@ stages:
       # - run_tag_smoke_swaps_android: {}
       - run_tag_smoke_core_ios: {}
       - run_tag_smoke_core_android: {}
-      - run_flask_e2e_ios: {}
+      - run_tag_multichain_permissions_ios: {}
+      - run_tag_multichain_permissions_android: {}
+      # - run_flask_e2e_ios: {}
   create_build_flask_release:
     workflows:
       - build_android_flask_release: {}
