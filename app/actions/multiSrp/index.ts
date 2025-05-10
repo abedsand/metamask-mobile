@@ -6,6 +6,18 @@ import { KeyringSelector } from '@metamask/keyring-controller';
 ///: BEGIN:ONLY_INCLUDE_IF(seedless-onboarding)
 import ReduxService from '../../core/redux';
 ///: END:ONLY_INCLUDE_IF(seedless-onboarding)
+///: BEGIN:ONLY_INCLUDE_IF(beta)
+import {
+  MultichainWalletSnapFactory,
+  WalletClientType,
+} from '../../core/SnapKeyring/MultichainWalletSnapClient';
+///: END:ONLY_INCLUDE_IF
+import {
+  endPerformanceTrace,
+  startPerformanceTrace,
+} from '../../core/redux/slices/performance';
+import { PerformanceEventNames } from '../../core/redux/slices/performance/constants';
+import { store } from '../../store';
 
 export async function importNewSecretRecoveryPhrase(mnemonic: string) {
   const { KeyringController } = Engine.context;
@@ -73,6 +85,14 @@ export async function importNewSecretRecoveryPhrase(mnemonic: string) {
   }
   ///: END:ONLY_INCLUDE_IF(seedless-onboarding)
 
+  ///: BEGIN:ONLY_INCLUDE_IF(beta)
+  const multichainClient = MultichainWalletSnapFactory.createClient(
+    WalletClientType.Solana,
+  );
+
+  await multichainClient.addDiscoveredAccounts(newKeyring.id);
+  ///: END:ONLY_INCLUDE_IF
+
   return Engine.setSelectedAddress(newAccountAddress);
 }
 
@@ -105,6 +125,12 @@ export async function addNewHdAccount(
         type: ExtendedKeyringTypes.hd,
       };
 
+  store.dispatch(
+    startPerformanceTrace({
+      eventName: PerformanceEventNames.AddHdAccount,
+    }),
+  );
+
   const [addedAccountAddress] = await KeyringController.withKeyring(
     keyringSelector,
     async ({ keyring }) => await keyring.addAccounts(1),
@@ -114,4 +140,11 @@ export async function addNewHdAccount(
   if (name) {
     Engine.setAccountLabel(addedAccountAddress, name);
   }
+
+  // We consider the account to be created once it got selected and renamed.
+  store.dispatch(
+    endPerformanceTrace({
+      eventName: PerformanceEventNames.AddHdAccount,
+    }),
+  );
 }
