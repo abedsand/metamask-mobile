@@ -56,7 +56,6 @@ const ProtectYourWallet = ({
   ///: END:ONLY_INCLUDE_IF
 
   ///: BEGIN:ONLY_INCLUDE_IF(seedless-onboarding)
-  const seedlessOnboardingUserId = useSelector(selectSeedlessOnboardingUserId);
   const authConnection = useSelector(selectSeedlessOnboardingAuthConnection);
   ///: END:ONLY_INCLUDE_IF(seedless-onboarding)
   const openSRPQuiz = () => {
@@ -114,44 +113,48 @@ const ProtectYourWallet = ({
         color={TextColor.Alternative}
         style={styles.desc}
       >
-        {strings(
-          srpBackedup
-            ? 'app_settings.protect_desc'
-            : 'app_settings.protect_desc_no_backup',
-        )}
+        {
+          // TODO: add oauth flow's protect desc here later this week
+          strings(
+            srpBackedup
+              ? 'app_settings.protect_desc'
+              : 'app_settings.protect_desc_no_backup',
+          )
+        }
       </Text>
-      {!srpBackedup && (
+      {!oauthFlow && !srpBackedup && (
         <Button
           variant={ButtonVariants.Link}
           onPress={() => Linking.openURL(LEARN_MORE_URL)}
           label={strings('app_settings.learn_more')}
         />
       )}
-      {srpBackedup ? (
-        <Banner
-          variant={BannerVariant.Alert}
-          severity={BannerAlertSeverity.Success}
-          title={strings('app_settings.seedphrase_backed_up')}
-          description={
-            hintText ? (
-              <Button
-                variant={ButtonVariants.Link}
-                style={styles.viewHint}
-                onPress={toggleHint}
-                label={strings('app_settings.view_hint')}
-              />
-            ) : null
-          }
-          style={styles.accessory}
-        />
-      ) : (
-        <Banner
-          variant={BannerVariant.Alert}
-          severity={BannerAlertSeverity.Error}
-          title={strings('app_settings.seedphrase_not_backed_up')}
-          style={styles.accessory}
-        />
-      )}
+      {!oauthFlow &&
+        (srpBackedup ? (
+          <Banner
+            variant={BannerVariant.Alert}
+            severity={BannerAlertSeverity.Success}
+            title={strings('app_settings.seedphrase_backed_up')}
+            description={
+              hintText ? (
+                <Button
+                  variant={ButtonVariants.Link}
+                  style={styles.viewHint}
+                  onPress={toggleHint}
+                  label={strings('app_settings.view_hint')}
+                />
+              ) : null
+            }
+            style={styles.accessory}
+          />
+        ) : (
+          <Banner
+            variant={BannerVariant.Alert}
+            severity={BannerAlertSeverity.Error}
+            title={strings('app_settings.seedphrase_not_backed_up')}
+            style={styles.accessory}
+          />
+        ))}
 
       {!oauthFlow &&
         (!srpBackedup ? (

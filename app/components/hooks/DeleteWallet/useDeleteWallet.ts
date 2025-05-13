@@ -19,7 +19,7 @@ const useDeleteWallet = () => {
       });
 
       ///: BEGIN:ONLY_INCLUDE_IF(seedless-onboarding)
-      await Engine.context.SeedlessOnboardingController.reset();
+      Engine.context.SeedlessOnboardingController.clearState();
       ///: END:ONLY_INCLUDE_IF(seedless-onboarding)
 
       await resetVaultBackup();
