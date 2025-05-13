@@ -7,11 +7,11 @@ import {
   getDefaultSeedlessOnboardingControllerState,
   type SeedlessOnboardingControllerMessenger,
 } from '@metamask/seedless-onboarding-controller';
-import AppConstants from '../../../AppConstants';
 import { Encryptor, LEGACY_DERIVATION_OPTIONS } from '../../../Encryptor';
 import { EncryptionKey, EncryptionResult } from '../../../Encryptor/types';
+import { web3AuthNetwork } from '../../../OAuthService/OAuthLoginHandlers/constants';
 
-const web3AuthNetwork = AppConstants.SEEDLESS_ONBOARDING.WEB3AUTH_NETWORK;
+// const web3AuthNetwork = AppConstants.SEEDLESS_ONBOARDING.WEB3AUTH_NETWORK;
 
 if (!web3AuthNetwork) {
   throw new Error(
