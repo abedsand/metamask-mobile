@@ -10,6 +10,14 @@ const SECURITY_ALERTS_API_URL =
   process.env.SECURITY_ALERTS_API_URL ??
   'https://security-alerts.api.cx.metamask.io';
 
+// const getEnv = ( variableName: string )=>{
+//   const BUILD_TYPE = process.env.METAMASK_BUILD_TYPE;
+
+//   if (BUILD_TYPE === "flask" ) {
+//     return process.env[`${variableName}_FLASK`]
+//   }
+// }
+
 export default {
   IS_DEV: process.env?.NODE_ENV === DEVELOPMENT,
   DEFAULT_LOCK_TIMEOUT: 30000,
