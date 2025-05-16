@@ -662,7 +662,8 @@ const RevealPrivateCredential = ({
         scrollViewTestID={
           RevealSeedViewSelectorsIDs.REVEAL_CREDENTIAL_SCROLL_ID
         }
-        buttonContainerStyle={styles.ctaContainer}
+        contentContainerStyle={styles.stretch}
+        // buttonContainerStyle={styles.ctaContainer}
       >
         <>
           <View style={[styles.rowWrapper, styles.normalText]}>
