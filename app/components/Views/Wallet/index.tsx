@@ -36,7 +36,6 @@ import NotificationsService from '../../../util/notifications/services/Notificat
 import Engine from '../../../core/Engine';
 import CollectibleContracts from '../../UI/CollectibleContracts';
 import { MetaMetricsEvents } from '../../../core/Analytics';
-import OnboardingWizard from '../../UI/OnboardingWizard';
 import ErrorBoundary from '../ErrorBoundary';
 import { useTheme } from '../../../util/theme';
 import Routes from '../../../constants/navigation/Routes';
@@ -236,12 +235,6 @@ const Wallet = ({
    */
   const ticker = useSelector(selectEvmTicker);
   /**
-   * Current onboarding wizard step
-   */
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const wizardStep = useSelector((state: any) => state.wizard.step);
-  /**
    * Provider configuration for the current selected network
    */
   const providerConfig = useSelector(selectProviderConfig);
@@ -436,12 +429,11 @@ const Wallet = ({
       networkOnboardingState,
     );
 
-    if (wizardStep > 0 || (!networkOnboarded && prevChainId !== chainId)) {
-      // Do not check since it will conflict with the onboarding wizard and/or network onboarding
+    if (!networkOnboarded && prevChainId !== chainId) {
+      // Do not check since it will conflict with the onboarding and/or network onboarding
       return;
     }
   }, [
-    wizardStep,
     navigation,
     chainId,
     // TODO: Is this providerConfig.rpcUrl needed in this useEffect dependencies?
@@ -788,30 +780,10 @@ const Wallet = ({
     [styles],
   );
 
-  const isSeedlessOnboardingFlow = useSelector(
-    selectSeedlessOnboardingLoginFlow,
-  );
-
-  /**
-   * Return current step of onboarding wizard if not step 5 nor 0
-   */
-  const renderOnboardingWizard = useCallback(
-    () =>
-      [1, 2, 3, 4, 5, 6, 7].includes(wizardStep) && (
-        <OnboardingWizard
-          navigation={navigation}
-          coachmarkRef={walletRef.current}
-        />
-      ),
-    [navigation, wizardStep],
-  );
-
   return (
     <ErrorBoundary navigation={navigation} view="Wallet">
       <View style={baseStyles.flexGrow}>
         {selectedInternalAccount ? renderContent() : renderLoader()}
-
-        {!isSeedlessOnboardingFlow && renderOnboardingWizard()}
       </View>
     </ErrorBoundary>
   );
