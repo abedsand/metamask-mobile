@@ -8,6 +8,7 @@ import {
   Alert,
   Linking,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { baseStyles, fontStyles } from '../../../styles/common';
@@ -566,7 +567,7 @@ class OptinMetrics extends PureComponent {
   onScroll = ({ nativeEvent }) => {
     if (this.state.isEndReached) return;
     const currentYOffset = nativeEvent.contentOffset.y;
-    const paddingAllowance = 16;
+    const paddingAllowance = Platform.OS === 'ios' ? 16 : 32;
     const endThreshold =
       nativeEvent.contentSize.height -
       nativeEvent.layoutMeasurement.height -
