@@ -7,7 +7,6 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import { type ThemeColors } from '@metamask/design-tokens';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { MetaMetricsEvents } from '../../../core/Analytics';
 import { ITrackingEvent } from '../../../core/Analytics/MetaMetrics.types';
@@ -59,7 +58,7 @@ const carouselSize = {
   width: DEVICE_WIDTH - IMG_PADDING,
   height: (DEVICE_WIDTH - IMG_PADDING) * IMAGE_RATIO,
 };
-const createStyles = (colors: ThemeColors) =>
+const createStyles = () =>
   StyleSheet.create({
     scroll: {
       flexGrow: 1,
@@ -159,7 +158,8 @@ export const OnboardingCarousel: React.FC<OnboardingCarouselProps> = ({
   );
   const themeContext = useContext(ThemeContext);
   const colors = themeContext.colors || mockTheme.colors;
-  const styles = createStyles(colors);
+
+  const styles = createStyles();
 
   const track = useCallback(
     (event: ITrackingEvent) => {
