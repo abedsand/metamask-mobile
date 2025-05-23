@@ -642,10 +642,14 @@ export function getModalNavbarOptions(title) {
  */
 export function getOnboardingNavbarOptions(
   route,
-  { headerLeft } = {},
+  { headerLeft, headerRight },
   themeColors,
+  showLogo = true,
 ) {
-  const headerLeftHide = headerLeft || route.params?.headerLeft;
+  const headerLeftHide =
+    headerLeft || route.params?.headerLeft || (() => <View />);
+  const headerRightHide =
+    headerRight || route.params?.headerRight || (() => <View />);
   const innerStyles = StyleSheet.create({
     headerStyle: {
       backgroundColor: themeColors.background.default,
@@ -661,17 +665,19 @@ export function getOnboardingNavbarOptions(
 
   return {
     headerStyle: innerStyles.headerStyle,
-    headerTitle: () => (
-      <View style={styles.metamaskNameTransparentWrapper}>
-        <Image
-          source={metamask_name}
-          style={innerStyles.metamaskName}
-          resizeMethod={'auto'}
-        />
-      </View>
-    ),
-    headerBackTitle: strings('navigation.back'),
-    headerRight: () => <View />,
+    headerTitle: showLogo
+      ? () => (
+          <View style={styles.metamaskNameTransparentWrapper}>
+            <Image
+              source={metamask_name}
+              style={innerStyles.metamaskName}
+              resizeMethod={'auto'}
+            />
+          </View>
+        )
+      : null,
+    // headerBackTitle: strings('navigation.back'),
+    headerRight: headerRightHide,
     headerLeft: headerLeftHide,
     headerTintColor: themeColors.primary.default,
   };
@@ -796,7 +802,7 @@ export function getTransparentBackOnboardingNavbarOptions(themeColors, color) {
  *
  * @returns {Object} - Corresponding navbar options containing headerLeft
  */
-export function getOptinMetricsNavbarOptions(themeColors) {
+export function getOptinMetricsNavbarOptions(themeColors, showLogo = true) {
   const innerStyles = StyleSheet.create({
     headerStyle: {
       backgroundColor: themeColors.background.default,
@@ -810,17 +816,19 @@ export function getOptinMetricsNavbarOptions(themeColors) {
     },
   });
   return {
-    headerTitle: () => (
-      <View style={styles.metamaskNameTransparentWrapper}>
-        <Image
-          source={metamask_name}
-          style={innerStyles.metamaskName}
-          resizeMethod={'auto'}
-        />
-      </View>
-    ),
+    headerTitle: () =>
+      showLogo ? (
+        <View style={styles.metamaskNameTransparentWrapper}>
+          <Image
+            source={metamask_name}
+            style={innerStyles.metamaskName}
+            resizeMethod={'auto'}
+          />
+        </View>
+      ) : null,
     headerBackTitle: strings('navigation.back'),
     headerRight: () => <View />,
+    headerLeft: () => <View />,
     headerStyle: innerStyles.headerStyle,
     headerTintColor: themeColors.primary.default,
   };
