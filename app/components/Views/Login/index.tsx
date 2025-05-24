@@ -147,6 +147,7 @@ const Login: React.FC = () => {
 
   const getHint = async () => {
     const hint = await StorageWrapper.getItem(SEED_PHRASE_HINTS);
+    if (!hint) return;
     const parsedHints = await JSON.parse(hint);
     setHintText(parsedHints?.manualBackup || '');
   };
