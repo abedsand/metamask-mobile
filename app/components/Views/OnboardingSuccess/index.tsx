@@ -10,7 +10,7 @@ import {
   TextColor,
   TextVariant,
 } from '../../../component-library/components/Texts/Text/Text.types';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { strings } from '../../../../locales/i18n';
 import Routes from '../../../constants/navigation/Routes';
 import { getTransparentOnboardingNavbarOptions } from '../../UI/Navbar';
