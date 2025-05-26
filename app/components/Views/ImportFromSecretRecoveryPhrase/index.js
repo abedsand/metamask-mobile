@@ -574,7 +574,6 @@ const ImportFromSecretRecoveryPhrase = ({
             routes: [
               {
                 name: Routes.ONBOARDING.SUCCESS_FLOW,
-                params: { showPasswordHint: false },
               },
             ],
           });
@@ -586,7 +585,6 @@ const ImportFromSecretRecoveryPhrase = ({
                 routes: [
                   {
                     name: Routes.ONBOARDING.SUCCESS_FLOW,
-                    params: { showPasswordHint: false },
                   },
                 ],
               });

@@ -166,9 +166,7 @@ const AccountBackupStep1 = (props) => {
     !onboardingWizard && props.setOnboardingWizardStep(1);
     props.navigation.navigate('OptinMetrics', {
       onContinue: () => {
-        props.navigation.navigate('OnboardingSuccess', {
-          showPasswordHint: false,
-        });
+        props.navigation.navigate('OnboardingSuccess');
       },
     });
   };

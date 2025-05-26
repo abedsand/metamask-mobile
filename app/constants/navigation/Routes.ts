@@ -87,7 +87,6 @@ const Routes = {
     NOTIFICATIONS: 'NotificationsSettings',
     REVEAL_PRIVATE_CREDENTIAL: 'RevealPrivateCredentialView',
     SDK_SESSIONS_MANAGER: 'SDKSessionsManager',
-    PASSWORD_HINT: 'PasswordHint',
     BACKUP_AND_SYNC: 'BackupAndSyncSettings',
   },
   SHEET: {

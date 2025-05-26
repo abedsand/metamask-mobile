@@ -103,9 +103,7 @@ const ManualBackupStep2 = ({ navigation, seedphraseBackedUp, route }) => {
             steps: route.params?.steps,
             words,
             onContinue: () => {
-              navigation.navigate('OnboardingSuccess', {
-                showPasswordHint: true,
-              });
+              navigation.navigate('OnboardingSuccess');
             },
           });
         }

@@ -149,15 +149,6 @@
     "import_description": "If you lose your Secret Recovery Phrase, you won’t be able to use your wallet.",
     "import_description2": "you can keep this phrase safe so you never lose access to your money.",
     "done": "Done",
-    "create_hint": "Create a password hint",
-    "hint_title": "Password hint",
-    "hint_description": "Leave yourself a hint to help remember your password. This hint is stored on your device, and won’t be shared.",
-    "hint_description2": "Remember: If you lose your password, you won’t be able to use your wallet.",
-    "hint_button": "Create hint",
-    "hint_placeholder": "e.g. mom’s home",
-    "hint_saved": "Save",
-    "hint_saved_toast": "Password hint saved",
-    "error_matches_password": "You cannot use your password as a hint",
     "remind_later": "We’ll remind you later",
     "remind_later_description": "If you don’t back up your Secret Recovery Phrase, you’ll lose access to your funds if you get locked out of the app or get a new device.",
     "remind_later_description2": "You can back up your wallets or see your Secret Recovery Phrase in",
@@ -1416,8 +1407,7 @@
     "password_title": "Password",
     "password_desc": "Choose a strong password to unlock MetaMask app on your device. If you lose this password, you will need your Secret Recovery Phrase to re-import your wallet.",
     "password_learn_more": "Learn more.",
-    "change_password": "Change password",
-    "password_hint": "Password hint"
+    "change_password": "Change password"
   },
   "asset_overview": {
     "send_button": "Send",
@@ -4041,16 +4031,7 @@
     "bridge_to_chain": "Bridge to {{chainName}}",
     "recipient": "Recipient"
   },
-  "password_hint": {
-    "title": "Password hint",
-    "description": "Leave yourself a hint to help remember your password. This hint is stored on your device, and won’t be shared.",
-    "description2": "Remember: If you lose your password, you won’t be able to use your wallet.",
-    "button": "Create hint",
-    "placeholder": "e.g. mom’s home",
-    "saved": "Save",
-    "saved_toast": "Password hint updated",
-    "error_matches_password": "You cannot use your password as a hint"
-  },
+
   "protect_your_wallet": {
     "title": "Protect your wallet",
     "login_with_social": "Log in with Social Accounts",

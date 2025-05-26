@@ -23,10 +23,6 @@ const ChangePassword = () => {
     navigation.navigate(Routes.SETTINGS.CHANGE_PASSWORD);
   };
 
-  const showPasswordHint = (): void => {
-    navigation.navigate(Routes.SETTINGS.PASSWORD_HINT);
-  };
-
   return (
     <View
       style={styles.setting}
@@ -46,15 +42,6 @@ const ChangePassword = () => {
         label={strings('password_reset.change_password')}
         variant={ButtonVariants.Primary}
         onPress={resetPassword}
-        style={styles.confirm}
-        width={ButtonWidthTypes.Full}
-        size={ButtonSize.Lg}
-        testID={SecurityPrivacyViewSelectorsIDs.CHANGE_PASSWORD_BUTTON}
-      />
-      <Button
-        label={strings('password_reset.password_hint')}
-        variant={ButtonVariants.Secondary}
-        onPress={showPasswordHint}
         style={styles.confirm}
         width={ButtonWidthTypes.Full}
         size={ButtonSize.Lg}
