@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import ActionView from '../../UI/BackupActionView';
+import ActionView from '../../UI/ActionView';
 import { ScreenshotDeterrent } from '../../UI/ScreenshotDeterrent';
 import { strings } from '../../../../locales/i18n';
 import { connect } from 'react-redux';

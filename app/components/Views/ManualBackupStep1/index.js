@@ -24,7 +24,7 @@ import Text, {
   TextColor,
 } from '../../../component-library/components/Texts/Text';
 import { strings } from '../../../../locales/i18n';
-import ActionView from '../../UI/BackupActionView';
+import ActionView from '../../UI/ActionView';
 import Engine from '../../../core/Engine';
 import { getOnboardingNavbarOptions } from '../../UI/Navbar';
 import { ScreenshotDeterrent } from '../../UI/ScreenshotDeterrent';
