@@ -520,7 +520,8 @@ class AuthenticationService {
     // rollback on fail ( reset wallet )
     await this.createWalletVaultAndKeychain(password);
     try {
-      const keyringMetadata = KeyringController.state.keyringsMetadata.at(0);
+      const keyring = KeyringController.state.keyrings.at(0);
+      const keyringMetadata = keyring?.metadata;
       if (!keyringMetadata) {
         throw new Error('No keyring metadata found');
       }
