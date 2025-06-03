@@ -245,6 +245,6 @@ export default {
     ANDROID_WEB_APPLE_CLIENT_ID: process.env.ANDROID_WEB_APPLE_CLIENT_ID,
     AUTH_CONNECTION_ID: process.env.AUTH_CONNECTION_ID,
     GROUPED_AUTH_CONNECTION_ID: process.env.GROUPED_AUTH_CONNECTION_ID,
-    WEB3AUTH_NETWORK: process.env.WEB3AUTH_NETWORK,
+    WEB3AUTH_NETWORK: process.env.WEB3AUTH_NETWORK ?? 'sapphire_devnet',
   },
 } as const;
