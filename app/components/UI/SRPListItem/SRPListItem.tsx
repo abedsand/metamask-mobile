@@ -25,6 +25,8 @@ import Avatar, {
 } from '../../../component-library/components/Avatars/Avatar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../reducers';
+import { MetaMetricsEvents } from '../../../core/Analytics/MetaMetrics.events';
+import useMetrics from '../../hooks/useMetrics/useMetrics';
 
 const SRPListItem = ({
   name,
@@ -34,6 +36,7 @@ const SRPListItem = ({
   showArrowName = '',
 }: SRPListItemProps) => {
   const { styles } = useStyles(styleSheet, {});
+  const { trackEvent, createEventBuilder } = useMetrics();
   const [showAccounts, setShowAccounts] = useState(false);
   const accountsToBeShown = useMemo(
     () =>
@@ -86,7 +89,18 @@ const SRPListItem = ({
                   ? 'accounts.show_accounts'
                   : 'accounts.hide_accounts',
               )} ${keyring.accounts.length} ${strings('accounts.accounts')}`}
-              onPress={() => setShowAccounts(!showAccounts)}
+              onPress={() => {
+                trackEvent(
+                  createEventBuilder(
+                    MetaMetricsEvents.SECRET_RECOVERY_PHRASE_PICKER_CLICKED,
+                  )
+                    .addProperties({
+                      button_type: 'details',
+                    })
+                    .build(),
+                );
+                setShowAccounts(!showAccounts);
+              }}
             />
           </View>
           {showAccounts && (

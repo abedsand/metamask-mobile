@@ -10,7 +10,7 @@ import {
   TextColor,
   TextVariant,
 } from '../../../component-library/components/Texts/Text/Text.types';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { strings } from '../../../../locales/i18n';
 import Routes from '../../../constants/navigation/Routes';
 import { getTransparentOnboardingNavbarOptions } from '../../UI/Navbar';
@@ -37,7 +37,7 @@ interface OnboardingSuccessProps {
   noSRP?: boolean;
 }
 
-const OnboardingSuccess = ({
+export const OnboardingSuccessComponent = ({
   onDone,
   backedUpSRP,
   noSRP,
@@ -154,7 +154,11 @@ const OnboardingSuccess = ({
           </Text>
 
           <Text variant={TextVariant.BodyMD} color={TextColor.Alternative}>
-            <Text color={TextColor.Primary} onPress={handleLink}>
+            <Text
+              color={TextColor.Primary}
+              onPress={handleLink}
+              testID={OnboardingSuccessSelectorIDs.LEARN_MORE_LINK_ID}
+            >
               {strings('onboarding_success.learn_how')}{' '}
             </Text>
             {strings('onboarding_success.import_description2')}
@@ -170,6 +174,7 @@ const OnboardingSuccess = ({
         <TouchableOpacity
           style={[styles.linkWrapper]}
           onPress={goToDefaultSettings}
+          testID={OnboardingSuccessSelectorIDs.MANAGE_DEFAULT_SETTINGS_BUTTON}
         >
           <View style={styles.row}>
             <Icon
@@ -213,6 +218,28 @@ const OnboardingSuccess = ({
         </View>
       </View>
     </ScrollView>
+  );
+};
+
+const OnboardingSuccess = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const params = route.params ?? {
+    backedUpSRP: false,
+    noSRP: false,
+  };
+
+  const { backedUpSRP, noSRP } = params as {
+    backedUpSRP: boolean;
+    noSRP: boolean;
+  };
+
+  return (
+    <OnboardingSuccessComponent
+      backedUpSRP={backedUpSRP}
+      noSRP={noSRP}
+      onDone={() => navigation.reset({ routes: [{ name: 'HomeNav' }] })}
+    />
   );
 };
 

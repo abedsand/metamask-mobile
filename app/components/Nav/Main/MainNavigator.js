@@ -187,7 +187,7 @@ const WalletTabStackFlow = () => (
       options={ConfirmAddAsset.navigationOptions}
     />
     <Stack.Screen
-      name="RevealPrivateCredentialView"
+      name={Routes.SETTINGS.REVEAL_PRIVATE_CREDENTIAL}
       component={RevealPrivateCredential}
     />
   </Stack.Navigator>
@@ -377,7 +377,7 @@ const SettingsFlow = () => (
       }}
     />
     <Stack.Screen
-      name="RevealPrivateCredentialView"
+      name={Routes.SETTINGS.REVEAL_PRIVATE_CREDENTIAL}
       component={RevealPrivateCredential}
     />
     <Stack.Screen

@@ -3,7 +3,7 @@ import { wordlist } from '@metamask/scure-bip39/dist/wordlists/english';
 import ExtendedKeyringTypes from '../../constants/keyringTypes';
 import Engine from '../../core/Engine';
 import { KeyringSelector } from '@metamask/keyring-controller';
-///: BEGIN:ONLY_INCLUDE_IF(beta)
+///: BEGIN:ONLY_INCLUDE_IF(solana)
 import {
   MultichainWalletSnapFactory,
   WalletClientType,
@@ -84,7 +84,7 @@ export async function importNewSecretRecoveryPhrase(mnemonic: string) {
   }
   ///: END:ONLY_INCLUDE_IF(seedless-onboarding)
 
-  ///: BEGIN:ONLY_INCLUDE_IF(beta)
+  ///: BEGIN:ONLY_INCLUDE_IF(solana)
   const multichainClient = MultichainWalletSnapFactory.createClient(
     WalletClientType.Solana,
   );

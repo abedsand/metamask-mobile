@@ -51,12 +51,18 @@ import Label from '../../../component-library/components/Form/Label';
 import { TextFieldSize } from '../../../component-library/components/Form/TextField';
 import TextField from '../../../component-library/components/Form/TextField/TextField';
 import Routes from '../../../constants/navigation/Routes';
+import { saveOnboardingEvent } from '../../../actions/onboarding';
 
 /**
  * View that's shown during the second step of
  * the backup seed phrase flow
  */
-const ManualBackupStep1 = ({ route, navigation, appTheme }) => {
+const ManualBackupStep1 = ({
+  route,
+  navigation,
+  appTheme,
+  dispatchSaveOnboardingEvent,
+}) => {
   const [seedPhraseHidden, setSeedPhraseHidden] = useState(true);
   const [password, setPassword] = useState(undefined);
   const [warningIncorrectPassword, setWarningIncorrectPassword] =
@@ -72,27 +78,32 @@ const ManualBackupStep1 = ({ route, navigation, appTheme }) => {
 
   const steps = MANUAL_BACKUP_STEPS;
 
+  const headerLeft = useCallback(
+    () => (
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon
+          name={IconName.ArrowLeft}
+          size={IconSize.Lg}
+          color={colors.text.default}
+          style={styles.headerLeft}
+        />
+      </TouchableOpacity>
+    ),
+    [colors, navigation, styles.headerLeft],
+  );
+
   const updateNavBar = useCallback(() => {
     navigation.setOptions(
       getOnboardingNavbarOptions(
         route,
         {
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Icon
-                name={IconName.ArrowLeft}
-                size={IconSize.Lg}
-                color={colors.text.default}
-                style={styles.headerLeft}
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft,
         },
         colors,
         false,
       ),
     );
-  }, [colors, navigation, route, styles.headerLeft]);
+  }, [colors, navigation, route, headerLeft]);
 
   const tryExportSeedPhrase = async (password) => {
     const { KeyringController } = Engine.context;
@@ -157,6 +168,7 @@ const ManualBackupStep1 = ({ route, navigation, appTheme }) => {
       MetricsEventBuilder.createEventBuilder(
         MetaMetricsEvents.WALLET_SECURITY_PHRASE_REVEALED,
       ).build(),
+      dispatchSaveOnboardingEvent,
     );
   };
 
@@ -207,6 +219,7 @@ const ManualBackupStep1 = ({ route, navigation, appTheme }) => {
         <TouchableOpacity
           onPress={revealSeedPhrase}
           style={styles.blurContainer}
+          testID={ManualBackUpStepsSelectorsIDs.BLUR_BUTTON}
         >
           <ImageBackground
             source={require('../../../images/blur.png')}
@@ -249,7 +262,7 @@ const ManualBackupStep1 = ({ route, navigation, appTheme }) => {
             </View>
             <View style={styles.field}>
               <TextField
-                placeholder={'Password'}
+                placeholder={strings('manual_backup_step_1.password')}
                 value={password}
                 onChangeText={onPasswordChange}
                 secureTextEntry
@@ -346,6 +359,7 @@ const ManualBackupStep1 = ({ route, navigation, appTheme }) => {
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={styles.word}
+                    testID={`${ManualBackUpStepsSelectorsIDs.WORD_ITEM}-${index}`}
                   >
                     {item}
                   </Text>
@@ -390,10 +404,19 @@ ManualBackupStep1.propTypes = {
    * Theme that app is set to
    */
   appTheme: PropTypes.string,
+  /**
+   * Action to save onboarding event
+   */
+  dispatchSaveOnboardingEvent: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   appTheme: state.user.appTheme,
 });
 
-export default connect(mapStateToProps)(ManualBackupStep1);
+const mapDispatchToProps = (dispatch) => ({
+  dispatchSaveOnboardingEvent: (...eventArgs) =>
+    dispatch(saveOnboardingEvent(eventArgs)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManualBackupStep1);

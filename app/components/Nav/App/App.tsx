@@ -156,28 +156,6 @@ const clearStackNavigatorOptions = {
 
 const Stack = createStackNavigator();
 
-const OnboardingSuccessComponent = () => {
-  const navigation = useNavigation();
-  const route = useRoute();
-  const params = route.params ?? {
-    backedUpSRP: false,
-    noSRP: false,
-  };
-
-  const { backedUpSRP, noSRP } = params as {
-    backedUpSRP: boolean;
-    noSRP: boolean;
-  };
-
-  return (
-    <OnboardingSuccess
-      backedUpSRP={backedUpSRP}
-      noSRP={noSRP}
-      onDone={() => navigation.reset({ routes: [{ name: 'HomeNav' }] })}
-    />
-  );
-};
-
 const AccountAlreadyExists = () => <AccountStatus type="found" />;
 
 const AccountNotFound = () => <AccountStatus type="not_exist" />;
@@ -186,7 +164,7 @@ const OnboardingSuccessFlow = () => (
   <Stack.Navigator initialRouteName={Routes.ONBOARDING.SUCCESS}>
     <Stack.Screen
       name={Routes.ONBOARDING.SUCCESS}
-      component={OnboardingSuccessComponent} // Used in SRP flow
+      component={OnboardingSuccess} // Used in SRP flow
     />
     <Stack.Screen
       name={Routes.ONBOARDING.DEFAULT_SETTINGS} // This is being used in import wallet flow
@@ -225,7 +203,7 @@ const OnboardingNav = () => (
     />
     <Stack.Screen
       name={Routes.ONBOARDING.SUCCESS}
-      component={OnboardingSuccessComponent} // Used in SRP flow
+      component={OnboardingSuccess} // Used in SRP flow
     />
     <Stack.Screen
       name={Routes.ONBOARDING.DEFAULT_SETTINGS} // This is being used in import wallet flow
@@ -238,16 +216,16 @@ const OnboardingNav = () => (
       name={Routes.ONBOARDING.IMPORT_FROM_SECRET_RECOVERY_PHRASE}
       component={ImportFromSecretRecoveryPhrase}
     />
-    <Stack.Screen name="OptinMetrics" component={OptinMetrics} />
     <Stack.Screen name="AccountStatus" component={AccountStatus} />
     <Stack.Screen
       name="AccountAlreadyExists"
       component={AccountAlreadyExists}
     />
     <Stack.Screen name="AccountNotFound" component={AccountNotFound} />
+    <Stack.Screen name="Rehydrate" component={Login} />
     <Stack.Screen
-      name="Rehydrate"
-      component={Login}
+      name="OptinMetrics"
+      component={OptinMetrics}
       options={{ headerShown: false }}
     />
   </Stack.Navigator>

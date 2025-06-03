@@ -7,6 +7,8 @@ import styleSheet from './SRPList.styles';
 import SRPListItem from '../SRPListItem';
 import { SRPListSelectorsIDs } from '../../../../e2e/selectors/MultiSRP/SRPList.selectors';
 import { useHdKeyringsWithSnapAccounts } from '../../hooks/useHdKeyringsWithSnapAccounts';
+import { MetaMetricsEvents } from '../../../core/Analytics/MetaMetrics.events';
+import useMetrics from '../../hooks/useMetrics/useMetrics';
 
 const SRPList = ({
   onKeyringSelect,
@@ -15,6 +17,7 @@ const SRPList = ({
 }: SRPListProps) => {
   const { styles } = useStyles(styleSheet, {});
   const hdKeyringsWithSnapAccounts = useHdKeyringsWithSnapAccounts();
+  const { trackEvent, createEventBuilder } = useMetrics();
 
   return (
     <View
@@ -29,8 +32,19 @@ const SRPList = ({
             key={item.metadata.id}
             keyring={item}
             name={`${strings('accounts.secret_recovery_phrase')} ${index + 1}`}
-            onActionComplete={() => onKeyringSelect(item.metadata.id)}
             showArrowName={showArrowName}
+            onActionComplete={() => {
+              onKeyringSelect(item.metadata.id);
+              trackEvent(
+                createEventBuilder(
+                  MetaMetricsEvents.SECRET_RECOVERY_PHRASE_PICKER_CLICKED,
+                )
+                  .addProperties({
+                    button_type: 'srp_select',
+                  })
+                  .build(),
+              );
+            }}
           />
         )}
         scrollEnabled

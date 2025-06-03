@@ -33,7 +33,6 @@ import PreventScreenshot from '../../../core/PreventScreenshot';
 import { PREVIOUS_SCREEN, ONBOARDING } from '../../../constants/navigation';
 import { EXISTING_USER } from '../../../constants/storage';
 import { MetaMetricsEvents } from '../../../core/Analytics';
-import { withMetricsAwareness } from '../../hooks/useMetrics';
 import { Authentication } from '../../../core';
 import { ThemeContext, mockTheme } from '../../../util/theme';
 import { OnboardingSelectorIDs } from '../../../../e2e/selectors/Onboarding/Onboarding.selectors';
@@ -373,8 +372,11 @@ class Onboarding extends PureComponent {
     const action = async () => {
       this.props.navigation.navigate(
         Routes.ONBOARDING.IMPORT_FROM_SECRET_RECOVERY_PHRASE,
+        {
+          [PREVIOUS_SCREEN]: ONBOARDING,
+        },
       );
-      this.track(MetaMetricsEvents.WALLET_IMPORT_STARTED);
+      this.track(MetaMetricsEvents.WALLET_SETUP_STARTED);
     };
     this.handleExistingUser(action);
   };
@@ -467,9 +469,10 @@ class Onboarding extends PureComponent {
   };
   ///: END:ONLY_INCLUDE_IF(seedless-onboarding)
   track = (event) => {
-    trackOnboarding(MetricsEventBuilder.createEventBuilder(event).build(), [
+    trackOnboarding(
+      MetricsEventBuilder.createEventBuilder(event).build(),
       this.props.dispatchSaveOnboardingEvent,
-    ]);
+    );
   };
 
   alertExistingUser = (callback) => {
@@ -677,10 +680,8 @@ const mapDispatchToProps = (dispatch) => ({
   unsetLoading: () => dispatch(loadingUnset()),
   disableNewPrivacyPolicyToast: () =>
     dispatch(storePrivacyPolicyClickedOrClosedAction()),
-  dispatchSaveOnboardingEvent: (event) => dispatch(saveOnboardingEvent(event)),
+  dispatchSaveOnboardingEvent: (...eventArgs) =>
+    dispatch(saveOnboardingEvent(eventArgs)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withMetricsAwareness(Onboarding));
+export default connect(mapStateToProps, mapDispatchToProps)(Onboarding);
