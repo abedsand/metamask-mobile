@@ -107,16 +107,18 @@ class AuthenticationService {
     const { KeyringController }: any = Engine.context;
     if (clearEngine) await Engine.resetState();
     await KeyringController.createNewVaultAndRestore(password, parsedSeed);
+
+    // TODO : uncomment once solana is working
     ///: BEGIN:ONLY_INCLUDE_IF(solana)
-    const primaryHdKeyringId =
-      Engine.context.KeyringController.state.keyrings[0].metadata.id;
-    const client = MultichainWalletSnapFactory.createClient(
-      WalletClientType.Solana,
-      {
-        setSelectedAccount: false,
-      },
-    );
-    await client.addDiscoveredAccounts(primaryHdKeyringId);
+    // const primaryHdKeyringId =
+    //   Engine.context.KeyringController.state.keyrings[0].metadata.id;
+    // const client = MultichainWalletSnapFactory.createClient(
+    //   WalletClientType.Solana,
+    //   {
+    //     setSelectedAccount: false,
+    //   },
+    // );
+    // await client.addDiscoveredAccounts(primaryHdKeyringId);
     ///: END:ONLY_INCLUDE_IF
     password = this.wipeSensitiveData();
     parsedSeed = this.wipeSensitiveData();
