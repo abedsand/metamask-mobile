@@ -5949,7 +5949,6 @@
     "@toruslabs/http-helpers" "^8.1.1"
     bn.js "^5.2.1"
 
-
 "@metamask/transaction-controller@^56.3.0":
   version "56.3.0"
   resolved "https://registry.yarnpkg.com/@metamask/transaction-controller/-/transaction-controller-56.3.0.tgz#7b2e34590a0bd7c77d4c8ebe76361c0e0c0adf64"
