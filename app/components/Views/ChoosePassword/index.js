@@ -204,6 +204,10 @@ class ChoosePassword extends PureComponent {
      */
     route: PropTypes.object,
     /**
+     * Metrics injected by withMetricsAwareness HOC
+     */
+    metrics: PropTypes.object,
+    /**
      * Action to save onboarding event
      */
     dispatchSaveOnboardingEvent: PropTypes.func,
