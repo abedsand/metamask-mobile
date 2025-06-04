@@ -93,6 +93,7 @@ import {
   PASSCODE_NOT_SET_ERROR,
   IOS_REJECTED_BIOMETRICS_ERROR,
 } from './constant';
+import { useMetrics } from '../../hooks/useMetrics';
 
 const checkValidSeedWord = (text) => wordlist.includes(text);
 
@@ -156,6 +157,8 @@ const ImportFromSecretRecoveryPhrase = ({
   };
 
   const [errorWordIndexes, setErrorWordIndexes] = useState({});
+
+  const { isEnabled: isMetricsEnabled } = useMetrics();
 
   const handleClear = useCallback(() => {
     setSeedPhrase([]);
