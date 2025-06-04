@@ -134,6 +134,14 @@ const Routes = {
     SEEDPHRASE_MODAL: 'SeedphraseModal',
     SKIP_ACCOUNT_SECURITY_MODAL: 'SkipAccountSecurityModal',
     SUCCESS_ERROR_SHEET: 'SuccessErrorSheet',
+    MULTICHAIN_ACCOUNT_DETAILS: {
+      EDIT_ACCOUNT_NAME: 'MultichainEditAccountName',
+      EDIT_WALLET_NAME: 'EditWalletName',
+      SHARE_ADDRESS: 'ShareAddress',
+      DELETE_ACCOUNT: 'DeleteAccount',
+      REVEAL_PRIVATE_CREDENTIAL: 'RevealPrivateCredential',
+      REVEAL_SRP_CREDENTIAL: 'RevealSRPCredential',
+    },
   },
   BROWSER: {
     HOME: 'BrowserTabHome',
@@ -213,6 +221,9 @@ const Routes = {
   },
   MULTI_SRP: {
     IMPORT: 'ImportSRPView',
+  },
+  MULTICHAIN_ACCOUNTS: {
+    ACCOUNT_DETAILS: 'MultichainAccountDetails',
   },
   ///: BEGIN:ONLY_INCLUDE_IF(external-snaps)
   SNAPS: {

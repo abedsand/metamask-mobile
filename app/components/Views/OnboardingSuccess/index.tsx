@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect } from 'react';
+import React, { useCallback, useLayoutEffect, useMemo } from 'react';
 import { ScrollView, View, Linking, TouchableOpacity } from 'react-native';
 import Button, {
   ButtonSize,
@@ -37,17 +37,17 @@ interface OnboardingSuccessProps {
   noSRP?: boolean;
 }
 
-export const OnboardingSuccessComponent = ({
+export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
   onDone,
   backedUpSRP,
   noSRP,
-}: OnboardingSuccessProps) => {
+}) => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
 
   const { colors } = useTheme();
-  const styles = createStyles(colors);
+  const styles = useMemo(() => createStyles(colors), [colors]);
 
   useLayoutEffect(() => {
     navigation.setOptions(

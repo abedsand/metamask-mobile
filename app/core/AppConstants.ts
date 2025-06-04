@@ -247,4 +247,6 @@ export default {
     GROUPED_AUTH_CONNECTION_ID: process.env.GROUPED_AUTH_CONNECTION_ID,
     WEB3AUTH_NETWORK: process.env.WEB3AUTH_NETWORK ?? 'sapphire_devnet',
   },
+  TOKEN_DISCOVERY_BROWSER_ENABLED:
+    process.env.TOKEN_DISCOVERY_BROWSER_ENABLED === 'true',
 } as const;
