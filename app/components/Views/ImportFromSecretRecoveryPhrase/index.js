@@ -12,7 +12,6 @@ import {
   View,
   TextInput,
   SafeAreaView,
-  Platform,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
@@ -87,16 +86,13 @@ import { wordlist } from '@metamask/scure-bip39/dist/wordlists/english';
 import { LoginOptionsSwitch } from '../../UI/LoginOptionsSwitch';
 import { saveOnboardingEvent } from '../../../actions/onboarding';
 import { CommonActions } from '@react-navigation/native';
-
-const MINIMUM_SUPPORTED_CLIPBOARD_VERSION = 9;
-
-const SRP_LENGTHS = [12, 15, 18, 21, 24];
-
-const PASSCODE_NOT_SET_ERROR = 'Error: Passcode not set.';
-const IOS_REJECTED_BIOMETRICS_ERROR =
-  'Error: The user name or passphrase you entered is not correct.';
-
-const SPACE_CHAR = ' ';
+import {
+  SRP_LENGTHS,
+  NUM_COLUMNS,
+  SPACE_CHAR,
+  PASSCODE_NOT_SET_ERROR,
+  IOS_REJECTED_BIOMETRICS_ERROR,
+} from './constant';
 
 const checkValidSeedWord = (text) => wordlist.includes(text);
 
@@ -141,9 +137,6 @@ const ImportFromSecretRecoveryPhrase = ({
   const [learnMore, setLearnMore] = useState(false);
   const [showPasswordIndex, setShowPasswordIndex] = useState([0, 1]);
   const [containerWidth, setContainerWidth] = useState(0);
-
-  const inputPadding = Platform.OS === 'ios' ? 4 : 3;
-  const numColumns = 3; // Number of columns
 
   const seedPhraseLength = seedPhrase.filter((item) => item !== '').length;
 
@@ -433,7 +426,7 @@ const ImportFromSecretRecoveryPhrase = ({
           { label: strings('import_from_seed.seed_phrase_length_error') },
         ],
         hasNoTimeout: false,
-        iconName: IconName.DangerSolid,
+        iconName: IconName.Error,
         iconColor: IconColor.Error,
       });
       return false;
@@ -699,15 +692,15 @@ const ImportFromSecretRecoveryPhrase = ({
                         >
                           <FlatList
                             data={seedPhrase}
-                            numColumns={numColumns}
+                            numColumns={NUM_COLUMNS}
                             keyExtractor={(_, index) => index.toString()}
                             renderItem={({ item, index }) => (
                               <View
                                 style={[
                                   {
-                                    width: containerWidth / 3,
-                                    padding: inputPadding,
+                                    width: containerWidth / NUM_COLUMNS,
                                   },
+                                  styles.inputPadding,
                                 ]}
                               >
                                 <TextField
@@ -747,7 +740,6 @@ const ImportFromSecretRecoveryPhrase = ({
                                     handleSeedPhraseChange(text, index)
                                   }
                                   placeholderTextColor={colors.text.muted}
-                                  // autoFocus={index === seedPhrase.length - 1}
                                   onSubmitEditing={(e) => {
                                     handleKeyPress(e, index, true);
                                   }}

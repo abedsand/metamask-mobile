@@ -276,8 +276,6 @@ import wifiSVG from './assets/wifi.svg';
 import googleSVG from './assets/google.svg';
 import appleSVG from './assets/apple.svg';
 import appleWhiteSVG from './assets/apple-white.svg';
-import eyeSlashSolidSVG from './assets/eye-slash-solid.svg';
-import eyeSolidSVG from './assets/eye-solid.svg';
 import dangerSolidSVG from './assets/danger-solid.svg';
 import successSolidSVG from './assets/success.svg';
 import accountSVG from './assets/account.svg';
@@ -561,8 +559,6 @@ export const assetByIconName: AssetByIconName = {
   [IconName.Google]: googleSVG,
   [IconName.Apple]: appleSVG,
   [IconName.AppleWhite]: appleWhiteSVG,
-  [IconName.EyeSlashSolid]: eyeSlashSolidSVG,
-  [IconName.EyeSolid]: eyeSolidSVG,
   [IconName.DangerSolid]: dangerSolidSVG,
   [IconName.SuccessSolid]: successSolidSVG,
   [IconName.Account]: accountSVG,

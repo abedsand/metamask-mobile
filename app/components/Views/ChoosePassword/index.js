@@ -577,10 +577,6 @@ class ChoosePassword extends PureComponent {
     this.setState({ password: val, passwordStrength: passInfo.score });
   };
 
-  toggleShowHide = () => {
-    this.setState((state) => ({ secureTextEntry: !state.secureTextEntry }));
-  };
-
   learnMore = () => {
     this.props.navigation.push('Webview', {
       screen: 'SimpleWebview',
@@ -612,11 +608,9 @@ class ChoosePassword extends PureComponent {
   render() {
     const {
       isSelected,
-      inputWidth,
       password,
       passwordStrength,
       confirmPassword,
-      secureTextEntry,
       error,
       loading,
     } = this.state;

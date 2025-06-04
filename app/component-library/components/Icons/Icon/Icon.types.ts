@@ -346,8 +346,6 @@ export enum IconName {
   Google = 'Google',
   Apple = 'Apple',
   AppleWhite = 'AppleWhite',
-  EyeSlashSolid = 'EyeSlashSolid',
-  EyeSolid = 'EyeSolid',
   DangerSolid = 'DangerSolid',
   SuccessSolid = 'SuccessSolid',
   Account = 'Account',
