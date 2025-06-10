@@ -94,6 +94,7 @@ import {
   IOS_REJECTED_BIOMETRICS_ERROR,
 } from './constant';
 import { useMetrics } from '../../hooks/useMetrics';
+import { useAccountsWithNetworkActivitySync } from '../../hooks/useAccountsWithNetworkActivitySync';
 
 const checkValidSeedWord = (text) => wordlist.includes(text);
 
@@ -138,6 +139,10 @@ const ImportFromSecretRecoveryPhrase = ({
   const [learnMore, setLearnMore] = useState(false);
   const [showPasswordIndex, setShowPasswordIndex] = useState([0, 1]);
   const [containerWidth, setContainerWidth] = useState(0);
+  const { fetchAccountsWithActivity } = useAccountsWithNetworkActivitySync({
+    onFirstLoad: false,
+    onTransactionComplete: false,
+  });
 
   const seedPhraseLength = seedPhrase.filter((item) => item !== '').length;
 
@@ -530,6 +535,7 @@ const ImportFromSecretRecoveryPhrase = ({
         });
         !onboardingWizard && setOnboardingWizardStep(1);
 
+        fetchAccountsWithActivity();
         const resetAction = CommonActions.reset({
           index: 1,
           routes: [
@@ -576,6 +582,14 @@ const ImportFromSecretRecoveryPhrase = ({
       screen: Routes.SHEET.SEEDPHRASE_MODAL,
     });
   };
+
+  const canShowSeedPhraseWord = useCallback(
+    (index) =>
+      showAllSeedPhrase ||
+      errorWordIndexes[index] ||
+      index === seedPhraseInputFocusedIndex,
+    [showAllSeedPhrase, errorWordIndexes, seedPhraseInputFocusedIndex],
+  );
 
   const learnMoreLink = () => {
     navigation.push('Webview', {
@@ -722,11 +736,7 @@ const ImportFromSecretRecoveryPhrase = ({
                                   }
                                   value={item}
                                   secureTextEntry={
-                                    !(
-                                      showAllSeedPhrase ||
-                                      errorWordIndexes[index] ||
-                                      seedPhraseInputFocusedIndex === index
-                                    )
+                                    !canShowSeedPhraseWord(index)
                                   }
                                   onFocus={(e) => {
                                     if (
