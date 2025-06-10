@@ -229,7 +229,10 @@ export const recreateVaultWithNewPassword = async (
       await SeedlessOnboardingController.changePassword(newPassword, password);
     } catch (error) {
       Logger.error(error);
-      await KeyringController.createNewVaultAndRestore(password, seedPhrase);
+      await KeyringController.createNewVaultAndRestore(
+        password,
+        primaryKeyringSeedPhrase,
+      );
       throw new Error('Password change failed');
     }
   }
