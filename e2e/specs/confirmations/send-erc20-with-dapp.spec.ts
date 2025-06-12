@@ -32,10 +32,10 @@ describe(SmokeConfirmations('ERC20 tokens'), () => {
   });
 
   it('send an ERC20 token from a dapp', async () => {
-    const testSpecificMock  = {
+    const testSpecificMock = {
       GET: [
         mockEvents.GET.suggestedGasFeesApiGanache,
-        mockEvents.GET.remoteFeatureFlagsOldConfirmations
+        mockEvents.GET.remoteFeatureFlagsOldConfirmations,
       ],
     };
 
@@ -44,7 +44,9 @@ describe(SmokeConfirmations('ERC20 tokens'), () => {
         dapp: true,
         fixture: new FixtureBuilder()
           .withGanacheNetwork()
-          .withPermissionControllerConnectedToTestDapp(buildPermissions(['0x539']))
+          .withPermissionControllerConnectedToTestDapp(
+            buildPermissions(['0x539']),
+          )
           .build(),
         restartDevice: true,
         ganacheOptions: defaultGanacheOptions,
@@ -88,7 +90,13 @@ describe(SmokeConfirmations('ERC20 tokens'), () => {
     );
   });
 
-it(`send an ERC20 token from a dapp using ${MONAD_TESTNET.nickname}`, async () => {
+  it(`send an ERC20 token from a dapp using ${MONAD_TESTNET.nickname}`, async () => {
+    const testSpecificMock = {
+      GET: [
+        mockEvents.GET.suggestedGasFeesApiGanache,
+        mockEvents.GET.remoteFeatureFlagsOldConfirmations,
+      ],
+    };
     await withFixtures(
       {
         dapp: true,
@@ -100,6 +108,7 @@ it(`send an ERC20 token from a dapp using ${MONAD_TESTNET.nickname}`, async () =
           .build(),
         restartDevice: true,
         smartContract: HST_CONTRACT,
+        testSpecificMock,
       },
       // Remove any once withFixtures is typed
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -121,18 +130,25 @@ it(`send an ERC20 token from a dapp using ${MONAD_TESTNET.nickname}`, async () =
         await TestDApp.tapERC20TransferButton();
         await TestHelpers.delay(3000);
 
-        // Accept confirmation
-        await FooterActions.tapConfirmButton();
-        await TestHelpers.delay(3000);
+        // Tap confirm button
+        await TestDApp.tapConfirmButton();
 
-        // Check activity tab
+        // Navigate to the activity screen
         await TabBarComponent.tapActivity();
+
+        // Assert "Sent Tokens" transaction is displayed
         await Assertions.checkIfTextIsDisplayed('Confirmed');
       },
     );
   });
 
   it(`send an ERC20 token from a dapp using ${MEGAETH_TESTNET.nickname}`, async () => {
+    const testSpecificMock = {
+      GET: [
+        mockEvents.GET.suggestedGasFeesApiGanache,
+        mockEvents.GET.remoteFeatureFlagsOldConfirmations,
+      ],
+    };
     await withFixtures(
       {
         dapp: true,
@@ -144,6 +160,7 @@ it(`send an ERC20 token from a dapp using ${MONAD_TESTNET.nickname}`, async () =
           .build(),
         restartDevice: true,
         smartContract: HST_CONTRACT,
+        testSpecificMock,
       },
       // Remove any once withFixtures is typed
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -164,13 +181,15 @@ it(`send an ERC20 token from a dapp using ${MONAD_TESTNET.nickname}`, async () =
         await TestDApp.tapERC20TransferButton();
         await TestHelpers.delay(3000);
 
-        // Accept confirmation
-        await FooterActions.tapConfirmButton();
-        await TestHelpers.delay(3000);
+        // Tap confirm button
+        await TestDApp.tapConfirmButton();
 
-        // Check activity tab
+        // Navigate to the activity screen
         await TabBarComponent.tapActivity();
+
+        // Assert "Sent Tokens" transaction is displayed
         await Assertions.checkIfTextIsDisplayed('Confirmed');
+
       },
     );
   });
