@@ -748,6 +748,13 @@
     "banner": {
       "title": "Basic functionality is off",
       "link": "Turn on basic functionality"
+    },
+    "bottom_nav" : {
+      "wallet": "Home",
+      "browser": "Discover",
+      "swap": "Swap",
+      "activity": "Activity",
+      "setting": "setting"
     }
   },
   "asset_details": {

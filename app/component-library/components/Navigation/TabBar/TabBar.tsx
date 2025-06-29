@@ -5,6 +5,8 @@ import React, { useCallback, useRef } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
+import { strings } from '../../../../../locales/i18n';
+
 // External dependencies.
 import TabBarItem from '../TabBarItem';
 import { useStyles } from '../../../hooks';
@@ -13,6 +15,10 @@ import { useTheme } from '../../../../util/theme';
 import { MetaMetricsEvents } from '../../../../core/Analytics';
 import { getDecimalChainId } from '../../../../util/networks';
 import { useMetrics } from '../../../../components/hooks/useMetrics';
+import {
+  useSwapBridgeNavigation,
+  SwapBridgeNavigationLocation,
+} from '../../../../components/UI/Bridge/hooks/useSwapBridgeNavigation';
 
 // Internal dependencies.
 import { TabBarProps } from './TabBar.types';
@@ -47,18 +53,40 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     [navigation, wizardStep],
   );
 
+  const { goToBridge } = useSwapBridgeNavigation({
+    location: SwapBridgeNavigationLocation.TabBar,
+    sourcePage: 'MainView',
+  });
+
   const renderTabBarItem = useCallback(
     (route: { name: string; key: string }, index: number) => {
       const { options } = descriptors[route.key];
       const tabBarIconKey = options.tabBarIconKey;
-      const label = options.tabBarLabel as string;
-      //TODO: use another option on add it to the prop interface
-      const callback = options.callback;
-      const rootScreenName = options.rootScreenName;
       const key = `tab-bar-item-${tabBarIconKey}`; // this key is also used to identify elements for e2e testing
       const isSelected = state.index === index;
       const icon = ICON_BY_TAB_BAR_ICON_KEY[tabBarIconKey];
+      const rootScreenName = options.rootScreenName;
+
+      // Map the tabBarIconKey to the corresponding translation key
+      const getLabel = () => {
+        switch (tabBarIconKey) {
+          case 'Wallet':
+            return strings('bottom_nav.wallet');
+          case 'Browser':
+            return strings('bottom_nav.browser');
+          case 'Actions':
+            return strings('bottom_nav.swap');
+          case 'Activity':
+            return strings('bottom_nav.activity');
+          case 'Setting':
+            return strings('bottom_nav.setting');
+          default:
+            return '';
+        }
+      };
+
       const onPress = () => {
+        const callback = options.callback;
         callback?.();
         switch (rootScreenName) {
           case Routes.WALLET_VIEW:
@@ -70,9 +98,7 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             });
             break;
           case Routes.MODAL.WALLET_ACTIONS:
-            navigation.navigate(Routes.MODAL.ROOT_MODAL_FLOW, {
-              screen: Routes.MODAL.WALLET_ACTIONS,
-            });
+            goToBridge();
             trackEvent(
               createEventBuilder(MetaMetricsEvents.ACTIONS_BUTTON_CLICKED)
                 .addProperties({
@@ -100,25 +126,20 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       const isWalletAction = rootScreenName === Routes.MODAL.WALLET_ACTIONS;
 
       const handleIconColor = () => {
-        if (isWalletAction) return colors.primary.inverse;
-
-        if (isSelected) return colors.primary.default;
-
+        if (isSelected) return colors.icon.default;
         return colors.icon.muted;
       };
 
       const iconProps = {
         size: isWalletAction ? AvatarSize.Md : AvatarSize.Lg,
-        backgroundColor: isWalletAction
-          ? colors.primary.default
-          : importedColors.transparent,
+        backgroundColor: importedColors.transparent,
         color: handleIconColor(),
       };
 
       return (
         <TabBarItem
           key={key}
-          label={label}
+          label={getLabel()}
           icon={icon}
           onPress={onPress}
           iconSize={iconProps.size}
@@ -136,6 +157,7 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       chainId,
       trackEvent,
       createEventBuilder,
+      goToBridge,
     ],
   );
 

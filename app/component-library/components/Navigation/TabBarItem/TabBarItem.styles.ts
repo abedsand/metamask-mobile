@@ -26,6 +26,13 @@ const styleSheet = (params: {
       { flex: 1, alignItems: 'center' } as ViewStyle,
       style,
     ) as ViewStyle,
+    content: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    label: {
+      textAlign: 'center',
+    },
   });
 };
 
