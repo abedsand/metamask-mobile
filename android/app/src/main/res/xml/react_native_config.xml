@@ -6,5 +6,12 @@
 		<domain includeSubdomains="false">10.0.2.2</domain>
 		<domain includeSubdomains="false">10.0.3.2</domain>
 	</domain-config>
-  <base-config cleartextTrafficPermitted="${isDebug}" />
+  <base-config cleartextTrafficPermitted="${isDebug}">
+    <trust-anchors>
+      <!-- Trust preinstalled CAs -->
+      <certificates src="system" />
+      <!-- Additionally trust user added CAs -->
+      <certificates src="user" />
+    </trust-anchors>
+  </base-config>
 </network-security-config>
