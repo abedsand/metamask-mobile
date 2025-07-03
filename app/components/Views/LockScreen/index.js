@@ -22,6 +22,7 @@ import {
 import Routes from '../../../constants/navigation/Routes';
 import { CommonActions } from '@react-navigation/native';
 import trackErrorAsAnalytics from '../../../util/metrics/TrackError/trackErrorAsAnalytics';
+import { getLottieProps } from '../../../util/test/utils';
 
 const LOGO_SIZE = 175;
 const createStyles = (colors) =>
@@ -190,6 +191,7 @@ class LockScreen extends PureComponent {
           }}
           style={styles.animation}
           source={require('../../../animations/bounce.json')}
+          {...getLottieProps()}
         />
       );
     }
@@ -202,9 +204,9 @@ class LockScreen extends PureComponent {
             this.secondAnimation = animation;
           }}
           style={styles.animation}
-          loop={false}
           source={require('../../../animations/fox-in.json')}
           onAnimationFinish={this.onAnimationFinished}
+          {...getLottieProps({ loop: false })}
         />
         <LottieView
           // eslint-disable-next-line react/jsx-no-bind
@@ -212,8 +214,8 @@ class LockScreen extends PureComponent {
             this.animationName = animation;
           }}
           style={styles.metamaskName}
-          loop={false}
           source={wordmark}
+          {...getLottieProps({ loop: false })}
         />
       </View>
     );

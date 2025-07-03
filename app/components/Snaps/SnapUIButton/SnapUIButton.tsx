@@ -3,6 +3,7 @@ import { ButtonType, UserInputEventType } from '@metamask/snaps-sdk';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { useSnapInterfaceContext } from '../SnapInterfaceContext';
 import AnimatedLottieView from 'lottie-react-native';
+import { getLottieProps } from '../../../util/test/utils';
 
 export interface SnapUIButtonProps {
   name?: string;
@@ -55,13 +56,12 @@ export const SnapUIButton: FunctionComponent<SnapUIButtonProps> = ({
       {loading ? (
         <AnimatedLottieView
           source={{ uri: './loading.json' }}
-          autoPlay
-          loop
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: 24,
             height: 24,
           }}
+          {...getLottieProps()}
         />
       ) : (
         children

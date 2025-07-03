@@ -32,6 +32,7 @@ import createStyles from './index.styles';
 import CelebratingFox from '../../../animations/Celebrating_Fox.json';
 import SearchingFox from '../../../animations/Searching_Fox.json';
 import LottieView from 'lottie-react-native';
+import { getLottieProps } from '../../../util/test/utils';
 import { ONBOARDING_SUCCESS_FLOW } from '../../../constants/onboarding';
 
 export const ResetNavigationToHome = CommonActions.reset({
@@ -89,10 +90,9 @@ export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
             <View style={styles.imageWrapper}>
               <LottieView
                 style={styles.walletReadyImage}
-                autoPlay
-                loop
                 source={SearchingFox}
                 resizeMode="contain"
+                {...getLottieProps()}
               />
             </View>
             <View style={styles.descriptionWrapper}>
@@ -126,10 +126,9 @@ export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
             <View style={styles.imageWrapper}>
               <LottieView
                 style={styles.walletReadyImage}
-                autoPlay
-                loop
                 source={SearchingFox}
                 resizeMode="contain"
+                {...getLottieProps()}
               />
             </View>
             <View style={styles.descriptionWrapper}>
@@ -154,10 +153,9 @@ export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
             <View style={styles.imageWrapper}>
               <LottieView
                 style={styles.walletReadyImage}
-                autoPlay
-                loop
                 source={CelebratingFox}
                 resizeMode="contain"
+                {...getLottieProps()}
               />
             </View>
             <View style={styles.descriptionWrapper}>

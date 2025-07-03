@@ -86,6 +86,7 @@ import METAMASK_NAME from '../../../images/branding/metamask-name.png';
 import ConcealingFox from '../../../animations/Concealing_Fox.json';
 import SearchingFox from '../../../animations/Searching_Fox.json';
 import LottieView from 'lottie-react-native';
+import { getLottieProps } from '../../../util/test/utils';
 import trackOnboarding from '../../../util/metrics/TrackOnboarding/trackOnboarding';
 import { IMetaMetricsEvent } from '../../../core/Analytics/MetaMetrics.types';
 import { MetricsEventBuilder } from '../../../core/Analytics/MetricsEventBuilder';
@@ -450,10 +451,9 @@ const Login: React.FC = () => {
             >
               <LottieView
                 style={styles.image}
-                autoPlay
-                loop
                 source={lottieSrc}
                 resizeMode="contain"
+                {...getLottieProps()}
               />
             </TouchableOpacity>
 

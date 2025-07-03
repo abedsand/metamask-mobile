@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports, import/no-commonjs */
 import type { ThemeColors } from '@metamask/design-tokens';
 import LottieView from 'lottie-react-native';
+import { getLottieProps } from '../../../util/test/utils';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -53,9 +54,8 @@ export const SDKLoading = () => {
       <View style={styles.actionContainer}>
         <LottieView
           style={styles.animation}
-          autoPlay
-          loop
           source={animatedLogo}
+          {...getLottieProps()}
         />
       </View>
     </View>

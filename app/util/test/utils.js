@@ -16,3 +16,39 @@ export const isE2E = process.env.IS_TEST === 'true';
 export const enableApiCallLogs = process.env.LOG_API_CALLS === 'true';
 export const getFixturesServerPortInApp = () =>
   testConfig.fixtureServerPort ?? FIXTURE_SERVER_PORT;
+
+/**
+ * Utility function to disable animations in E2E environments
+ */
+export const getAnimationProps = (autoPlay = true, loop = true) => {
+  if (isE2E) {
+    return {
+      autoPlay: false,
+      loop: false,
+      speed: 0, // Set speed to 0 to effectively disable animation
+    };
+  }
+  return {
+    autoPlay,
+    loop,
+  };
+};
+
+/**
+ * Utility function specifically for LottieView components
+ */
+export const getLottieProps = (props = {}) => {
+  if (isE2E) {
+    return {
+      ...props,
+      autoPlay: false,
+      loop: false,
+      speed: 0, // Set speed to 0 to effectively disable animation
+    };
+  }
+  return {
+    ...props,
+    autoPlay: props.autoPlay !== undefined ? props.autoPlay : true,
+    loop: props.loop !== undefined ? props.loop : true,
+  };
+};

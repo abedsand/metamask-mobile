@@ -40,6 +40,7 @@ import Routes from '../../../constants/navigation/Routes';
 import { selectAccounts } from '../../../selectors/accountTrackerController';
 import trackOnboarding from '../../../util/metrics/TrackOnboarding/trackOnboarding';
 import LottieView from 'lottie-react-native';
+import { getLottieProps } from '../../../util/test/utils';
 import { MetricsEventBuilder } from '../../../core/Analytics/MetricsEventBuilder';
 import Button, {
   ButtonVariants,
@@ -422,10 +423,9 @@ class Onboarding extends PureComponent {
         <View style={styles.largeFoxWrapper}>
           <LottieView
             style={styles.image}
-            autoPlay
-            loop
             source={fox}
             resizeMode="contain"
+            {...getLottieProps()}
           />
         </View>
 
@@ -517,10 +517,9 @@ class Onboarding extends PureComponent {
               <View style={styles.largeFoxWrapper}>
                 <LottieView
                   style={styles.image}
-                  autoPlay
-                  loop
                   source={fox}
                   resizeMode="contain"
+                  {...getLottieProps()}
                 />
               </View>
             )}

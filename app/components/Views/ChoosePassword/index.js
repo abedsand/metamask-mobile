@@ -73,6 +73,7 @@ import Label from '../../../component-library/components/Form/Label';
 import { TextFieldSize } from '../../../component-library/components/Form/TextField';
 import fox from '../../../animations/Searching_Fox.json';
 import LottieView from 'lottie-react-native';
+import { getLottieProps } from '../../../util/test/utils';
 
 const createStyles = (colors) =>
   StyleSheet.create({
@@ -616,10 +617,9 @@ class ChoosePassword extends PureComponent {
             <View style={styles.foxWrapper}>
               <LottieView
                 style={styles.image}
-                autoPlay
-                loop
                 source={fox}
                 resizeMode="contain"
+                {...getLottieProps()}
               />
             </View>
             <ActivityIndicator size="large" color={colors.text.default} />
