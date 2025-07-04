@@ -181,10 +181,10 @@ stages:
       - deploy_android_to_store: {}
   create_build_qa_and_expo:
     workflows:
-      - build_android_devbuild: {}
+      # - build_android_devbuild: {}
       - build_android_qa: {}
-      - build_ios_devbuild: {}
-      - build_ios_simbuild: {}
+      # - build_ios_devbuild: {}
+      # - build_ios_simbuild: {}
       # - build_ios_qa: {}
   create_build_main_expo:
     workflows:
