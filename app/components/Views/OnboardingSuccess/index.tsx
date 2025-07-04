@@ -92,7 +92,7 @@ export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
                 style={styles.walletReadyImage}
                 source={SearchingFox}
                 resizeMode="contain"
-                {...getLottieProps()}
+                {...getLottieProps({}, false)}
               />
             </View>
             <View style={styles.descriptionWrapper}>
@@ -128,7 +128,7 @@ export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
                 style={styles.walletReadyImage}
                 source={SearchingFox}
                 resizeMode="contain"
-                {...getLottieProps()}
+                {...getLottieProps({}, false)}
               />
             </View>
             <View style={styles.descriptionWrapper}>
@@ -155,7 +155,7 @@ export const OnboardingSuccessComponent: React.FC<OnboardingSuccessProps> = ({
                 style={styles.walletReadyImage}
                 source={CelebratingFox}
                 resizeMode="contain"
-                {...getLottieProps()}
+                {...getLottieProps({}, false)}
               />
             </View>
             <View style={styles.descriptionWrapper}>

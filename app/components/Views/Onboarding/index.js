@@ -425,7 +425,7 @@ class Onboarding extends PureComponent {
             style={styles.image}
             source={fox}
             resizeMode="contain"
-            {...getLottieProps()}
+            {...getLottieProps({}, false)}
           />
         </View>
 
@@ -519,7 +519,7 @@ class Onboarding extends PureComponent {
                   style={styles.image}
                   source={fox}
                   resizeMode="contain"
-                  {...getLottieProps()}
+                  {...getLottieProps({}, false)}
                 />
               </View>
             )}

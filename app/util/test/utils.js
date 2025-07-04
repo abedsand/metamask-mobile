@@ -36,8 +36,11 @@ export const getAnimationProps = (autoPlay = true, loop = true) => {
 
 /**
  * Utility function specifically for LottieView components
+ * @param {Object} props - Additional props to merge
+ * @param {boolean} isEditing - Whether the user is currently editing (e.g., typing in password field)
  */
-export const getLottieProps = (props = {}) => {
+export const getLottieProps = (props = {}, isEditing = false) => {
+  // Disable animations in E2E builds
   if (isE2E) {
     return {
       ...props,
@@ -46,6 +49,17 @@ export const getLottieProps = (props = {}) => {
       speed: 0, // Set speed to 0 to effectively disable animation
     };
   }
+  
+  // Disable animations in test environments when user is editing
+  if (isTest && isEditing) {
+    return {
+      ...props,
+      autoPlay: false,
+      loop: false,
+      speed: 0, // Set speed to 0 to effectively disable animation
+    };
+  }
+  
   return {
     ...props,
     autoPlay: props.autoPlay !== undefined ? props.autoPlay : true,

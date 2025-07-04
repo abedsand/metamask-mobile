@@ -453,7 +453,7 @@ const Login: React.FC = () => {
                 style={styles.image}
                 source={lottieSrc}
                 resizeMode="contain"
-                {...getLottieProps()}
+                {...getLottieProps({}, password.length > 0)}
               />
             </TouchableOpacity>
 

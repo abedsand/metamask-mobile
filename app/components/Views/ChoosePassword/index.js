@@ -619,7 +619,7 @@ class ChoosePassword extends PureComponent {
                 style={styles.image}
                 source={fox}
                 resizeMode="contain"
-                {...getLottieProps()}
+                {...getLottieProps({}, false)}
               />
             </View>
             <ActivityIndicator size="large" color={colors.text.default} />

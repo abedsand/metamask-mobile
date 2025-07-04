@@ -55,7 +55,7 @@ export const SDKLoading = () => {
         <LottieView
           style={styles.animation}
           source={animatedLogo}
-          {...getLottieProps()}
+          {...getLottieProps({}, false)}
         />
       </View>
     </View>

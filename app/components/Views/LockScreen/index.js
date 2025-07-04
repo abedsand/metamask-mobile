@@ -191,7 +191,7 @@ class LockScreen extends PureComponent {
           }}
           style={styles.animation}
           source={require('../../../animations/bounce.json')}
-          {...getLottieProps()}
+          {...getLottieProps({}, false)}
         />
       );
     }
@@ -206,7 +206,7 @@ class LockScreen extends PureComponent {
           style={styles.animation}
           source={require('../../../animations/fox-in.json')}
           onAnimationFinish={this.onAnimationFinished}
-          {...getLottieProps({ loop: false })}
+          {...getLottieProps({ loop: false }, false)}
         />
         <LottieView
           // eslint-disable-next-line react/jsx-no-bind
@@ -215,7 +215,7 @@ class LockScreen extends PureComponent {
           }}
           style={styles.metamaskName}
           source={wordmark}
-          {...getLottieProps({ loop: false })}
+          {...getLottieProps({ loop: false }, false)}
         />
       </View>
     );

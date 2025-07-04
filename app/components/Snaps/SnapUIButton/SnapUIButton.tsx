@@ -61,7 +61,7 @@ export const SnapUIButton: FunctionComponent<SnapUIButtonProps> = ({
             width: 24,
             height: 24,
           }}
-          {...getLottieProps()}
+          {...getLottieProps({}, false)}
         />
       ) : (
         children
