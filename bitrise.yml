@@ -80,6 +80,18 @@ pipelines:
       - build_smoke_e2e_ios_android_stage: {}
       - run_smoke_e2e_ios_android_stage: {}
       - notify: {}
+  flask_smoke_e2e_pipeline:
+    stages:
+      - build_e2e_flask_ios_android: {}
+      # - run_e2e_flask_ios_android_stage: {}
+      - notify: {}
+
+  #Performance smoke test pipeline - runs only performance tests
+  smoke_e2e_performance_pipeline:
+    stages:
+      - build_smoke_e2e_ios_android_stage: {}
+      - run_smoke_e2e_performance_ios_android_stage: {}
+      - notify: {}
 
   #PR_e2e_verfication (build ios & android), run iOS (regression), emulator Android
   pr_regression_e2e_pipeline:
@@ -187,11 +199,7 @@ stages:
     abort_on_fail: true
     workflows:
       - build_ios_multichain_permissions_e2e: {}
-      - build_android_multichain_permissions_e2e: {}
-  # run_multichain_permissions_e2e_ios_android_stage:
-  #   workflows:
-  #     - run_tag_multichain_permissions_ios: {}
-  #     - run_tag_multichain_permissions_android: {}
+      - build_android_multichain_permissions_e2e: {}      
   run_smoke_e2e_ios_android_stage:
     workflows:
       - run_ios_api_specs: {}
@@ -206,7 +214,11 @@ stages:
       - run_tag_smoke_confirmations_ios: {}
       - run_tag_smoke_confirmations_android: {}
       - run_tag_smoke_confirmations_redesigned_ios: {}
-      - run_tag_smoke_multichain_api_ios: {}
+      # - run_tag_smoke_multichain_api_ios: {}
+      - run_tag_smoke_performance_ios: {}
+      - run_tag_smoke_performance_android: {}
+  run_smoke_e2e_performance_ios_android_stage:
+    workflows:
       - run_tag_smoke_performance_ios: {}
       - run_tag_smoke_performance_android: {}
   build_regression_e2e_ios_android_stage:
