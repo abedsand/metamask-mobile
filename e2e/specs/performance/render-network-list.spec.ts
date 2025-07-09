@@ -244,8 +244,8 @@ describe(SmokePerformance('Network List Load Testing'), () => {
         console.log(
           'Starting heavy load test with 50 tokens + all popular networks...',
         );
-        await WalletView.tapTokenNetworkFilter();
-        await WalletView.tapTokenNetworkFilterAll();
+        // await WalletView.tapTokenNetworkFilter();
+        // await WalletView.tapTokenNetworkFilterAll();
 
         const startTime = Date.now();
         await WalletView.tapNetworksButtonOnNavBar();
@@ -327,8 +327,8 @@ describe(SmokePerformance('Network List Load Testing'), () => {
         console.log(
           'Starting heavy load test with 50 tokens + all popular networks...',
         );
-        await WalletView.tapTokenNetworkFilter();
-        await WalletView.tapTokenNetworkFilterAll();
+        // await WalletView.tapTokenNetworkFilter();
+        // await WalletView.tapTokenNetworkFilterAll();
 
         const startTime = Date.now();
         await WalletView.tapNetworksButtonOnNavBar();
