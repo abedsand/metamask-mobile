@@ -9,6 +9,7 @@ import { withFixtures } from '../../fixtures/fixture-helper';
 import NetworkListModal from '../../pages/Network/NetworkListModal';
 import NetworkEducationModal from '../../pages/Network/NetworkEducationModal';
 import { toChecksumAddress } from 'ethereumjs-util';
+import { POWER_USER_STATE } from '../../fixtures/constants';
 
 describe(SmokePerformance('Network List Load Testing'), () => {
   beforeAll(async () => {
@@ -135,7 +136,10 @@ describe(SmokePerformance('Network List Load Testing'), () => {
       {
         fixture: new FixtureBuilder()
           .withPopularNetworks()
-          .withMultipleAccountsInKeyring()
+          .withPopularNetworks()
+          .withUserProfileKeyRing(POWER_USER_STATE)
+          .withUserProfileSnapUnencryptedState(POWER_USER_STATE)
+          .withUserProfileSnapPermissions(POWER_USER_STATE)
           .build(),
         restartDevice: true,
       },

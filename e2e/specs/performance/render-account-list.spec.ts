@@ -410,8 +410,10 @@ describe(SmokePerformance('Account List Load Testing'), () => {
     await withFixtures(
       {
         fixture: new FixtureBuilder()
-          .withMultipleAccountsInKeyring()
-          .withPopularNetworks()
+        .withPopularNetworks()
+        .withUserProfileKeyRing(POWER_USER_STATE)
+        .withUserProfileSnapUnencryptedState(POWER_USER_STATE)
+        .withUserProfileSnapPermissions(POWER_USER_STATE)
           .withTokensForAllPopularNetworks(heavyTokenLoad)
           .build(),
         restartDevice: true,
