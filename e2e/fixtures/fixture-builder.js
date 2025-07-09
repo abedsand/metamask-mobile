@@ -786,7 +786,7 @@ class FixtureBuilder {
     this.withPermissionController(
       this.createPermissionControllerConfig(additionalPermissions),
     );
-    
+
     // Ensure Solana feature modal is suppressed
     return this.ensureSolanaModalSuppressed();
   }
@@ -1052,7 +1052,7 @@ class FixtureBuilder {
   /**
    * Creates a fixture with multiple accounts in the vault.
    * Generates a configurable number of Ethereum addresses for testing.
-   * 
+   *
    * @param {number} numberOfAccounts - The number of accounts to generate (default: 20)
    * @returns {FixtureBuilder} - The FixtureBuilder instance for method chaining.
    */
@@ -1107,7 +1107,7 @@ class FixtureBuilder {
           keyring: {
             type: 'HD Key Tree',
           },
-          lastSelected: Date.now() - (index * 1000), // Ensure proper ordering
+          lastSelected: Date.now() - index * 1000, // Ensure proper ordering
         },
         methods: [
           'personal_sign',
@@ -1136,7 +1136,7 @@ class FixtureBuilder {
         name: `Account ${index + 1}`,
         address,
         importTime: Date.now(),
-        lastSelected: Date.now() - (index * 1000), // Ensure proper ordering
+        lastSelected: Date.now() - index * 1000, // Ensure proper ordering
       };
     });
 
@@ -1169,7 +1169,11 @@ class FixtureBuilder {
     return this;
   }
 
-  withRealAccounts({ hdAccounts = 1, simpleAccounts = 0, qrAccounts = 0 } = {}) {
+  withRealAccounts({
+    hdAccounts = 1,
+    simpleAccounts = 0,
+    qrAccounts = 0,
+  } = {}) {
     // Generate Ethereum addresses for different account types
     const generateEthereumAddresses = (count, startIndex = 0) => {
       const addresses = [];
@@ -1187,8 +1191,14 @@ class FixtureBuilder {
     };
 
     const hdAddresses = generateEthereumAddresses(hdAccounts, 0);
-    const simpleAddresses = generateEthereumAddresses(simpleAccounts, hdAccounts);
-    const qrAddresses = generateEthereumAddresses(qrAccounts, hdAccounts + simpleAccounts);
+    const simpleAddresses = generateEthereumAddresses(
+      simpleAccounts,
+      hdAccounts,
+    );
+    const qrAddresses = generateEthereumAddresses(
+      qrAccounts,
+      hdAccounts + simpleAccounts,
+    );
 
     // Build keyrings array
     const keyrings = [];
@@ -1259,7 +1269,7 @@ class FixtureBuilder {
           keyring: {
             type: keyringType,
           },
-          lastSelected: Date.now() - (index * 1000), // Ensure proper ordering
+          lastSelected: Date.now() - index * 1000, // Ensure proper ordering
         },
         methods: [
           'personal_sign',
@@ -1288,7 +1298,7 @@ class FixtureBuilder {
         name: `Account ${index + 1}`,
         address,
         importTime: Date.now(),
-        lastSelected: Date.now() - (index * 1000), // Ensure proper ordering
+        lastSelected: Date.now() - index * 1000, // Ensure proper ordering
       };
     });
 
@@ -1318,24 +1328,6 @@ class FixtureBuilder {
       accountsByChainId,
     });
 
-    return this;
-  }
-
-  withImportedAccountKeyringController() {
-    merge(this.fixture.state.engine.backgroundState.KeyringController, {
-      keyrings: [
-        {
-          type: 'HD Key Tree',
-          accounts: [DEFAULT_FIXTURE_ACCOUNT],
-        },
-        {
-          type: 'Simple Key Pair',
-          accounts: ['0xDDFFa077069E1d4d478c5967809f31294E24E674'],
-        },
-      ],
-      vault:
-        '{"cipher":"vxFqPMlClX2xjUidoCTiwazr43W59dKIBp6ihT2lX66q8qPTeBRwv7xgBaGDIwDfk4DpJ3r5FBety1kFpS9ni3HtcoNQsDN60Pa80L94gta0Fp4b1jVeP8EJ7Ho71mJ360aDFyIgxPBSCcHWs+l27L3WqF2VpEuaQonK1UTF7c3WQ4pyio4jMAH9x2WQtB11uzyOYiXWmiD3FMmWizqYZY4tHuRlzJZTWrgE7njJLaGMlMmw86+ZVkMf55jryaDtrBVAoqVzPsK0bvo1cSsonxpTa6B15A5N2ANyEjDAP1YVl17roouuVGVWZk0FgDpP82i0YqkSI9tMtOTwthi7/+muDPl7Oc7ppj9LU91JYH6uHGomU/pYj9ufrjWBfnEH/+ZDvPoXl00H1SmX8FWs9NvOg7DZDB6ULs4vAi2/5KGs7b+Td2PLmDf75NKqt03YS2XeRGbajZQ/jjmRt4AhnWgnwRzsSavzyjySWTWiAgn9Vp/kWpd70IgXWdCOakVf2TtKQ6cFQcAf4JzP+vqC0EzgkfbOPRetrovD8FHEFXQ+crNUJ7s41qRw2sketk7FtYUDCz/Junpy5YnYgkfcOTRBHAoOy6BfDFSncuY+08E6eiRHzXsXtbmVXenor15pfbEp/wtfV9/vZVN7ngMpkho3eGQjiTJbwIeA9apIZ+BtC5b7TXWLtGuxSZPhomVkKvNx/GNntjD7ieLHvzCWYmDt6BA9hdfOt1T3UKTN4yLWG0v+IsnngRnhB6G3BGjJHUvdR6Zp5SzZraRse8B3z5ixgVl2hBxOS8+Uvr6LlfImaUcZLMMzkRdKeowS/htAACLowVJe3pU544IJ2CGTsnjwk9y3b5bUJKO3jXukWjDYtrLNKfdNuQjg+kqvIHaCQW40t+vfXGhC5IDBWC5kuev4DJAIFEcvJfJgRrm8ua6LrzEfH0GuhjLwYb+pnQ/eg8dmcXwzzggJF7xK56kxgnA4qLtOqKV4NgjVR0QsCqOBKb3l5LQMlSktdfgp9hlW","iv":"b09c32a79ed33844285c0f1b1b4d1feb","keyMetadata":{"algorithm":"PBKDF2","params":{"iterations":5000}},"lib":"original","salt":"GYNFQCSCigu8wNp8cS8C3w=="}',
-    });
     return this;
   }
 
@@ -1797,7 +1789,7 @@ class FixtureBuilder {
           accounts: [],
           metadata: { id: '01JYMQD2ZW9MH3QDV97J1T9H9A', name: null },
           type: 'QR Hardware Wallet Device',
-        }
+        },
       ],
       vault:
         '{"cipher":"DUx7iAsJoxlE+MKGopEvRQBL50daKCxL5stSFkxjZl4ZA3DMv4tLxUs1yAr31VMwM9rDuTFDZmZmTLj/WVNnPUgu8PXioD+Qufj3NP6cFmU3oTN1mw+sneI+9CSVlPYnuTzBOWaCXhxHEqTe4jfjPRc0rEeiBAzvJvvnZh93BNoBO7aqr5LNEx32cIuNqefG4mBzNbKq8ytfWHRsKZOZRl9yROpPtUtCaiuk8tuSAtTbtEOT5Btbiha/gAEYT5JjLsMe2Gw96oqyqS8Oza4WagQSVCIJvT/kJDPuO+KZJiIV2VZXmpck+UF02xiw2qvrnm9gu/hZ20t19alx3nbKsF3Q/Kxrfxt02MS/5Z+XKgRDl6qrNmD2K7NkMphuiWI4TdKT8yEU7ZWucJ83XLdQwAhyG2T1ugoe5dwbN9QvY4Fcyw92kba3A3ILKlV3XLnDnel1ZG6V9GAa4SRRCs7z/+lTzfj/h1QpO24ETznMi+PqJF4gtp/RNtgu/aTHwAqj0zkenZYtSME44lYe5hgbJCZXdK5zUTC1czqXshkVotccoKBly9kyML/ajAfO9RIGhSjglrrRUsCco7yyUafz2jLZYuQvFFAuVVukgbAEdINimRlHbYGran1klp9YVaMDADrTB31IVnDCAuNMb5RVoiiS7J0iCuvJWLAVrV5sukHFMi9oA6XMRYCYE6v6jvHgOPXRhJfxV8k7U96Vgv6o7VXkaA9s10y/tuYUhnQpH8AuhOqtQthytlt1FeTF1c74G+Vt/fLfWd3B2p6Iyqrf+XMOT+e/4fAZc0jTsmMM9cfoYoVd8ofyAmRGhql19cAYUEAwvMNfu3QAiOLl00EicHdX8IK8EzoObwLHO+008erBUKbjRvJ1ePl9Dvx83BZkqb2wlP5GmXSQjy9JmUDrCS6TuquVVNHpVKA8EoBwORN68p3B1hnP29yC79Kq7hc8K94K/Xofm0T0wj+Tzspru2iFxA0aZhEAoe13CGy9hBq9QqT285XPGby7vvek9wifIgvwA1yBXjU6lQ5ObyYCKitp8NLXPb5U0UXEOho7mu0QE+GwhoI3uxjtcKyIWkZlPldYsh2eZfcP/mfNhuFsqqlRin+SWynNUY9HMyaDw3FvtPkDZ6VgYMymP3DnWbmiOUa82iKJ2uGKuVgzvKzOlP5pf/GyWSdBz9ZjPNWMTEW/WYPvTkfGDdDCbTWxAG7fKU9locF+D09CV9mboSAQGTbZSI2f7d48Uo+77rntE6ODcumD++qASMZrGHOapCRtv0a4fHbMa3dWDtx6GHLlbvViDbvCsec7ChOUBoL39sgZEyWrC5JiOgYuRUWnU7xkaZHtYha7yKEVLWg4UFtXnLliYQLQseDa/k2/SDbSqLrz9ACVHgKpS3vtY6mSdhNWyrBkWamwVPXinb1Wjni3OQUqN0R7TeQ/QmRRp20atkY5OoFUuYOkBWU4HgyJHg0wEiYOXkscktGS1vl6RvOHyoTPKiWPJFgtz46NOP5ynmlBqS2+srespbKPh2GEN5EGhbdFWGAXSUoecbvjzizxRQdzm8nLNWtx2eDHo54fv3IahvWQNvmDIL265Ezfo+ZEYhOeHTerWvuVBzg78ZeHpOd1ZwTZz/k5JVtW9BZDoJoO1DZ98Bliew7i2uaN0De2ZP10RMQzH5GL636aptqRiUw9mwbavkaI2xC8f2Y9J2jsgtZ8Gjp48lGjBMxWpG4xywu3J8aUi+rLEiOthEK1Ob6LjkUEBeKC8eFreM1LeB9adIuWpdre84RdWTfWvirzCpvyStNc6USpZtgMKTYGmbqgFtZouphiNEvW2zbUi82Qp5v9XqhXB/zGnJwHRFs+Qk/k20tTLnp1U1+5uIjm+uzbXkLix5KGHNwdDpsx4GrZs04HHN2aRcBHnPZokGajwtcv/1PDHW4VMLKb0bttZSYr1tiYYuFp/0p1EcsCJ1cUcQTdTm8xmjKJWune9L2L","iv":"9e427fa9c50d74903acc326dc5f57f32","keyMetadata":{"algorithm":"PBKDF2","params":{"iterations":5000}},"lib":"original","salt":"r6Ta3qV3uqZgiXbnJ6bmT5oJhqKpH3ojd2NUzmc2ZLU="}',
