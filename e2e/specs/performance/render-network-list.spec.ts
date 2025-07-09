@@ -9,26 +9,6 @@ import { withFixtures } from '../../fixtures/fixture-helper';
 import NetworkListModal from '../../pages/Network/NetworkListModal';
 import NetworkEducationModal from '../../pages/Network/NetworkEducationModal';
 import { toChecksumAddress } from 'ethereumjs-util';
-import {
-  CASUAL_USER_STATE,
-  CORE_USER_STATE,
-  POWER_USER_STATE,
-} from '../../fixtures/constants';
-
-// Helper function to create test iterations for different user profiles
-const createUserProfileTests = (testName: string, testFunction: (userState: unknown) => Promise<void>) => {
-  const userStates = [
-    { name: 'POWER_USER', state: POWER_USER_STATE },
-    { name: 'CORE_USER', state: CORE_USER_STATE },
-    // { name: 'CASUAL_USER', state: CASUAL_USER_STATE },
-  ];
-
-  userStates.forEach(({ name, state }) => {
-    it(`${testName} - ${name}`, async () => {
-      await testFunction(state);
-    });
-  });
-};
 
 describe(SmokePerformance('Network List Load Testing'), () => {
   beforeAll(async () => {
@@ -36,7 +16,7 @@ describe(SmokePerformance('Network List Load Testing'), () => {
     await TestHelpers.reverseServerPort();
   });
 
-  createUserProfileTests('render network list efficiently with multiple accounts and all popular networks w/profile syncing', async (_userState) => {
+  it('render network list efficiently with multiple accounts and all popular networks w/profile syncing', async () => {
     // Platform-specific performance thresholds (in milliseconds)
     const isAndroid = device.getPlatform() === 'android';
     const PERFORMANCE_THRESHOLDS = isAndroid
@@ -131,7 +111,7 @@ describe(SmokePerformance('Network List Load Testing'), () => {
     );
   });
 
-  createUserProfileTests('render network list efficiently with multiple accounts and all popular networks (profile syncing disabled)', async (userState) => {
+  it('render network list efficiently with multiple accounts and all popular networks (profile syncing disabled)', async () => {
     // Platform-specific performance thresholds (in milliseconds)
     const isAndroid = device.getPlatform() === 'android';
     const PERFORMANCE_THRESHOLDS = isAndroid
@@ -155,9 +135,7 @@ describe(SmokePerformance('Network List Load Testing'), () => {
       {
         fixture: new FixtureBuilder()
           .withPopularNetworks()
-          .withUserProfileKeyRing(userState)
-          .withUserProfileSnapUnencryptedState(userState)
-          .withUserProfileSnapPermissions(userState)
+          .withMultipleAccountsInKeyring()
           .build(),
         restartDevice: true,
       },
@@ -227,7 +205,7 @@ describe(SmokePerformance('Network List Load Testing'), () => {
     );
   });
 
-  createUserProfileTests('handle network list performance with heavy token load on all popular networks w/profile syncing', async (_userState) => {
+  it('handle network list performance with heavy token load on all popular networks w/profile syncing', async () => {
     // Platform-specific performance thresholds (in milliseconds)
 
     const heavyTokenLoad = [];
@@ -311,7 +289,7 @@ describe(SmokePerformance('Network List Load Testing'), () => {
     );
   });
 
-  createUserProfileTests('handle network list performance with heavy token load on all popular networks (without profile syncing)', async (_userState) => {
+  it('handle network list performance with heavy token load on all popular networks (without profile syncing)', async () => {
     // Create a large number of test tokens to stress test the system
     const heavyTokenLoad = [];
     for (let i = 1; i <= 50; i++) {
@@ -404,21 +382,17 @@ describe(SmokePerformance('Network List Load Testing'), () => {
     );
   });
 
-  createUserProfileTests('benchmark network list with minimal load w/profile syncing', async (_userState) => {
+  it('benchmark network list with minimal load w/profile syncing', async () => {
     // Baseline test with minimal tokens for comparison
     const minimalTokens = [
       {
-        address: toChecksumAddress(
-          `0x1111111111111111111111111111111111111111`,
-        ),
+        address: toChecksumAddress(`0x1111111111111111111111111111111111111111`),
         symbol: 'MIN1',
         decimals: 18,
         name: 'Minimal Token 1',
       },
       {
-        address: toChecksumAddress(
-          `0x2222222222222222222222222222222222222222`,
-        ),
+        address: toChecksumAddress(`0x2222222222222222222222222222222222222222`),
         symbol: 'MIN2',
         decimals: 18,
         name: 'Minimal Token 2',
@@ -464,7 +438,7 @@ describe(SmokePerformance('Network List Load Testing'), () => {
     );
   });
 
-  createUserProfileTests('benchmark network list with minimal load (without profile syncing)', async (_userState) => {
+  it('benchmark network list with minimal load (without profile syncing)', async () => {
     // Baseline test with minimal tokens for comparison
     const minimalTokens = [
       {
