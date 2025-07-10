@@ -102,6 +102,7 @@ import DeFiProtocolPositionDetails from '../../UI/DeFiPositions/DeFiProtocolPosi
 import UnmountOnBlur from '../../Views/UnmountOnBlur';
 import WalletRecovery from '../../Views/WalletRecovery';
 import MetaMaskPredictContainer from '../../Views/MetaMaskPredict/MetaMaskPredictContainer';
+import MetaMaskPredictBet from '../../Views/MetaMaskPredict/MetaMaskPredictBet';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -842,6 +843,7 @@ const MainNavigator = () => (
     />
     <Stack.Screen name="Home" component={HomeTabs} />
     <Stack.Screen name={Routes.PREDICT_VIEW} component={MetaMaskPredictContainer} />
+    <Stack.Screen name={Routes.PREDICT_BET} component={MetaMaskPredictBet} />
     <Stack.Screen name="Asset" component={AssetModalFlow} />
     <Stack.Screen name="Webview" component={Webview} />
     <Stack.Screen name="SendView" component={SendView} />

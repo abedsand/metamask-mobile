@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import BigNumber from 'bignumber.js';
+import { useNavigation } from '@react-navigation/native';
 
 import Button, {
   ButtonVariants,
@@ -9,6 +10,7 @@ import Button, {
 } from '../../../component-library/components/Buttons/Button';
 import { useTheme } from '../../../util/theme';
 import NavigationBar, { NavigationIcon } from './NavigationBar';
+import Routes from '../../../constants/navigation/Routes';
 
 const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
 
@@ -22,6 +24,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   onNavigate,
 }) => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [marketData, setMarketData] = useState([]);
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
@@ -169,7 +172,11 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       size={ButtonSize.Lg}
                       width={ButtonWidthTypes.Auto}
                       style={styles.buyNoButton}
-                      onPress={() => {}}
+                      onPress={() =>
+                        navigation.navigate(Routes.PREDICT_BET, {
+                          marketId: market.id,
+                        })
+                      }
                       label={`Buy No`}
                     />
                     <Button
@@ -177,7 +184,11 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       size={ButtonSize.Lg}
                       width={ButtonWidthTypes.Auto}
                       style={styles.buyYesButton}
-                      onPress={() => {}}
+                      onPress={() =>
+                        navigation.navigate(Routes.PREDICT_BET, {
+                          marketId: market.id,
+                        })
+                      }
                       label={`Buy Yes`}
                     />
                   </View>
