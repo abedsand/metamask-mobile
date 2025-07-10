@@ -8,18 +8,31 @@ import Button, {
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
 import { useTheme } from '../../../util/theme';
-import ButtonIcon, {
-  ButtonIconSizes,
-} from '../../../component-library/components/Buttons/ButtonIcon';
-import { IconName } from '../../../component-library/components/Icons/Icon';
-import { WalletViewSelectorsIDs } from '../../../../e2e/selectors/wallet/WalletView.selectors';
+import NavigationBar, { NavigationIcon } from './NavigationBar';
 
 const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
 
-const MetaMaskPredict = () => {
+interface MetaMaskPredictProps {
+  selectedIcon?: NavigationIcon;
+  onNavigate?: (icon: NavigationIcon) => void;
+}
+
+const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
+  selectedIcon: propSelectedIcon,
+  onNavigate,
+}) => {
   const { colors } = useTheme();
   const [loading, setLoading] = useState(false);
   const [marketData, setMarketData] = useState([]);
+  const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
+    propSelectedIcon || NavigationIcon.Storefront,
+  );
+
+  React.useEffect(() => {
+    if (propSelectedIcon) {
+      setSelectedIcon(propSelectedIcon);
+    }
+  }, [propSelectedIcon]);
 
   const getMarkets = async () => {
     try {
@@ -96,14 +109,6 @@ const MetaMaskPredict = () => {
       color: colors.text.alternative,
       textAlign: 'center',
     },
-    navigation: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: 20,
-      gap: 12,
-      marginTop: 20,
-    },
     buyNoButton: {
       color: colors.text.default,
       backgroundColor: colors.error.default,
@@ -122,11 +127,6 @@ const MetaMaskPredict = () => {
       marginTop: 20,
       gap: 12,
     },
-    buttonCirclarBorder: {
-      borderRadius: 100,
-      padding: 24,
-      backgroundColor: colors.background.muted,
-    },
     marketContainer: {
       alignSelf: 'flex-start',
       width: '100%',
@@ -143,43 +143,11 @@ const MetaMaskPredict = () => {
       <View style={styles.content}>
         <Text style={styles.title}>Markets</Text>
         <Text style={styles.placeholderText}>Explore the current markets</Text>
-        <View style={styles.navigation}>
-          <ButtonIcon
-            testID={WalletViewSelectorsIDs.SORT_BY}
-            size={ButtonIconSizes.Lg}
-            onPress={() => {}}
-            iconName={IconName.Storefront}
-            style={styles.buttonCirclarBorder}
-          />
-          <ButtonIcon
-            testID={WalletViewSelectorsIDs.SORT_BY}
-            size={ButtonIconSizes.Lg}
-            onPress={() => {}}
-            iconName={IconName.Bank}
-            style={styles.buttonCirclarBorder}
-          />
-          <ButtonIcon
-            testID={WalletViewSelectorsIDs.SORT_BY}
-            size={ButtonIconSizes.Lg}
-            onPress={() => {}}
-            iconName={IconName.Chart}
-            style={styles.buttonCirclarBorder}
-          />
-          <ButtonIcon
-            testID={WalletViewSelectorsIDs.SORT_BY}
-            size={ButtonIconSizes.Lg}
-            onPress={() => {}}
-            iconName={IconName.Money}
-            style={styles.buttonCirclarBorder}
-          />
-          <ButtonIcon
-            testID={WalletViewSelectorsIDs.SORT_BY}
-            size={ButtonIconSizes.Lg}
-            onPress={() => {}}
-            iconName={IconName.Setting}
-            style={styles.buttonCirclarBorder}
-          />
-        </View>
+        <NavigationBar
+          selectedIcon={selectedIcon}
+          onIconPress={setSelectedIcon}
+          onNavigate={onNavigate}
+        />
         {loading ? (
           <Text>Loading...</Text>
         ) : (
@@ -193,7 +161,7 @@ const MetaMaskPredict = () => {
                   <Text style={styles.marketTitle}>{market.question}</Text>
                   <Text style={styles.marketPricing}>
                     {getDaysLeft(market.endDate)}&nbsp;$
-                    {calculateVolume(market.volume)} VolVol
+                    {calculateVolume(market.volume)} Vol
                   </Text>
                   <View style={styles.buttons}>
                     <Button

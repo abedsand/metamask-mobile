@@ -101,7 +101,7 @@ import TurnOnBackupAndSync from '../../Views/Identity/TurnOnBackupAndSync/TurnOn
 import DeFiProtocolPositionDetails from '../../UI/DeFiPositions/DeFiProtocolPositionDetails';
 import UnmountOnBlur from '../../Views/UnmountOnBlur';
 import WalletRecovery from '../../Views/WalletRecovery';
-import MetaMaskPredict from '../../Views/MetaMaskPredict/MetaMaskPredict';
+import MetaMaskPredictContainer from '../../Views/MetaMaskPredict/MetaMaskPredictContainer';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -599,7 +599,7 @@ const HomeTabs = () => {
       <Tab.Screen
         name={Routes.PREDICT_VIEW}
         options={options.predict}
-        component={MetaMaskPredict}
+        component={MetaMaskPredictContainer}
         layout={({ children }) => <UnmountOnBlur>{children}</UnmountOnBlur>}
       />
 
@@ -841,7 +841,7 @@ const MainNavigator = () => (
       }}
     />
     <Stack.Screen name="Home" component={HomeTabs} />
-    <Stack.Screen name={Routes.PREDICT_VIEW} component={MetaMaskPredict} />
+    <Stack.Screen name={Routes.PREDICT_VIEW} component={MetaMaskPredictContainer} />
     <Stack.Screen name="Asset" component={AssetModalFlow} />
     <Stack.Screen name="Webview" component={Webview} />
     <Stack.Screen name="SendView" component={SendView} />
