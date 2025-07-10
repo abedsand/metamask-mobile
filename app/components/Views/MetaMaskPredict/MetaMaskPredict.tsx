@@ -1,5 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import BigNumber from 'bignumber.js';
+
 import Button, {
   ButtonVariants,
   ButtonSize,
@@ -12,8 +14,53 @@ import ButtonIcon, {
 import { IconName } from '../../../component-library/components/Icons/Icon';
 import { WalletViewSelectorsIDs } from '../../../../e2e/selectors/wallet/WalletView.selectors';
 
+const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
+
 const MetaMaskPredict = () => {
   const { colors } = useTheme();
+  const [loading, setLoading] = useState(false);
+  const [marketData, setMarketData] = useState([]);
+
+  const getMarkets = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true&tag_id=51`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      const marketsData = await response.json();
+      console.log('marketsData', marketsData);
+      setMarketData(marketsData);
+    } catch (error) {
+      console.error('Error fetching trades:', error);
+      setMarketData([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getDaysLeft = (endDateString: string) => {
+    if (!endDateString) {
+      return '';
+    }
+    const endDate = new Date(endDateString);
+    const now = new Date();
+    const diff = endDate.getTime() - now.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return `${days}D left`;
+  };
+
+  const calculateVolume = (value: string | number | undefined) =>
+    value ? new BigNumber(value).toNumber().toFixed(2) : '0.00';
+
+  useEffect(() => {
+    getMarkets();
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -26,7 +73,8 @@ const MetaMaskPredict = () => {
       fontWeight: 'bold',
       color: colors.text.default,
       textAlign: 'center',
-      marginBottom: 6,
+      marginTop: 42,
+      marginBottom: 12,
     },
     marketTitle: {
       fontSize: 20,
@@ -42,7 +90,6 @@ const MetaMaskPredict = () => {
     },
     content: {
       flex: 1,
-      justifyContent: 'center',
     },
     placeholderText: {
       fontSize: 16,
@@ -81,9 +128,13 @@ const MetaMaskPredict = () => {
       backgroundColor: colors.background.muted,
     },
     marketContainer: {
-      marginTop: 20,
       alignSelf: 'flex-start',
       width: '100%',
+      marginBottom: 20,
+    },
+    scrollableContainer: {
+      flex: 1,
+      marginTop: 20,
     },
   });
 
@@ -129,58 +180,44 @@ const MetaMaskPredict = () => {
             style={styles.buttonCirclarBorder}
           />
         </View>
-        <View style={styles.marketContainer}>
-          <Text style={styles.marketTitle}>
-            Will the price of ETH go up or down?
-          </Text>
-          <Text style={styles.marketPricing}>
-            186D Left&nbsp;&nbsp;&nbsp;$654,321.00 Vol
-          </Text>
-          <View style={styles.buttons}>
-            <Button
-              variant={ButtonVariants.Primary}
-              size={ButtonSize.Lg}
-              width={ButtonWidthTypes.Auto}
-              style={styles.buyNoButton}
-              onPress={() => {}}
-              label={`Buy No`}
-            />
-            <Button
-              variant={ButtonVariants.Primary}
-              size={ButtonSize.Lg}
-              width={ButtonWidthTypes.Auto}
-              style={styles.buyYesButton}
-              onPress={() => {}}
-              label={`Buy Yes`}
-            />
-          </View>
-        </View>
-        <View style={styles.marketContainer}>
-          <Text style={styles.marketTitle}>
-            Will Avater 3 be the top grossing movie of 2025?
-          </Text>
-          <Text style={styles.marketPricing}>
-            186D Left&nbsp;&nbsp;&nbsp;$654,321.00 Vol
-          </Text>
-          <View style={styles.buttons}>
-            <Button
-              variant={ButtonVariants.Primary}
-              size={ButtonSize.Lg}
-              width={ButtonWidthTypes.Auto}
-              style={styles.buyNoButton}
-              onPress={() => {}}
-              label={`Buy No`}
-            />
-            <Button
-              variant={ButtonVariants.Primary}
-              size={ButtonSize.Lg}
-              width={ButtonWidthTypes.Auto}
-              style={styles.buyYesButton}
-              onPress={() => {}}
-              label={`Buy Yes`}
-            />
-          </View>
-        </View>
+        {loading ? (
+          <Text>Loading...</Text>
+        ) : (
+          <ScrollView
+            style={styles.scrollableContainer}
+            showsVerticalScrollIndicator={false}
+          >
+            {marketData.map((market: any) => (
+              <View key={market.id}>
+                <View style={styles.marketContainer}>
+                  <Text style={styles.marketTitle}>{market.question}</Text>
+                  <Text style={styles.marketPricing}>
+                    {getDaysLeft(market.endDate)}&nbsp;$
+                    {calculateVolume(market.volume)} VolVol
+                  </Text>
+                  <View style={styles.buttons}>
+                    <Button
+                      variant={ButtonVariants.Primary}
+                      size={ButtonSize.Lg}
+                      width={ButtonWidthTypes.Auto}
+                      style={styles.buyNoButton}
+                      onPress={() => {}}
+                      label={`Buy No`}
+                    />
+                    <Button
+                      variant={ButtonVariants.Primary}
+                      size={ButtonSize.Lg}
+                      width={ButtonWidthTypes.Auto}
+                      style={styles.buyYesButton}
+                      onPress={() => {}}
+                      label={`Buy Yes`}
+                    />
+                  </View>
+                </View>
+              </View>
+            ))}
+          </ScrollView>
+        )}
       </View>
     </View>
   );
