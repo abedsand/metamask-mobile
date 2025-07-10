@@ -101,6 +101,7 @@ import TurnOnBackupAndSync from '../../Views/Identity/TurnOnBackupAndSync/TurnOn
 import DeFiProtocolPositionDetails from '../../UI/DeFiPositions/DeFiProtocolPositionDetails';
 import UnmountOnBlur from '../../Views/UnmountOnBlur';
 import WalletRecovery from '../../Views/WalletRecovery';
+import MetaMaskPredict from '../../Views/MetaMaskPredict/MetaMaskPredict';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -525,6 +526,18 @@ const HomeTabs = () => {
       rootScreenName: Routes.SETTINGS_VIEW,
       unmountOnBlur: true,
     },
+    predict: {
+      tabBarIconKey: TabBarIconKey.Predict,
+      callback: () => {
+        trackEvent(
+          createEventBuilder(
+            MetaMetricsEvents.NAVIGATION_TAPS_SETTINGS,
+          ).build(),
+        );
+      },
+      rootScreenName: Routes.PREDICT_VIEW,
+      unmountOnBlur: true,
+    },
   };
 
   useEffect(() => {
@@ -580,6 +593,13 @@ const HomeTabs = () => {
         name={Routes.BROWSER.HOME}
         options={options.browser}
         component={BrowserFlow}
+        layout={({ children }) => <UnmountOnBlur>{children}</UnmountOnBlur>}
+      />
+
+      <Tab.Screen
+        name={Routes.PREDICT_VIEW}
+        options={options.predict}
+        component={MetaMaskPredict}
         layout={({ children }) => <UnmountOnBlur>{children}</UnmountOnBlur>}
       />
 
@@ -821,6 +841,7 @@ const MainNavigator = () => (
       }}
     />
     <Stack.Screen name="Home" component={HomeTabs} />
+    <Stack.Screen name={Routes.PREDICT_VIEW} component={MetaMaskPredict} />
     <Stack.Screen name="Asset" component={AssetModalFlow} />
     <Stack.Screen name="Webview" component={Webview} />
     <Stack.Screen name="SendView" component={SendView} />
