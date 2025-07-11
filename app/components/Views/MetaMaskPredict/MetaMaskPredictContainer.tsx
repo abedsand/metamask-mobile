@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import MetaMaskPredict from './MetaMaskPredict';
 import MetaMaskPredictPositions from './MetaMaskPredictPositions';
+import MetaMaskPredictOrders from './MetaMaskPredictOrders';
 import { NavigationIcon } from './NavigationBar';
 
 const MetaMaskPredictContainer = () => {
@@ -23,14 +24,14 @@ const MetaMaskPredictContainer = () => {
         );
       case NavigationIcon.Bank:
         return (
-          <MetaMaskPredictPositions
+          <MetaMaskPredictOrders
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
         );
       case NavigationIcon.Chart:
         return (
-          <MetaMaskPredict
+          <MetaMaskPredictPositions
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
