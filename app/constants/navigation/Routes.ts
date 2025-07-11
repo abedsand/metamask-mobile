@@ -61,6 +61,8 @@ const Routes = {
   PREDICT_BET: 'PredictBet',
   PREDICT_ORDERS: 'PredictOrders',
   PREDICT_POSITIONS: 'PredictPositions',
+  PREDICT_PROFIT: 'PredictProfit',
+  PREDICT_SETTINGS: 'PredictSettings',
   MODAL: {
     DELETE_WALLET: 'DeleteWalletModal',
     ROOT_MODAL_FLOW: 'RootModalFlow',

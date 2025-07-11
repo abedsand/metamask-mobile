@@ -4,6 +4,8 @@ import { View } from 'react-native';
 import MetaMaskPredict from './MetaMaskPredict';
 import MetaMaskPredictPositions from './MetaMaskPredictPositions';
 import MetaMaskPredictOrders from './MetaMaskPredictOrders';
+import MetaMaskPredictProfit from './MetaMaskPredictProfit';
+import MetaMaskPredictSettings from './MetaMaskPredictSettings';
 import { NavigationIcon } from './NavigationBar';
 
 const MetaMaskPredictContainer = () => {
@@ -38,14 +40,14 @@ const MetaMaskPredictContainer = () => {
         );
       case NavigationIcon.Money:
         return (
-          <MetaMaskPredict
+          <MetaMaskPredictProfit
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
         );
       case NavigationIcon.Setting:
         return (
-          <MetaMaskPredict
+          <MetaMaskPredictSettings
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
