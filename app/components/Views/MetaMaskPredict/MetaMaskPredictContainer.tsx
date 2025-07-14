@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import MetaMaskPredict from './MetaMaskPredict';
 import MetaMaskPredictPositions from './MetaMaskPredictPositions';
 import { NavigationIcon } from './NavigationBar';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
 const MetaMaskPredictContainer = () => {
-  const [currentScreen, setCurrentScreen] = useState<NavigationIcon>(NavigationIcon.Storefront);
+  const [currentScreen, setCurrentScreen] = useState<NavigationIcon>(
+    NavigationIcon.Storefront,
+  );
 
   const handleNavigate = (icon: NavigationIcon) => {
     setCurrentScreen(icon);
@@ -59,7 +67,7 @@ const MetaMaskPredictContainer = () => {
     }
   };
 
-  return <View style={{ flex: 1 }}>{renderScreen()}</View>;
+  return <View style={styles.container}>{renderScreen()}</View>;
 };
 
-export default MetaMaskPredictContainer; 
+export default MetaMaskPredictContainer;

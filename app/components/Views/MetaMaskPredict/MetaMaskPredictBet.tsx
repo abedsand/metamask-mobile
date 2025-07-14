@@ -8,9 +8,11 @@ import Button, {
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
 import { useTheme } from '../../../util/theme';
+import { Market, Side, TickSize, Token } from '../../../util/predict/types';
+import ethereumImage from '../../../images/ethereum.png';
+import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
+import { CLOB_ENDPOINT } from '../../../util/predict/constants';
 import Routes from '../../../constants/navigation/Routes';
-
-const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
 
 interface MetaMaskPredictBetRouteParams {
   marketId: string;
@@ -21,31 +23,10 @@ const MetaMaskPredictBet: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
   //   const { marketId } = useParams<{ marketId: string }>();
-  const [market, setMarket] = useState<any | null>(null); // TODO: Add type
-  const [selectedAmount, setSelectedAmount] = useState<number>(10);
+  const [, setSelectedAmount] = useState<number>(10);
+  const [market, setMarket] = useState<Market | null>(null);
+  const { placeOrder } = usePolymarket();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
-
-  const getMarket = useCallback(async () => {
-    if (!marketId) {
-      return;
-    }
-
-    const response = await fetch(`${GAMMA_API_ENDPOINT}/markets/${marketId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const marketData = await response.json();
-    console.log('marketData', marketData);
-    // await setMarketTitle(marketId, marketData.question);
-    setMarket(marketData);
-  }, [marketId]);
-
-  useEffect(() => {
-    getMarket();
-  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -94,7 +75,7 @@ const MetaMaskPredictBet: React.FC = () => {
       flex: 1,
     },
     amountButton: {
-      color: '#fff',
+      color: colors.text.default,
       borderWidth: 1,
       borderColor: colors.border.default,
       backgroundColor: colors.background.default,
@@ -135,7 +116,56 @@ const MetaMaskPredictBet: React.FC = () => {
       color: colors.text.alternative,
       textAlign: 'left',
     },
+    tokenImage: {
+      width: 24,
+      height: 24,
+      marginRight: 8,
+    },
   });
+
+  const getMarket = useCallback(async () => {
+    if (!marketId) {
+      return;
+    }
+
+    const response = await fetch(`${CLOB_ENDPOINT}/markets/${marketId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const marketData = await response.json();
+    // await setMarketTitle(marketId, marketData.question);
+    setMarket(marketData);
+  }, [marketId]);
+
+  const handleBuy = useCallback(
+    async (token: Token) => {
+      if (!market) {
+        return;
+      }
+      const response = await placeOrder({
+        tokenId: token.token_id,
+        price: token.price,
+        size: Number(market?.minimum_order_size),
+        tickSize: market?.minimum_tick_size as TickSize,
+        side: Side.BUY,
+        negRisk: market?.neg_risk || false,
+      });
+      if (response.status === 'live') {
+        navigation.navigate(Routes.PREDICT_VIEW);
+      }
+      if (response.status === 'matched') {
+        navigation.navigate(Routes.PREDICT_VIEW);
+      }
+    },
+    [market, navigation, placeOrder],
+  );
+
+  useEffect(() => {
+    getMarket();
+  }, [getMarket]);
 
   return (
     <View style={styles.container}>
@@ -154,10 +184,7 @@ const MetaMaskPredictBet: React.FC = () => {
           </Text>
         </View>
         <View style={styles.tokenContainer}>
-          <Image
-            source={require('../../../images/ethereum.png')}
-            style={{ width: 24, height: 24, marginRight: 8 }}
-          />
+          <Image source={ethereumImage} style={styles.tokenImage} />
           <Text style={styles.tokenTitle}>USDC</Text>
         </View>
         <View style={styles.buttons}>
@@ -166,7 +193,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(10);
+            }}
             label={`$10`}
           />
           <Button
@@ -174,7 +203,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(50);
+            }}
             label={`$50`}
           />
           <Button
@@ -182,7 +213,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(100);
+            }}
             label={`$100`}
           />
           <Button
@@ -190,27 +223,24 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(0);
+            }}
             label={`Other`}
           />
         </View>
         <View style={styles.buttons}>
-          <Button
-            variant={ButtonVariants.Primary}
-            size={ButtonSize.Lg}
-            width={ButtonWidthTypes.Auto}
-            style={styles.buyNoButton}
-            onPress={() => {}}
-            label={`Buy No`}
-          />
-          <Button
-            variant={ButtonVariants.Primary}
-            size={ButtonSize.Lg}
-            width={ButtonWidthTypes.Auto}
-            style={styles.buyYesButton}
-            onPress={() => {}}
-            label={`Buy Yes`}
-          />
+          {market?.tokens.map((token: Token) => (
+            <Button
+              key={token.token_id}
+              variant={ButtonVariants.Primary}
+              size={ButtonSize.Lg}
+              width={ButtonWidthTypes.Auto}
+              style={styles.buyNoButton}
+              onPress={() => handleBuy(token)}
+              label={`Buy ${token.outcome}`}
+            />
+          ))}
         </View>
         <Button
           variant={ButtonVariants.Link}
