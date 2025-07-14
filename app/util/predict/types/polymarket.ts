@@ -277,6 +277,7 @@ export interface Rewards {
 
 export interface Market {
   condition_id: string;
+  conditionId: string;
   question_id: string;
   tokens: Token[];
   rewards: Rewards;

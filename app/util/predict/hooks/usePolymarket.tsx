@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { hexToNumber } from '@metamask/utils';
 import { SignTypedDataVersion } from '@metamask/keyring-controller';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { TransactionType } from '@metamask/transaction-controller';
 import {
   buildOrderCreationArgs,
@@ -29,6 +29,7 @@ import {
 } from '../../../selectors/networkController';
 import { addTransaction } from '../../transaction-controller';
 import { signTypedMessage } from '../../keyring-controller';
+import StorageWrapper from '../../../store/storage-wrapper';
 
 const API_KEY_STORAGE_KEY = 'api_key_storage';
 const MARKET_CACHE_KEY = 'market_cache';
@@ -55,11 +56,16 @@ export const usePolymarket = () => {
   const [apiKeyStorage, setApiKeyStorage] = useState<Record<
     string,
     ApiKeyCreds
-  > | null>(
-    localStorage.getItem(API_KEY_STORAGE_KEY)
-      ? JSON.parse(localStorage.getItem(API_KEY_STORAGE_KEY) || '{}')
-      : null,
-  );
+  > | null>(null);
+
+  // Load apiKeyStorage from StorageWrapper on mount
+  useEffect(() => {
+    (async () => {
+      const stored = await StorageWrapper.getItem(API_KEY_STORAGE_KEY);
+      setApiKeyStorage(stored ? JSON.parse(stored) : null);
+    })();
+  }, [account?.address]);
+
   const apiKey = useMemo(() => {
     if (apiKeyStorage) {
       return apiKeyStorage[account?.address ?? ''];
@@ -132,21 +138,21 @@ export const usePolymarket = () => {
   };
 
   const setMarketTitle = async (marketId: string, title: string) => {
-    const marketData = localStorage.getItem(MARKET_CACHE_KEY);
+    const marketData = await StorageWrapper.getItem(MARKET_CACHE_KEY);
     if (marketData) {
       const market = JSON.parse(marketData);
       market[marketId] = title;
-      localStorage.setItem(MARKET_CACHE_KEY, JSON.stringify(market));
+      await StorageWrapper.setItem(MARKET_CACHE_KEY, JSON.stringify(market));
     } else {
       const market = {
         [marketId]: title,
       };
-      localStorage.setItem(MARKET_CACHE_KEY, JSON.stringify(market));
+      await StorageWrapper.setItem(MARKET_CACHE_KEY, JSON.stringify(market));
     }
   };
 
   const getMarketTitles = async () => {
-    const marketData = localStorage.getItem(MARKET_CACHE_KEY);
+    const marketData = await StorageWrapper.getItem(MARKET_CACHE_KEY);
 
     if (marketData) {
       const market = JSON.parse(marketData);
@@ -155,33 +161,26 @@ export const usePolymarket = () => {
     return null;
   };
 
-  const storeApiKey = (apiKeyRaw: ApiKeyRaw) => {
+  const storeApiKey = async (apiKeyRaw: ApiKeyRaw) => {
     const newApiKey = {
       key: apiKeyRaw.apiKey,
       secret: apiKeyRaw.secret,
       passphrase: apiKeyRaw.passphrase,
     };
-    const currentApiKeyStorage = localStorage.getItem(API_KEY_STORAGE_KEY);
-    if (currentApiKeyStorage) {
-      const currentApiKeyStorageObject = JSON.parse(currentApiKeyStorage);
-      currentApiKeyStorageObject[account?.address ?? ''] = newApiKey;
-      localStorage.setItem(
-        API_KEY_STORAGE_KEY,
-        JSON.stringify(currentApiKeyStorageObject),
-      );
-    } else {
-      localStorage.setItem(
-        API_KEY_STORAGE_KEY,
-        JSON.stringify({ [account?.address ?? '']: newApiKey }),
-      );
-    }
-
-    setApiKeyStorage(
-      localStorage.getItem(API_KEY_STORAGE_KEY)
-        ? JSON.parse(localStorage.getItem(API_KEY_STORAGE_KEY) || '{}')
-        : null,
+    const currentApiKeyStorage = await StorageWrapper.getItem(
+      API_KEY_STORAGE_KEY,
     );
-
+    let currentApiKeyStorageObject: { [key: string]: ApiKeyCreds } = {};
+    if (currentApiKeyStorage) {
+      currentApiKeyStorageObject = JSON.parse(currentApiKeyStorage);
+    }
+    currentApiKeyStorageObject[account?.address ?? ''] = newApiKey;
+    await StorageWrapper.setItem(
+      API_KEY_STORAGE_KEY,
+      JSON.stringify(currentApiKeyStorageObject),
+    );
+    // Update state
+    setApiKeyStorage(currentApiKeyStorageObject);
     return newApiKey;
   };
 
@@ -192,7 +191,7 @@ export const usePolymarket = () => {
       headers,
     });
     const apiKeyRaw = await response.json();
-    return storeApiKey(apiKeyRaw);
+    return await storeApiKey(apiKeyRaw);
   };
 
   const createApiKey = async () => {
@@ -207,7 +206,7 @@ export const usePolymarket = () => {
       return await deriveApiKey();
     }
     const apiKeyRaw = await response.json();
-    storeApiKey(apiKeyRaw);
+    await storeApiKey(apiKeyRaw);
     return apiKeyRaw;
   };
 
@@ -493,18 +492,6 @@ export const usePolymarket = () => {
       { data: typedData, from: account?.address ?? '' },
       SignTypedDataVersion.V4,
     );
-
-    /* const signature = await newUnsignedTypedMessage({
-      messageParams: {
-        data: typedData,
-        from: account.address,
-      },
-      request: {
-        params: [],
-        networkClientId: selectedNetworkClientId,
-      },
-      version: SignTypedDataVersion.V4,
-    }); */
 
     const signedOrder = {
       ...order,

@@ -8,10 +8,11 @@ import Button, {
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
 import { useTheme } from '../../../util/theme';
-import { Market } from '../../../util/predict/types';
+import { Market, Side, TickSize, Token } from '../../../util/predict/types';
 import ethereumImage from '../../../images/ethereum.png';
-
-const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
+import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
+import { CLOB_ENDPOINT } from '../../../util/predict/constants';
+import Routes from '../../../constants/navigation/Routes';
 
 interface MetaMaskPredictBetRouteParams {
   marketId: string;
@@ -24,6 +25,7 @@ const MetaMaskPredictBet: React.FC = () => {
   //   const { marketId } = useParams<{ marketId: string }>();
   const [, setSelectedAmount] = useState<number>(10);
   const [market, setMarket] = useState<Market | null>(null);
+  const { placeOrder } = usePolymarket();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
 
   const styles = StyleSheet.create({
@@ -126,7 +128,7 @@ const MetaMaskPredictBet: React.FC = () => {
       return;
     }
 
-    const response = await fetch(`${GAMMA_API_ENDPOINT}/markets/${marketId}`, {
+    const response = await fetch(`${CLOB_ENDPOINT}/markets/${marketId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -137,6 +139,29 @@ const MetaMaskPredictBet: React.FC = () => {
     // await setMarketTitle(marketId, marketData.question);
     setMarket(marketData);
   }, [marketId]);
+
+  const handleBuy = useCallback(
+    async (token: Token) => {
+      if (!market) {
+        return;
+      }
+      const response = await placeOrder({
+        tokenId: token.token_id,
+        price: token.price,
+        size: Number(market?.minimum_order_size),
+        tickSize: market?.minimum_tick_size as TickSize,
+        side: Side.BUY,
+        negRisk: market?.neg_risk || false,
+      });
+      if (response.status === 'live') {
+        navigation.navigate(Routes.PREDICT_VIEW);
+      }
+      if (response.status === 'matched') {
+        navigation.navigate(Routes.PREDICT_VIEW);
+      }
+    },
+    [market, navigation, placeOrder],
+  );
 
   useEffect(() => {
     getMarket();
@@ -205,26 +230,17 @@ const MetaMaskPredictBet: React.FC = () => {
           />
         </View>
         <View style={styles.buttons}>
-          <Button
-            variant={ButtonVariants.Primary}
-            size={ButtonSize.Lg}
-            width={ButtonWidthTypes.Auto}
-            style={styles.buyNoButton}
-            onPress={() => {
-              setSelectedAmount(0);
-            }}
-            label={`Buy No`}
-          />
-          <Button
-            variant={ButtonVariants.Primary}
-            size={ButtonSize.Lg}
-            width={ButtonWidthTypes.Auto}
-            style={styles.buyYesButton}
-            onPress={() => {
-              setSelectedAmount(0);
-            }}
-            label={`Buy Yes`}
-          />
+          {market?.tokens.map((token: Token) => (
+            <Button
+              key={token.token_id}
+              variant={ButtonVariants.Primary}
+              size={ButtonSize.Lg}
+              width={ButtonWidthTypes.Auto}
+              style={styles.buyNoButton}
+              onPress={() => handleBuy(token)}
+              label={`Buy ${token.outcome}`}
+            />
+          ))}
         </View>
         <Button
           variant={ButtonVariants.Link}
