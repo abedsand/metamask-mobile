@@ -46,6 +46,11 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       color: colors.text.alternative,
       textAlign: 'center',
     },
+    placeholderContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   });
 
   return (
@@ -58,9 +63,7 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
           onIconPress={setSelectedIcon}
           onNavigate={onNavigate}
         />
-        <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
+        <View style={styles.placeholderContainer}>
           <Text style={styles.placeholderText}>Positions coming soon...</Text>
         </View>
       </View>

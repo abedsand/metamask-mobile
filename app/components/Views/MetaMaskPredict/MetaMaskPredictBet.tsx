@@ -8,7 +8,8 @@ import Button, {
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
 import { useTheme } from '../../../util/theme';
-import Routes from '../../../constants/navigation/Routes';
+import { Market } from '../../../util/predict/types';
+import ethereumImage from '../../../images/ethereum.png';
 
 const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
 
@@ -21,31 +22,9 @@ const MetaMaskPredictBet: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
   //   const { marketId } = useParams<{ marketId: string }>();
-  const [market, setMarket] = useState<any | null>(null); // TODO: Add type
-  const [selectedAmount, setSelectedAmount] = useState<number>(10);
+  const [, setSelectedAmount] = useState<number>(10);
+  const [market, setMarket] = useState<Market | null>(null);
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
-
-  const getMarket = useCallback(async () => {
-    if (!marketId) {
-      return;
-    }
-
-    const response = await fetch(`${GAMMA_API_ENDPOINT}/markets/${marketId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const marketData = await response.json();
-    console.log('marketData', marketData);
-    // await setMarketTitle(marketId, marketData.question);
-    setMarket(marketData);
-  }, [marketId]);
-
-  useEffect(() => {
-    getMarket();
-  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -94,7 +73,7 @@ const MetaMaskPredictBet: React.FC = () => {
       flex: 1,
     },
     amountButton: {
-      color: '#fff',
+      color: colors.text.default,
       borderWidth: 1,
       borderColor: colors.border.default,
       backgroundColor: colors.background.default,
@@ -135,7 +114,33 @@ const MetaMaskPredictBet: React.FC = () => {
       color: colors.text.alternative,
       textAlign: 'left',
     },
+    tokenImage: {
+      width: 24,
+      height: 24,
+      marginRight: 8,
+    },
   });
+
+  const getMarket = useCallback(async () => {
+    if (!marketId) {
+      return;
+    }
+
+    const response = await fetch(`${GAMMA_API_ENDPOINT}/markets/${marketId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const marketData = await response.json();
+    // await setMarketTitle(marketId, marketData.question);
+    setMarket(marketData);
+  }, [marketId]);
+
+  useEffect(() => {
+    getMarket();
+  }, [getMarket]);
 
   return (
     <View style={styles.container}>
@@ -154,10 +159,7 @@ const MetaMaskPredictBet: React.FC = () => {
           </Text>
         </View>
         <View style={styles.tokenContainer}>
-          <Image
-            source={require('../../../images/ethereum.png')}
-            style={{ width: 24, height: 24, marginRight: 8 }}
-          />
+          <Image source={ethereumImage} style={styles.tokenImage} />
           <Text style={styles.tokenTitle}>USDC</Text>
         </View>
         <View style={styles.buttons}>
@@ -166,7 +168,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(10);
+            }}
             label={`$10`}
           />
           <Button
@@ -174,7 +178,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(50);
+            }}
             label={`$50`}
           />
           <Button
@@ -182,7 +188,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(100);
+            }}
             label={`$100`}
           />
           <Button
@@ -190,7 +198,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.amountButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(0);
+            }}
             label={`Other`}
           />
         </View>
@@ -200,7 +210,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.buyNoButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(0);
+            }}
             label={`Buy No`}
           />
           <Button
@@ -208,7 +220,9 @@ const MetaMaskPredictBet: React.FC = () => {
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
             style={styles.buyYesButton}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectedAmount(0);
+            }}
             label={`Buy Yes`}
           />
         </View>

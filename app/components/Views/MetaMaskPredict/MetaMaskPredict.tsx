@@ -11,6 +11,7 @@ import Button, {
 import { useTheme } from '../../../util/theme';
 import NavigationBar, { NavigationIcon } from './NavigationBar';
 import Routes from '../../../constants/navigation/Routes';
+import { Market } from '../../../util/predict/types';
 
 const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
 
@@ -50,7 +51,6 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
         },
       );
       const marketsData = await response.json();
-      console.log('marketsData', marketsData);
       setMarketData(marketsData);
     } catch (error) {
       console.error('Error fetching trades:', error);
@@ -158,7 +158,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
             style={styles.scrollableContainer}
             showsVerticalScrollIndicator={false}
           >
-            {marketData.map((market: any) => (
+            {marketData.map((market: Market) => (
               <View key={market.id}>
                 <View style={styles.marketContainer}>
                   <Text style={styles.marketTitle}>{market.question}</Text>
