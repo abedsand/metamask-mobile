@@ -3,6 +3,9 @@ import { StyleSheet, View } from 'react-native';
 
 import MetaMaskPredict from './MetaMaskPredict';
 import MetaMaskPredictPositions from './MetaMaskPredictPositions';
+import MetaMaskPredictOrders from './MetaMaskPredictOrders';
+import MetaMaskPredictProfit from './MetaMaskPredictProfit';
+import MetaMaskPredictSettings from './MetaMaskPredictSettings';
 import { NavigationIcon } from './NavigationBar';
 
 const styles = StyleSheet.create({
@@ -31,28 +34,28 @@ const MetaMaskPredictContainer = () => {
         );
       case NavigationIcon.Bank:
         return (
-          <MetaMaskPredictPositions
+          <MetaMaskPredictOrders
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
         );
       case NavigationIcon.Chart:
         return (
-          <MetaMaskPredict
+          <MetaMaskPredictPositions
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
         );
       case NavigationIcon.Money:
         return (
-          <MetaMaskPredict
+          <MetaMaskPredictProfit
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
         );
       case NavigationIcon.Setting:
         return (
-          <MetaMaskPredict
+          <MetaMaskPredictSettings
             selectedIcon={currentScreen}
             onNavigate={handleNavigate}
           />
