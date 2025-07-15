@@ -4,17 +4,20 @@ import { SignTypedDataVersion } from '@metamask/keyring-controller';
 import { useMemo, useState, useEffect } from 'react';
 import { TransactionType } from '@metamask/transaction-controller';
 import {
-  buildOrderCreationArgs,
+  buildMarketOrderCreationArgs,
   buildPolyHmacSignature,
+  calculateMarketPrice,
   encodeApprove,
   encodeErc1155Approve,
   encodeRedeemPositions,
   generateSalt,
+  priceValid,
 } from '..';
 import {
   ApiKeyCreds,
   ApiKeyRaw,
   L2HeaderArgs,
+  OrderType,
   ROUNDING_CONFIG,
   Side,
   SignatureType,
@@ -412,28 +415,56 @@ export const usePolymarket = () => {
 
   const placeOrder = async ({
     tokenId,
-    price,
-    size,
+    min_size,
     tickSize,
     side,
     negRisk,
+    amount,
   }: {
     tokenId: string;
-    price: number;
-    size: number;
+    min_size: number;
     tickSize: TickSize;
     side: Side;
     negRisk: boolean;
+    amount: number;
   }) => {
-    const orderArgs = buildOrderCreationArgs({
+    const price = await calculateMarketPrice(
+      tokenId,
+      side,
+      amount,
+      OrderType.FOK,
+    );
+
+    if (!priceValid(price, tickSize)) {
+      throw new Error(
+        `invalid price (${price}), min: ${parseFloat(tickSize)} - max: ${
+          1 - parseFloat(tickSize)
+        }`,
+      );
+    }
+
+    let size = Math.floor(amount / price);
+
+    if (size < min_size) {
+      throw new Error('Size is less than min_size');
+    }
+
+    const cost = price * size;
+
+    if (cost < 1) {
+      size = Math.ceil(1 / price);
+    }
+
+    const orderArgs = await buildMarketOrderCreationArgs({
       signer: account?.address ?? '',
       maker: account?.address ?? '',
       signatureType: SignatureType.EOA,
-      userOrder: {
+      userMarketOrder: {
         tokenID: tokenId,
         price,
-        size,
+        amount,
         side,
+        orderType: OrderType.FOK,
       },
       roundConfig: ROUNDING_CONFIG[tickSize],
     });
@@ -505,7 +536,7 @@ export const usePolymarket = () => {
         salt: parseInt(signedOrder.salt, 10),
       },
       owner: apiKey?.key,
-      orderType: 'GTC',
+      orderType: OrderType.FOK,
     });
 
     const l2Headers = await createL2Headers({

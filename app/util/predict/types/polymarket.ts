@@ -157,6 +157,11 @@ export enum OrderType {
   FAK = 'FAK',
 }
 
+export interface OrderSummary {
+  price: string;
+  size: string;
+}
+
 // Simplified market order for users
 export interface UserMarketOrder {
   /**

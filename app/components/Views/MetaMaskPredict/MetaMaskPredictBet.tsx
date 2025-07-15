@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Alert } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 import Button, {
@@ -23,10 +23,11 @@ const MetaMaskPredictBet: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
   //   const { marketId } = useParams<{ marketId: string }>();
-  const [, setSelectedAmount] = useState<number>(10);
+  const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
   const { placeOrder } = usePolymarket();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
+  const [isBuying, setIsBuying] = useState<boolean>(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -79,6 +80,13 @@ const MetaMaskPredictBet: React.FC = () => {
       borderWidth: 1,
       borderColor: colors.border.default,
       backgroundColor: colors.background.default,
+      flex: 1,
+    },
+    amountButtonSelected: {
+      color: colors.text.default,
+      borderWidth: 1,
+      borderColor: colors.border.default,
+      backgroundColor: colors.background.pressed,
       flex: 1,
     },
     marketContainer: {
@@ -145,22 +153,29 @@ const MetaMaskPredictBet: React.FC = () => {
       if (!market) {
         return;
       }
+      setIsBuying(true);
       const response = await placeOrder({
         tokenId: token.token_id,
-        price: token.price,
-        size: Number(market?.minimum_order_size),
+        min_size: Number(market?.minimum_order_size),
         tickSize: market?.minimum_tick_size as TickSize,
         side: Side.BUY,
         negRisk: market?.neg_risk || false,
+        amount: selectedAmount,
       });
+      if (response.error) {
+        Alert.alert('Error', response.error);
+        setIsBuying(false);
+        return;
+      }
       if (response.status === 'live') {
         navigation.navigate(Routes.PREDICT_VIEW);
       }
       if (response.status === 'matched') {
         navigation.navigate(Routes.PREDICT_VIEW);
       }
+      setIsBuying(false);
     },
-    [market, navigation, placeOrder],
+    [market, navigation, placeOrder, selectedAmount],
   );
 
   useEffect(() => {
@@ -192,7 +207,39 @@ const MetaMaskPredictBet: React.FC = () => {
             variant={ButtonVariants.Link}
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
-            style={styles.amountButton}
+            style={
+              selectedAmount === 1
+                ? styles.amountButtonSelected
+                : styles.amountButton
+            }
+            onPress={() => {
+              setSelectedAmount(1);
+            }}
+            label={`$1`}
+          />
+          <Button
+            variant={ButtonVariants.Link}
+            size={ButtonSize.Lg}
+            width={ButtonWidthTypes.Auto}
+            style={
+              selectedAmount === 5
+                ? styles.amountButtonSelected
+                : styles.amountButton
+            }
+            onPress={() => {
+              setSelectedAmount(5);
+            }}
+            label={`$5`}
+          />
+          <Button
+            variant={ButtonVariants.Link}
+            size={ButtonSize.Lg}
+            width={ButtonWidthTypes.Auto}
+            style={
+              selectedAmount === 10
+                ? styles.amountButtonSelected
+                : styles.amountButton
+            }
             onPress={() => {
               setSelectedAmount(10);
             }}
@@ -202,27 +249,11 @@ const MetaMaskPredictBet: React.FC = () => {
             variant={ButtonVariants.Link}
             size={ButtonSize.Lg}
             width={ButtonWidthTypes.Auto}
-            style={styles.amountButton}
-            onPress={() => {
-              setSelectedAmount(50);
-            }}
-            label={`$50`}
-          />
-          <Button
-            variant={ButtonVariants.Link}
-            size={ButtonSize.Lg}
-            width={ButtonWidthTypes.Auto}
-            style={styles.amountButton}
-            onPress={() => {
-              setSelectedAmount(100);
-            }}
-            label={`$100`}
-          />
-          <Button
-            variant={ButtonVariants.Link}
-            size={ButtonSize.Lg}
-            width={ButtonWidthTypes.Auto}
-            style={styles.amountButton}
+            style={
+              selectedAmount === 0
+                ? styles.amountButtonSelected
+                : styles.amountButton
+            }
             onPress={() => {
               setSelectedAmount(0);
             }}
@@ -236,9 +267,14 @@ const MetaMaskPredictBet: React.FC = () => {
               variant={ButtonVariants.Primary}
               size={ButtonSize.Lg}
               width={ButtonWidthTypes.Auto}
-              style={styles.buyNoButton}
+              style={
+                token.outcome === 'Yes'
+                  ? styles.buyYesButton
+                  : styles.buyNoButton
+              }
               onPress={() => handleBuy(token)}
               label={`Buy ${token.outcome}`}
+              loading={isBuying}
             />
           ))}
         </View>

@@ -3,43 +3,35 @@ import { View, Text, StyleSheet, ScrollView, Linking } from 'react-native';
 
 import NavigationBar, { NavigationIcon } from './NavigationBar';
 import { useTheme } from '../../../util/theme';
-import { Box } from '../../../components/UI/Box/Box';
-import {
-  Display,
-  FlexDirection,
-  JustifyContent,
-  AlignItems,
-} from '../../../components/UI/Box/box.types';
 import Button, {
   ButtonVariants,
 } from '../../../component-library/components/Buttons/Button';
 
 export const DATA_API_ENDPOINT = 'https://data-api.polymarket.com';
 
-export type Activity = {
-    proxyWallet: string;
-    timestamp: number;
-    conditionId: string;
-    type: string; // e.g., 'TRADE', 'REDEEM', could be an enum if there are fixed types
-    size: number;
-    usdcSize: number;
-    transactionHash: string;
-    price: number;
-    asset: string;
-    side: string; // e.g., 'BUY' or 'SELL', could be an enum if Side is imported
-    outcomeIndex: number;
-    title: string;
-    slug: string;
-    icon: string;
-    eventSlug: string;
-    outcome: string;
-    name: string;
-    pseudonym: string;
-    bio: string;
-    profileImage: string;
-    profileImageOptimized: string;
-  };
-  
+export interface Activity {
+  proxyWallet: string;
+  timestamp: number;
+  conditionId: string;
+  type: string; // e.g., 'TRADE', 'REDEEM', could be an enum if there are fixed types
+  size: number;
+  usdcSize: number;
+  transactionHash: string;
+  price: number;
+  asset: string;
+  side: string; // e.g., 'BUY' or 'SELL', could be an enum if Side is imported
+  outcomeIndex: number;
+  title: string;
+  slug: string;
+  icon: string;
+  eventSlug: string;
+  outcome: string;
+  name: string;
+  pseudonym: string;
+  bio: string;
+  profileImage: string;
+  profileImageOptimized: string;
+}
 
 interface MetaMaskPredictProfitProps {
   selectedIcon?: NavigationIcon;
@@ -63,7 +55,6 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
       `${DATA_API_ENDPOINT}/activity/?limit=100&sortDirection=DESC&user=0x7c9e0b03d7505dad7e87777cd282628f75b2db3d`,
     );
     const responseData = await response.json();
-    console.log(responseData);
     setActivity(responseData);
 
     const spentData = responseData.reduce((acc: number, item: Activity) => {
@@ -264,57 +255,33 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
           onIconPress={setSelectedIcon}
           onNavigate={onNavigate}
         />
-        
+
         <ScrollView style={styles.scrollView}>
           {loading && (
             <View style={styles.loadingContainer}>
-              <Text style={styles.loadingText}>
-                Loading...
-              </Text>
+              <Text style={styles.loadingText}>Loading...</Text>
             </View>
           )}
-          
+
           {!loading && (
             <View style={styles.mainContentContainer}>
               <View style={styles.statsContainer}>
                 <View style={styles.statItem}>
-                  <Text
-                    style={styles.statLabelSpent}
-                  >
-                    Spent
-                  </Text>
-                  <Text
-                    style={styles.statValueSpent}
-                  >
-                    ${spent.toFixed(2)}
-                  </Text>
+                  <Text style={styles.statLabelSpent}>Spent</Text>
+                  <Text style={styles.statValueSpent}>${spent.toFixed(2)}</Text>
                 </View>
                 <View style={styles.statItem}>
-                  <Text
-                    style={styles.statLabelEarns}
-                  >
-                    Earns
-                  </Text>
-                  <Text
-                    style={styles.statValueEarns}
-                  >
-                    ${earns.toFixed(2)}
-                  </Text>
+                  <Text style={styles.statLabelEarns}>Earns</Text>
+                  <Text style={styles.statValueEarns}>${earns.toFixed(2)}</Text>
                 </View>
                 <View style={styles.statItem}>
-                  <Text
-                    style={styles.statLabelProfit}
-                  >
-                    Profit
-                  </Text>
-                  <Text
-                    style={styles.statValueProfit}
-                  >
+                  <Text style={styles.statLabelProfit}>Profit</Text>
+                  <Text style={styles.statValueProfit}>
                     {pnl >= 0 ? '' : '-'}${Math.abs(pnl).toFixed(2)}
                   </Text>
                 </View>
               </View>
-              
+
               <View style={styles.activityListContainer}>
                 {activity.map((item) => (
                   <View key={item.transactionHash} style={styles.activityCard}>
@@ -327,7 +294,9 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
                       </View>
                       <Button
                         variant={ButtonVariants.Link}
-                        onPress={() => handleViewOnPolygonscan(item.transactionHash)}
+                        onPress={() =>
+                          handleViewOnPolygonscan(item.transactionHash)
+                        }
                         label="View on Polygonscan"
                       />
                     </View>
@@ -339,7 +308,11 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
                         )}
                       </View>
                       <Text
-                        style={item.side === 'BUY' ? styles.activityAmountBuy : styles.activityAmountSell}
+                        style={
+                          item.side === 'BUY'
+                            ? styles.activityAmountBuy
+                            : styles.activityAmountSell
+                        }
                       >
                         ${item.usdcSize.toFixed(2)}
                       </Text>
@@ -355,4 +328,4 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
   );
 };
 
-export default MetaMaskPredictProfit; 
+export default MetaMaskPredictProfit;

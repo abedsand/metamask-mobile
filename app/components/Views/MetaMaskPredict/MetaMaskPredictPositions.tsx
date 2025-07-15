@@ -3,16 +3,6 @@ import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
 import { useTheme } from '../../../util/theme';
 import NavigationBar, { NavigationIcon } from './NavigationBar';
-import { useSelector } from 'react-redux';
-import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
-import { Box } from '../../../components/UI/Box/Box';
-import {
-  Display,
-  FlexDirection,
-  JustifyContent,
-  AlignItems,
-  TextAlign,
-} from '../../../components/UI/Box/box.types';
 import Button, {
   ButtonVariants,
 } from '../../../component-library/components/Buttons/Button';
@@ -26,7 +16,7 @@ interface MetaMaskPredictPositionsProps {
   onNavigate?: (icon: NavigationIcon) => void;
 }
 
-export type UserPosition = {
+export interface UserPosition {
   proxyWallet: string;
   asset: string;
   conditionId: string;
@@ -51,7 +41,7 @@ export type UserPosition = {
   oppositeAsset: string;
   endDate: string;
   negativeRisk: boolean;
-};
+}
 
 const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   selectedIcon: propSelectedIcon,
@@ -61,8 +51,6 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   const [loading, setLoading] = useState(true);
   const [redeemingPosition, setRedeemingPosition] =
     useState<UserPosition | null>(null);
-  const selectedAccount = useSelector(selectSelectedInternalAccount);
-  // const { placeOrder, redeemPosition } = usePolymarket();
 
   const { colors } = useTheme();
   const [selectedIcon, setSelectedIcon] = React.useState<NavigationIcon>(
@@ -88,7 +76,6 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
         },
       );
       const positionsData = await response.json();
-      console.log(positionsData);
       setPositions(positionsData);
     } catch (error) {
       console.error('Error fetching positions:', error);
@@ -106,13 +93,13 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   const handleRedeem = (position: UserPosition) => {
     setRedeemingPosition(position);
     // TODO: Implement redeem logic
-    console.log('Redeeming position:', position);
     setTimeout(() => setRedeemingPosition(null), 2000);
   };
 
   const handleSell = (position: UserPosition) => {
-    // TODO: Implement sell logic
+    // eslint-disable-next-line no-console
     console.log('Selling position:', position);
+    // TODO: Implement sell logic
   };
 
   const styles = StyleSheet.create({
@@ -209,6 +196,13 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       fontWeight: '600',
       color: colors.text.default,
     },
+    scrollView: {
+      flex: 1,
+    },
+    positionValueContainer: {
+      marginLeft: 'auto',
+      alignItems: 'flex-end',
+    },
   });
 
   return (
@@ -222,124 +216,97 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
           onNavigate={onNavigate}
         />
 
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={styles.scrollView}>
           {loading && (
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 8,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: colors.text.alternative,
-                  textAlign: 'center',
-                }}
-              >
-                Loading positions...
-              </Text>
+            <View style={styles.placeholderContainer}>
+              <Text style={styles.placeholderText}>Loading positions...</Text>
             </View>
           )}
 
           {positions &&
             positions.length > 0 &&
-            positions.map((position: UserPosition) => {
-              return (
-                <View
-                  key={`${position.outcomeIndex}-${position.asset}`}
-                  style={styles.positionCard}
-                >
-                  <View style={styles.positionHeader}>
-                    <Image
-                      source={{ uri: position.icon }}
-                      style={styles.positionIcon}
-                      resizeMode="cover"
-                    />
-                    <View style={styles.positionInfo}>
-                      <Text style={styles.positionTitle}>{position.title}</Text>
-                      <Text style={styles.positionSubtext}>
-                        {position.outcome} {Math.round(position.avgPrice * 100)}
-                        ¢
-                      </Text>
-                      <Text style={styles.positionSubtext}>
-                        {position.size} shares
+            positions.map((position: UserPosition) => (
+              <View
+                key={`${position.outcomeIndex}-${position.asset}`}
+                style={styles.positionCard}
+              >
+                <View style={styles.positionHeader}>
+                  <Image
+                    source={{ uri: position.icon }}
+                    style={styles.positionIcon}
+                    resizeMode="cover"
+                  />
+                  <View style={styles.positionInfo}>
+                    <Text style={styles.positionTitle}>{position.title}</Text>
+                    <Text style={styles.positionSubtext}>
+                      {position.outcome} {Math.round(position.avgPrice * 100)}¢
+                    </Text>
+                    <Text style={styles.positionSubtext}>
+                      {position.size} shares
+                    </Text>
+                  </View>
+                  <View style={styles.positionValueContainer}>
+                    <Text style={styles.positionValue}>
+                      ${position.currentValue.toFixed(2)}
+                    </Text>
+                    <Text
+                      style={[
+                        styles.positionPnl,
+                        {
+                          color:
+                            position.cashPnl < 0
+                              ? colors.error.default
+                              : colors.success.default,
+                        },
+                      ]}
+                    >
+                      {position.cashPnl < 0 ? '' : '+'}$
+                      {position.cashPnl.toFixed(2)} (
+                      {position.cashPnl < 0 ? '' : '+'}
+                      {position.percentRealizedPnl.toFixed(2)}%)
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.positionActions}>
+                  <View style={styles.priceInfo}>
+                    <View style={styles.priceItem}>
+                      <Text style={styles.priceLabel}>Avg</Text>
+                      <Text style={styles.priceValue}>
+                        {Math.round(position.avgPrice * 100)}¢
                       </Text>
                     </View>
-                    <View
-                      style={{ marginLeft: 'auto', alignItems: 'flex-end' }}
-                    >
-                      <Text style={styles.positionValue}>
-                        ${position.currentValue.toFixed(2)}
-                      </Text>
-                      <Text
-                        style={[
-                          styles.positionPnl,
-                          {
-                            color:
-                              position.cashPnl < 0
-                                ? colors.error.default
-                                : colors.success.default,
-                          },
-                        ]}
-                      >
-                        {position.cashPnl < 0 ? '' : '+'}$
-                        {position.cashPnl.toFixed(2)} (
-                        {position.cashPnl < 0 ? '' : '+'}
-                        {position.percentRealizedPnl.toFixed(2)}%)
+                    <View style={styles.priceItem}>
+                      <Text style={styles.priceLabel}>Now</Text>
+                      <Text style={styles.priceValue}>
+                        {position.curPrice === null
+                          ? '...'
+                          : `${Math.round(position.curPrice * 100)}¢`}
                       </Text>
                     </View>
                   </View>
 
                   <View style={styles.positionActions}>
-                    <View style={styles.priceInfo}>
-                      <View style={styles.priceItem}>
-                        <Text style={styles.priceLabel}>Avg</Text>
-                        <Text style={styles.priceValue}>
-                          {Math.round(position.avgPrice * 100)}¢
-                        </Text>
-                      </View>
-                      <View style={styles.priceItem}>
-                        <Text style={styles.priceLabel}>Now</Text>
-                        <Text style={styles.priceValue}>
-                          {position.curPrice === null
-                            ? '...'
-                            : `${Math.round(position.curPrice * 100)}¢`}
-                        </Text>
-                      </View>
-                    </View>
-
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        gap: 8,
-                        marginLeft: 'auto',
-                      }}
-                    >
-                      {position.redeemable && (
-                        <Button
-                          variant={ButtonVariants.Primary}
-                          onPress={() => handleRedeem(position)}
-                          label={
-                            redeemingPosition?.asset === position.asset
-                              ? 'Redeeming...'
-                              : 'Redeem'
-                          }
-                        />
-                      )}
+                    {position.redeemable && (
                       <Button
-                        variant={ButtonVariants.Secondary}
-                        onPress={() => handleSell(position)}
-                        label="Sell"
+                        variant={ButtonVariants.Primary}
+                        onPress={() => handleRedeem(position)}
+                        label={
+                          redeemingPosition?.asset === position.asset
+                            ? 'Redeeming...'
+                            : 'Redeem'
+                        }
                       />
-                    </View>
+                    )}
+                    <Button
+                      variant={ButtonVariants.Secondary}
+                      onPress={() => handleSell(position)}
+                      label="Sell"
+                    />
                   </View>
                 </View>
-              );
-            })}
+              </View>
+            ))}
 
           {!loading && positions.length === 0 && (
             <Text style={styles.placeholderText}>No positions found.</Text>
