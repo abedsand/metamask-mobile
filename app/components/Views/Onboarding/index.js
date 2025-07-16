@@ -32,13 +32,13 @@ import { saveOnboardingEvent as saveEvent } from '../../../actions/onboarding';
 import { storePrivacyPolicyClickedOrClosed as storePrivacyPolicyClickedOrClosedAction } from '../../../reducers/legalNotices';
 import PreventScreenshot from '../../../core/PreventScreenshot';
 import { PREVIOUS_SCREEN, ONBOARDING } from '../../../constants/navigation';
-import { EXISTING_USER } from '../../../constants/storage';
 import { MetaMetricsEvents } from '../../../core/Analytics';
 import { Authentication } from '../../../core';
 import { ThemeContext, mockTheme } from '../../../util/theme';
 import { OnboardingSelectorIDs } from '../../../../e2e/selectors/Onboarding/Onboarding.selectors';
 import Routes from '../../../constants/navigation/Routes';
 import { selectAccounts } from '../../../selectors/accountTrackerController';
+import { selectExistingUser } from '../../../reducers/user/selectors';
 import trackOnboarding from '../../../util/metrics/TrackOnboarding/trackOnboarding';
 import LottieView from 'lottie-react-native';
 import { MetricsEventBuilder } from '../../../core/Analytics/MetricsEventBuilder';
@@ -90,7 +90,8 @@ const createStyles = (colors) =>
       lineHeight: 40,
       textAlign: 'center',
       paddingHorizontal: 60,
-      fontFamily: 'MMSans-Regular',
+      fontFamily:
+        Platform.OS === 'android' ? 'MM Sans Regular' : 'MMSans-Regular',
       color: importedColors.gettingStartedTextColor,
       width: '100%',
       marginVertical: 16,
@@ -182,18 +183,6 @@ const createStyles = (colors) =>
       borderWidth: 1,
       color: colors.text.default,
     },
-    createWalletButton: {
-      borderRadius: 12,
-      color: importedColors.whiteTransparent,
-      backgroundColor: importedColors.btnBlack,
-    },
-    existingWalletButton: {
-      borderRadius: 12,
-      color: importedColors.btnBlack,
-      backgroundColor: colors.transparent,
-      borderWidth: 1,
-      borderColor: importedColors.btnBlack,
-    },
   });
 
 /**
@@ -222,6 +211,10 @@ class Onboarding extends PureComponent {
      * unset loading status
      */
     unsetLoading: PropTypes.func,
+    /**
+     * redux flag that indicates if the user is existing
+     */
+    existingUser: PropTypes.bool,
     /**
      * Action to save onboarding event
      */
@@ -326,8 +319,9 @@ class Onboarding extends PureComponent {
   };
 
   async checkIfExistingUser() {
-    const existingUser = await StorageWrapper.getItem(EXISTING_USER);
-    if (existingUser !== null) {
+    // Read from Redux state instead of MMKV storage
+    const { existingUser } = this.props;
+    if (existingUser) {
       this.setState({ existingUser: true });
     }
   }
@@ -562,7 +556,6 @@ class Onboarding extends PureComponent {
             label={strings('onboarding.start_exploring_now')}
             width={ButtonWidthTypes.Full}
             size={ButtonSize.Lg}
-            style={styles.createWalletButton}
           />
           <Button
             variant={ButtonVariants.Secondary}
@@ -570,7 +563,6 @@ class Onboarding extends PureComponent {
             testID={OnboardingSelectorIDs.IMPORT_SEED_BUTTON}
             width={ButtonWidthTypes.Full}
             size={ButtonSize.Lg}
-            style={styles.existingWalletButton}
             label={
               <Text
                 variant={TextVariant.BodyMDMedium}
@@ -670,6 +662,7 @@ Onboarding.contextType = ThemeContext;
 const mapStateToProps = (state) => ({
   accounts: selectAccounts(state),
   passwordSet: state.user.passwordSet,
+  existingUser: selectExistingUser(state),
   loading: state.user.loadingSet,
   loadingMsg: state.user.loadingMsg,
 });

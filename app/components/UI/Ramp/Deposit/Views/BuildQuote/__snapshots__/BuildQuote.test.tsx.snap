@@ -350,7 +350,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={12}
+              handlerTag={17}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -536,7 +536,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         "lineHeight": 24,
                                       }
                                     }
-                                  />
+                                  >
+                                    🇺🇸
+                                  </Text>
                                   <Text
                                     accessibilityRole="text"
                                     style={
@@ -548,7 +550,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         "lineHeight": 24,
                                       }
                                     }
-                                  />
+                                  >
+                                    US
+                                  </Text>
                                   <SvgMock
                                     color="#686e7d"
                                     fill="currentColor"
@@ -570,46 +574,48 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -798,7 +804,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                     }
                                   }
                                 >
-                                  Failed to fetch quote.
+                                  Failed to fetch quote
                                 </Text>
                               </View>
                             </View>
@@ -2162,7 +2168,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={13}
+              handlerTag={19}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -2348,7 +2354,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         "lineHeight": 24,
                                       }
                                     }
-                                  />
+                                  >
+                                    🇺🇸
+                                  </Text>
                                   <Text
                                     accessibilityRole="text"
                                     style={
@@ -2360,7 +2368,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         "lineHeight": 24,
                                       }
                                     }
-                                  />
+                                  >
+                                    US
+                                  </Text>
                                   <SvgMock
                                     color="#686e7d"
                                     fill="currentColor"
@@ -2382,46 +2392,48 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -3974,7 +3986,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={14}
+              handlerTag={21}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -4160,7 +4172,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         "lineHeight": 24,
                                       }
                                     }
-                                  />
+                                  >
+                                    🇺🇸
+                                  </Text>
                                   <Text
                                     accessibilityRole="text"
                                     style={
@@ -4172,7 +4186,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         "lineHeight": 24,
                                       }
                                     }
-                                  />
+                                  >
+                                    US
+                                  </Text>
                                   <SvgMock
                                     color="#686e7d"
                                     fill="currentColor"
@@ -4194,46 +4210,48 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -4422,7 +4440,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                     }
                                   }
                                 >
-                                  An unexpected error occurred.
+                                  Routing failed
                                 </Text>
                               </View>
                             </View>
@@ -5786,7 +5804,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={8}
+              handlerTag={11}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -6010,46 +6028,48 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                1.5
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  1.5
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -7579,7 +7599,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={7}
+              handlerTag={10}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -7803,46 +7823,48 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $1.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $1
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -9595,46 +9617,48 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                €0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  €0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -11388,46 +11412,48 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >
@@ -13181,46 +13207,48 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 {
                                   "alignItems": "center",
                                   "flex": 1,
-                                  "gap": 8,
+                                  "gap": 16,
                                   "justifyContent": "center",
                                 }
                               }
                             >
-                              <Text
-                                accessibilityRole="text"
-                                adjustsFontSizeToFit={true}
-                                numberOfLines={1}
-                                style={
-                                  {
-                                    "color": "#121314",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 64,
-                                    "fontWeight": 400,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 100,
-                                    "textAlign": "center",
+                              <View>
+                                <Text
+                                  accessibilityRole="text"
+                                  adjustsFontSizeToFit={true}
+                                  numberOfLines={1}
+                                  style={
+                                    {
+                                      "color": "#121314",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 64,
+                                      "fontWeight": 400,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 72,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                $0.00
-                              </Text>
-                              <Text
-                                accessibilityRole="text"
-                                style={
-                                  {
-                                    "color": "#686e7d",
-                                    "fontFamily": "Geist Regular",
-                                    "fontSize": 16,
-                                    "letterSpacing": 0,
-                                    "lineHeight": 24,
-                                    "textAlign": "center",
+                                >
+                                  $0
+                                </Text>
+                                <Text
+                                  accessibilityRole="text"
+                                  style={
+                                    {
+                                      "color": "#686e7d",
+                                      "fontFamily": "Geist Regular",
+                                      "fontSize": 16,
+                                      "letterSpacing": 0,
+                                      "lineHeight": 24,
+                                      "textAlign": "center",
+                                    }
                                   }
-                                }
-                              >
-                                0
-                                 
-                                USDC
-                              </Text>
+                                >
+                                  0
+                                   
+                                  USDC
+                                </Text>
+                              </View>
                               <TouchableOpacity
                                 onPress={[Function]}
                               >

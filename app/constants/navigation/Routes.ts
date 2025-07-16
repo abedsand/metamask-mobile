@@ -40,6 +40,7 @@ const Routes = {
       REGION_SELECTOR: 'DepositRegionSelectorModal',
       PAYMENT_METHOD_SELECTOR: 'DepositPaymentMethodSelectorModal',
       UNSUPPORTED_REGION: 'DepositUnsupportedRegionModal',
+      STATE_SELECTOR: 'DepositStateSelectorModal',
       WEBVIEW: 'DepositWebviewModal',
       KYC_WEBVIEW: 'DepositKycWebviewModal',
     },
@@ -78,6 +79,7 @@ const Routes = {
     MULTI_RPC_MIGRATION_MODAL: 'MultiRPcMigrationModal',
     MAX_BROWSER_TABS_MODAL: 'MaxBrowserTabsModal',
     DEEP_LINK_MODAL: 'DeepLinkModal',
+    MULTICHAIN_ACCOUNT_DETAIL_ACTIONS: 'MultichainAccountDetailActions',
   },
   ONBOARDING: {
     ROOT_NAV: 'OnboardingRootNav',
@@ -161,6 +163,7 @@ const Routes = {
       DELETE_ACCOUNT: 'DeleteAccount',
       REVEAL_PRIVATE_CREDENTIAL: 'RevealPrivateCredential',
       REVEAL_SRP_CREDENTIAL: 'RevealSRPCredential',
+      SRP_REVEAL_QUIZ: 'SRPRevealQuizInMultichainAccountDetails',
     },
   },
   BROWSER: {
@@ -202,6 +205,20 @@ const Routes = {
       BLOCKAID_MODAL: 'BlockaidModal',
     },
     BRIDGE_TRANSACTION_DETAILS: 'BridgeTransactionDetails',
+  },
+  PERPS: {
+    ROOT: 'Perps',
+    TRADING_VIEW: 'PerpsTradingView',
+    ORDER: 'PerpsOrder',
+    ORDER_SUCCESS: 'PerpsOrderSuccess',
+    DEPOSIT: 'PerpsDeposit',
+    DEPOSIT_PREVIEW: 'PerpsDepositPreview',
+    DEPOSIT_PROCESSING: 'PerpsDepositProcessing',
+    DEPOSIT_SUCCESS: 'PerpsDepositSuccess',
+    POSITIONS: 'PerpsPositions',
+    POSITION_DETAILS: 'PerpsPositionDetails',
+    ORDER_HISTORY: 'PerpsOrderHistory',
+    ORDER_DETAILS: 'PerpsOrderDetails',
   },
   LOCK_SCREEN: 'LockScreen',
   CONFIRMATION_REQUEST_MODAL: 'ConfirmationRequestModal',
@@ -250,6 +267,7 @@ const Routes = {
     ACCOUNT_DETAILS: 'MultichainAccountDetails',
     WALLET_DETAILS: 'MultichainWalletDetails',
   },
+  SOLANA_NEW_FEATURE_CONTENT: 'SolanaNewFeatureContentView',
   ///: BEGIN:ONLY_INCLUDE_IF(external-snaps)
   SNAPS: {
     SNAPS_SETTINGS_LIST: 'SnapsSettingsList',
