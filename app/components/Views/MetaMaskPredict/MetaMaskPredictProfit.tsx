@@ -6,6 +6,8 @@ import { useTheme } from '../../../util/theme';
 import Button, {
   ButtonVariants,
 } from '../../../component-library/components/Buttons/Button';
+import { useSelector } from 'react-redux';
+import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
 
 export const DATA_API_ENDPOINT = 'https://data-api.polymarket.com';
 
@@ -43,16 +45,18 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
   onNavigate,
 }) => {
   const { colors } = useTheme();
+  const selectedAccount = useSelector(selectSelectedInternalAccount);
   const [loading, setLoading] = useState(true);
   const [activity, setActivity] = useState<Activity[]>([]);
   const [spent, setSpent] = useState(0);
   const [earns, setEarns] = useState(0);
   const [pnl, setPnl] = useState(0);
+  
 
   const getActivity = async () => {
     setLoading(true);
     const response = await fetch(
-      `${DATA_API_ENDPOINT}/activity/?limit=100&sortDirection=DESC&user=0x7c9e0b03d7505dad7e87777cd282628f75b2db3d`,
+      `${DATA_API_ENDPOINT}/activity/?limit=100&sortDirection=DESC&user=${selectedAccount?.address}`,
     );
     const responseData = await response.json();
     setActivity(responseData);
