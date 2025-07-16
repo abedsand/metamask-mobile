@@ -9,7 +9,7 @@ import Button, {
 import { useSelector } from 'react-redux';
 import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
 
-export const DATA_API_ENDPOINT = 'https://data-api.polymarket.com';
+import { DATA_API_ENDPOINT } from '../../../util/predict/constants/polymarket';
 
 export interface Activity {
   proxyWallet: string;

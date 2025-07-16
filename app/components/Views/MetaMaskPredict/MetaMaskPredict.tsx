@@ -14,9 +14,7 @@ import Routes from '../../../constants/navigation/Routes';
 import { Market } from '../../../util/predict/types';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
 
-const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
-// const GAMMA_API_ENDPOINT = 'https://gamma-api-staging.polymarket.com/';
-
+import { GAMMA_API_ENDPOINT } from '../../../util/predict/constants/polymarket';
 interface MetaMaskPredictProps {
   selectedIcon?: NavigationIcon;
   onNavigate?: (icon: NavigationIcon) => void;
@@ -45,7 +43,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
     try {
       setLoading(true);
       const response = await fetch(
-        `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true&tag_id=51`,
+        `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true`,
         {
           method: 'GET',
           headers: {

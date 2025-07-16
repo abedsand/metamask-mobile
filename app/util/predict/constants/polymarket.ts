@@ -1,9 +1,17 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
-export const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
-export const CLOB_ENDPOINT = 'https://clob.polymarket.com';
-export const DATA_API_ENDPOINT = 'https://data-api.polymarket.com';
+const isStaging = process.env.PREDICT_INTERNAL_BUILD === 'true';  
+
+export const GAMMA_API_ENDPOINT = isStaging
+  ? 'https://gamma-api-staging.polymarket.com'
+  : 'https://gamma-api.polymarket.com';
+export const CLOB_ENDPOINT = isStaging
+  ? 'https://clob-staging.polymarket.com'
+  : 'https://clob.polymarket.com';
+export const DATA_API_ENDPOINT = isStaging
+  ? 'https://data-api-staging.polymarket.com'
+  : 'https://data-api.polymarket.com';
 
 interface ContractConfig {
   exchange: string;
