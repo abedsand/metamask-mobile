@@ -371,3 +371,14 @@ export const getPositions = async ({
   const positionsData = await response.json();
   return positionsData;
 };
+
+export const getTickSize = async (tokenID: string) => {
+  const response = await fetch(
+    `${CLOB_ENDPOINT}/tick-size?token_id=${tokenID}`,
+    {
+      method: 'GET',
+    },
+  );
+  const responseData = await response.json();
+  return responseData;
+};

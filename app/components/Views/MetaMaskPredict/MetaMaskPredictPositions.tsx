@@ -6,10 +6,14 @@ import NavigationBar, { NavigationIcon } from './NavigationBar';
 import Button, {
   ButtonVariants,
 } from '../../../component-library/components/Buttons/Button';
-import { UserPosition } from '../../../util/predict/types';
-import { getPositions } from '../../../util/predict/utils/polymarket';
+import { Side, UserPosition } from '../../../util/predict/types';
+import {
+  getPositions,
+  getTickSize,
+} from '../../../util/predict/utils/polymarket';
 import { useSelector } from 'react-redux';
 import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
+import { usePolymarket } from '../../../util/predict/hooks';
 
 interface MetaMaskPredictPositionsProps {
   selectedIcon?: NavigationIcon;
@@ -25,6 +29,10 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   const [redeemingPosition, setRedeemingPosition] =
     useState<UserPosition | null>(null);
   const selectedAccount = useSelector(selectSelectedInternalAccount);
+  const { placeOrder } = usePolymarket();
+  const [sellingPosition, setSellingPosition] = useState<UserPosition | null>(
+    null,
+  );
 
   const { colors } = useTheme();
   const [selectedIcon, setSelectedIcon] = React.useState<NavigationIcon>(
@@ -63,10 +71,24 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
     setTimeout(() => setRedeemingPosition(null), 2000);
   };
 
-  const handleSell = (position: UserPosition) => {
+  const handleSell = async (position: UserPosition) => {
     // eslint-disable-next-line no-console
     console.log('Selling position:', position);
-    // TODO: Implement sell logic
+    setSellingPosition(position);
+    const tickSizeData = await getTickSize(position.asset);
+    if (!tickSizeData) {
+      console.error('No tick size found');
+      return;
+    }
+    await placeOrder({
+      tokenId: position.asset,
+      min_size: Number(position.size),
+      tickSize: tickSizeData.minimum_tick_size,
+      side: Side.SELL,
+      negRisk: position.negativeRisk,
+      amount: Number(position.size),
+    });
+    setSellingPosition(null);
   };
 
   const styles = StyleSheet.create({
@@ -279,6 +301,7 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
                       variant={ButtonVariants.Secondary}
                       onPress={() => handleSell(position)}
                       label="Sell"
+                      loading={sellingPosition?.asset === position.asset}
                     />
                   </View>
                 </View>
