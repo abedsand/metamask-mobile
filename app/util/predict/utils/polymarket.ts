@@ -9,9 +9,14 @@ import {
   Side,
   TickSize,
   UserMarketOrder,
+  UserPosition,
   UtilsSide,
 } from '../types/polymarket';
-import { CLOB_ENDPOINT, COLLATERAL_TOKEN_DECIMALS } from '../constants';
+import {
+  CLOB_ENDPOINT,
+  COLLATERAL_TOKEN_DECIMALS,
+  DATA_API_ENDPOINT,
+} from '../constants';
 
 export const encodeApprove = ({
   spender,
@@ -345,4 +350,24 @@ export const calculateMarketPrice = async (
     throw new Error('no match');
   }
   return calculateSellMarketPrice(book.bids, amount, orderType);
+};
+
+export const getPositions = async ({
+  address,
+  limit = 10,
+}: {
+  address: string;
+  limit?: number;
+}): Promise<UserPosition[]> => {
+  const response = await fetch(
+    `${DATA_API_ENDPOINT}/positions?limit=${limit}&user=${address}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  const positionsData = await response.json();
+  return positionsData;
 };

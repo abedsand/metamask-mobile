@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
 import { useTheme } from '../../../util/theme';
@@ -6,41 +6,14 @@ import NavigationBar, { NavigationIcon } from './NavigationBar';
 import Button, {
   ButtonVariants,
 } from '../../../component-library/components/Buttons/Button';
-// import usePolymarket from '../../../hooks/usePolymarket';
-
-export const CLOB_ENDPOINT = 'https://clob.polymarket.com';
-export const DATA_API_ENDPOINT = 'https://data-api.polymarket.com';
+import { UserPosition } from '../../../util/predict/types';
+import { getPositions } from '../../../util/predict/utils/polymarket';
+import { useSelector } from 'react-redux';
+import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
 
 interface MetaMaskPredictPositionsProps {
   selectedIcon?: NavigationIcon;
   onNavigate?: (icon: NavigationIcon) => void;
-}
-
-export interface UserPosition {
-  proxyWallet: string;
-  asset: string;
-  conditionId: string;
-  size: number;
-  avgPrice: number;
-  initialValue: number;
-  currentValue: number;
-  cashPnl: number;
-  percentPnl: number;
-  totalBought: number;
-  realizedPnl: number;
-  percentRealizedPnl: number;
-  curPrice: number;
-  redeemable: boolean;
-  title: string;
-  slug: string;
-  icon: string;
-  eventSlug: string;
-  outcome: string;
-  outcomeIndex: number;
-  oppositeOutcome: string;
-  oppositeAsset: string;
-  endDate: string;
-  negativeRisk: boolean;
 }
 
 const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
@@ -51,31 +24,25 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   const [loading, setLoading] = useState(true);
   const [redeemingPosition, setRedeemingPosition] =
     useState<UserPosition | null>(null);
+  const selectedAccount = useSelector(selectSelectedInternalAccount);
 
   const { colors } = useTheme();
   const [selectedIcon, setSelectedIcon] = React.useState<NavigationIcon>(
     propSelectedIcon || NavigationIcon.Bank,
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (propSelectedIcon) {
       setSelectedIcon(propSelectedIcon);
     }
   }, [propSelectedIcon]);
 
-  const getPositions = async () => {
+  const fetchPositions = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `${DATA_API_ENDPOINT}/positions?limit=10&user=0x7c9e0b03d7505dad7e87777cd282628f75b2db3d`, // ${selectedAccount?.address}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-      const positionsData = await response.json();
+      const positionsData = await getPositions({
+        address: selectedAccount?.address ?? '',
+      });
       setPositions(positionsData);
     } catch (error) {
       console.error('Error fetching positions:', error);
@@ -83,12 +50,12 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedAccount]);
 
   // Call getTrades on mount
   useEffect(() => {
-    getPositions();
-  }, []);
+    fetchPositions();
+  }, [fetchPositions]);
 
   const handleRedeem = (position: UserPosition) => {
     setRedeemingPosition(position);
@@ -136,22 +103,24 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       marginBottom: 16,
       borderWidth: 1,
       borderColor: colors.border.default,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 12,
     },
     positionHeader: {
+      display: 'flex',
       flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginBottom: 12,
+      justifyContent: 'flex-start',
+      gap: 12,
     },
     positionInfo: {
       flex: 1,
-      marginLeft: 12,
+      marginLeft: 0,
     },
     positionActions: {
       flexDirection: 'row',
       alignItems: 'center',
       gap: 8,
-      marginTop: 12,
     },
     priceInfo: {
       flexDirection: 'row',
@@ -170,6 +139,8 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       fontWeight: '600',
       color: colors.text.default,
       marginBottom: 4,
+      width: '100%',
+      flex: 1,
     },
     positionSubtext: {
       fontSize: 14,
@@ -200,8 +171,13 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       flex: 1,
     },
     positionValueContainer: {
-      marginLeft: 'auto',
-      alignItems: 'flex-end',
+      alignItems: 'flex-start',
+    },
+    positionInfoContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 12,
     },
   });
 
@@ -236,8 +212,10 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
                     style={styles.positionIcon}
                     resizeMode="cover"
                   />
+                  <Text style={styles.positionTitle}>{position.title}</Text>
+                </View>
+                <View style={styles.positionInfoContainer}>
                   <View style={styles.positionInfo}>
-                    <Text style={styles.positionTitle}>{position.title}</Text>
                     <Text style={styles.positionSubtext}>
                       {position.outcome} {Math.round(position.avgPrice * 100)}¢
                     </Text>
@@ -267,7 +245,6 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
                     </Text>
                   </View>
                 </View>
-
                 <View style={styles.positionActions}>
                   <View style={styles.priceInfo}>
                     <View style={styles.priceItem}>
