@@ -15,6 +15,7 @@ import { Market } from '../../../util/predict/types';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
 
 const GAMMA_API_ENDPOINT = 'https://gamma-api.polymarket.com';
+// const GAMMA_API_ENDPOINT = 'https://gamma-api-staging.polymarket.com/';
 
 interface MetaMaskPredictProps {
   selectedIcon?: NavigationIcon;
@@ -32,7 +33,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
     propSelectedIcon || NavigationIcon.Storefront,
   );
-  const { apiKey, createApiKey } = usePolymarket();
+  const { apiKey, createApiKey, isNetworkSupported, networkError } = usePolymarket();
 
   React.useEffect(() => {
     if (propSelectedIcon) {
@@ -147,6 +148,21 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
       gap: 12,
     },
   });
+
+  if (!isNetworkSupported) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <View style={styles.noApiKeyContainer}>
+            <Text style={styles.title}>Markets</Text>
+            <Text style={styles.placeholderText}>
+              {networkError || 'Polymarket is not available on this network'}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  }
 
   if (!apiKey) {
     return (

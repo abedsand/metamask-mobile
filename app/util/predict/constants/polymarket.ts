@@ -39,7 +39,7 @@ const getContractConfig = (chainID: number): ContractConfig => {
     case 80002:
       return AMOY_CONTRACTS;
     default:
-      throw new Error('Invalid network');
+      throw new Error('MetaMask Predict is only supported on Polygon mainnet and Amoy testnet');
   }
 };
 
