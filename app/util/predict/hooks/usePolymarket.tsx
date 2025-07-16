@@ -121,23 +121,6 @@ export const usePolymarket = () => {
       SignTypedDataVersion.V4,
     );
 
-    /* const signature = await newUnsignedTypedMessage({
-      messageParams: {
-        data: {
-          domain,
-          types,
-          message,
-          primaryType: 'ClobAuth',
-        },
-        from: account.address,
-      },
-      request: {
-        params: [],
-        networkClientId: selectedNetwork.clientId,
-      },
-      version: SignTypedDataVersion.V4,
-    }); */
-
     const headers = {
       POLY_ADDRESS: account?.address ?? '',
       POLY_SIGNATURE: signature,

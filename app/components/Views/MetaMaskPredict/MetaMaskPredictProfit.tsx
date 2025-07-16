@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Linking } from 'react-native';
 
 import NavigationBar, { NavigationIcon } from './NavigationBar';
@@ -51,9 +51,8 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
   const [spent, setSpent] = useState(0);
   const [earns, setEarns] = useState(0);
   const [pnl, setPnl] = useState(0);
-  
 
-  const getActivity = async () => {
+  const getActivity = useCallback(async () => {
     setLoading(true);
     const response = await fetch(
       `${DATA_API_ENDPOINT}/activity/?limit=100&sortDirection=DESC&user=${selectedAccount?.address}`,
@@ -87,11 +86,11 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
     setPnl(earnsData - spentData);
 
     setLoading(false);
-  };
+  }, [selectedAccount]);
 
   useEffect(() => {
     getActivity();
-  }, []);
+  }, [getActivity]);
 
   const handleViewOnPolygonscan = (transactionHash: string) => {
     Linking.openURL(`https://polygonscan.com/tx/${transactionHash}`);
