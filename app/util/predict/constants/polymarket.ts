@@ -1,15 +1,15 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
-const isStaging = process.env.PREDICT_INTERNAL_BUILD === 'true';  
+const isInternal = false; // process.env.PREDICT_INTERNAL_BUILD === 'true';  
 
-export const GAMMA_API_ENDPOINT = isStaging
+export const GAMMA_API_ENDPOINT = isInternal
   ? 'https://gamma-api-staging.polymarket.com'
   : 'https://gamma-api.polymarket.com';
-export const CLOB_ENDPOINT = isStaging
+export const CLOB_ENDPOINT = isInternal
   ? 'https://clob-staging.polymarket.com'
   : 'https://clob.polymarket.com';
-export const DATA_API_ENDPOINT = isStaging
+export const DATA_API_ENDPOINT = isInternal
   ? 'https://data-api-staging.polymarket.com'
   : 'https://data-api.polymarket.com';
 
