@@ -12,6 +12,7 @@ import {
   encodeRedeemPositions,
   generateSalt,
   priceValid,
+  toBytes32,
 } from '..';
 import {
   ApiKeyCreds,
@@ -235,7 +236,7 @@ export const usePolymarket = () => {
 
   const approveCollateralExchange = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeApprove({
       spender: contractConfig.exchange,
       amount: 100n * 1_000_000n, // 100 USDC as BigInt with 6 decimals
@@ -260,7 +261,7 @@ export const usePolymarket = () => {
 
   const approveCollateralConditionalToken = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeApprove({
       spender: contractConfig.conditionalTokens,
       amount: 100n * 1_000_000n, // 100 USDC as BigInt with 6 decimals
@@ -285,7 +286,7 @@ export const usePolymarket = () => {
 
   const approveConditionalExchange = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeErc1155Approve({
       spender: contractConfig.exchange,
       approved: true,
@@ -310,7 +311,7 @@ export const usePolymarket = () => {
 
   const approveCollateralNegRiskExchange = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeApprove({
       spender: contractConfig.negRiskExchange,
       amount: 100n * 1_000_000n, // 100 USDC as BigInt with 6 decimals
@@ -335,7 +336,7 @@ export const usePolymarket = () => {
 
   const approveNegRiskAdapterToken = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeApprove({
       spender: contractConfig.negRiskAdapter,
       amount: 10n * 1_000_000n, // 10 USDC as BigInt with 6 decimals
@@ -360,7 +361,7 @@ export const usePolymarket = () => {
 
   const approveConditionalNegRiskExchange = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeErc1155Approve({
       spender: contractConfig.negRiskExchange,
       approved: true,
@@ -385,7 +386,7 @@ export const usePolymarket = () => {
 
   const approveConditionalNegRiskAdapter = async () => {
     if (!contractConfig) return;
-    
+
     const encodedCallData = encodeErc1155Approve({
       spender: contractConfig.negRiskAdapter,
       approved: true,
@@ -490,7 +491,7 @@ export const usePolymarket = () => {
     };
 
     if (!contractConfig) return;
-    
+
     const verifyingContract = negRisk
       ? contractConfig.negRiskExchange
       : contractConfig.exchange;
@@ -563,7 +564,7 @@ export const usePolymarket = () => {
 
   const redeemPosition = async (position: UserPosition) => {
     if (!contractConfig) return;
-    
+
     if (!position.redeemable) {
       console.error('Position is not redeemable');
       return;
@@ -571,24 +572,30 @@ export const usePolymarket = () => {
 
     const encodedCallData = encodeRedeemPositions({
       collateralToken: contractConfig.collateral,
-      parentCollectionId: '0x0',
+      parentCollectionId: toBytes32('0x0'),
       conditionId: position.conditionId,
       indexSets: [position.outcomeIndex + 1],
     });
 
-    await addTransaction(
-      {
-        from: account?.address ?? '',
-        to: contractConfig.conditionalTokens,
-        data: encodedCallData,
-        value: '0x0',
-      },
-      {
-        networkClientId: selectedNetworkClientId,
-        type: TransactionType.contractInteraction,
-        requireApproval: false,
-      },
-    );
+    try {
+      const transactionMeta = await addTransaction(
+        {
+          from: account?.address ?? '',
+          to: contractConfig.conditionalTokens,
+          data: encodedCallData,
+          value: '0x0',
+        },
+        {
+          networkClientId: selectedNetworkClientId,
+          type: TransactionType.contractInteraction,
+          requireApproval: false,
+        },
+      );
+      return transactionMeta;
+    } catch (error) {
+      console.error('Error redeeming position', error);
+      return;
+    }
   };
 
   const cancelOrder = async (orderId: string) => {

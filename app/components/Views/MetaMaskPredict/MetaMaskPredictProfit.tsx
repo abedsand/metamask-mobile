@@ -8,32 +8,9 @@ import Button, {
 } from '../../../component-library/components/Buttons/Button';
 import { useSelector } from 'react-redux';
 import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
+import { Activity } from '../../../util/predict/types';
 
 import { DATA_API_ENDPOINT } from '../../../util/predict/constants/polymarket';
-
-export interface Activity {
-  proxyWallet: string;
-  timestamp: number;
-  conditionId: string;
-  type: string; // e.g., 'TRADE', 'REDEEM', could be an enum if there are fixed types
-  size: number;
-  usdcSize: number;
-  transactionHash: string;
-  price: number;
-  asset: string;
-  side: string; // e.g., 'BUY' or 'SELL', could be an enum if Side is imported
-  outcomeIndex: number;
-  title: string;
-  slug: string;
-  icon: string;
-  eventSlug: string;
-  outcome: string;
-  name: string;
-  pseudonym: string;
-  bio: string;
-  profileImage: string;
-  profileImageOptimized: string;
-}
 
 interface MetaMaskPredictProfitProps {
   selectedIcon?: NavigationIcon;

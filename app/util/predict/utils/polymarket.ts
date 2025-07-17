@@ -1,6 +1,6 @@
 import { Interface } from '@ethersproject/abi';
 import { Hex } from '@metamask/utils';
-import { parseUnits } from 'ethers/lib/utils';
+import { hexZeroPad, parseUnits } from 'ethers/lib/utils';
 
 import { OrderData, RoundConfig, SignatureType } from '../types';
 import {
@@ -381,4 +381,25 @@ export const getTickSize = async (tokenID: string) => {
   );
   const responseData = await response.json();
   return responseData;
+};
+
+/**
+ * Pads a number to a bytes32 hex string.
+ * @param value number or string (decimal or hex)
+ * @returns padded bytes32 hex string
+ */
+export const toBytes32 = (value: number | string): string => {
+  // If value is a number, convert to hex string
+  let hexValue: string;
+  if (typeof value === 'number') {
+    hexValue = '0x' + value.toString(16);
+  } else if (typeof value === 'string') {
+    // If already hex (starts with 0x), use as is; else, treat as decimal
+    hexValue = value.startsWith('0x')
+      ? value
+      : '0x' + parseInt(value, 10).toString(16);
+  } else {
+    throw new Error('Unsupported value type');
+  }
+  return hexZeroPad(hexValue, 32);
 };

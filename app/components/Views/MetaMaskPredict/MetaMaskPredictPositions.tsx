@@ -29,7 +29,7 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   const [redeemingPosition, setRedeemingPosition] =
     useState<UserPosition | null>(null);
   const selectedAccount = useSelector(selectSelectedInternalAccount);
-  const { placeOrder } = usePolymarket();
+  const { placeOrder, redeemPosition } = usePolymarket();
   const [sellingPosition, setSellingPosition] = useState<UserPosition | null>(
     null,
   );
@@ -65,12 +65,6 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
     fetchPositions();
   }, [fetchPositions]);
 
-  const handleRedeem = (position: UserPosition) => {
-    setRedeemingPosition(position);
-    // TODO: Implement redeem logic
-    setTimeout(() => setRedeemingPosition(null), 2000);
-  };
-
   const handleSell = async (position: UserPosition) => {
     // eslint-disable-next-line no-console
     console.log('Selling position:', position);
@@ -89,6 +83,12 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       amount: Number(position.size),
     });
     setSellingPosition(null);
+  };
+
+  const handleRedeem = async (position: UserPosition) => {
+    setRedeemingPosition(position);
+    await redeemPosition(position);
+    setRedeemingPosition(null);
   };
 
   const styles = StyleSheet.create({
@@ -290,11 +290,8 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
                       <Button
                         variant={ButtonVariants.Primary}
                         onPress={() => handleRedeem(position)}
-                        label={
-                          redeemingPosition?.asset === position.asset
-                            ? 'Redeeming...'
-                            : 'Redeem'
-                        }
+                        label={'Redeem'}
+                        loading={redeemingPosition?.asset === position.asset}
                       />
                     )}
                     <Button
