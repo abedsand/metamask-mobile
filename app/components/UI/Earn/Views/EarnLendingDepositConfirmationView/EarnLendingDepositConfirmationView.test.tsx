@@ -387,7 +387,7 @@ describe('EarnLendingDepositConfirmationView', () => {
         Engine.context.EarnController.executeLendingTokenApprove,
       ).toHaveBeenCalledWith({
         amount: '0',
-        chainId: "0x1",
+        chainId: '0x1',
         gasOptions: {
           gasLimit: 'none',
         },
@@ -1052,7 +1052,7 @@ describe('EarnLendingDepositConfirmationView', () => {
       Engine.context.EarnController.executeLendingTokenApprove,
     ).toHaveBeenCalledWith({
       amount: '5000000',
-      chainId: "0x1",
+      chainId: '0x1',
       protocol: 'AAVE v3',
       underlyingTokenAddress: MOCK_USDC_MAINNET_ASSET.address,
       gasOptions: {
@@ -1100,7 +1100,7 @@ describe('EarnLendingDepositConfirmationView', () => {
       Engine.context.EarnController.executeLendingDeposit,
     ).toHaveBeenCalledWith({
       amount: '5000000',
-      chainId: "0x1",
+      chainId: '0x1',
       protocol: 'AAVE v3',
       underlyingTokenAddress: MOCK_USDC_MAINNET_ASSET.address,
       gasOptions: {
@@ -1147,7 +1147,7 @@ describe('EarnLendingDepositConfirmationView', () => {
       Engine.context.EarnController.executeLendingTokenApprove,
     ).toHaveBeenCalledWith({
       amount: '5000000',
-      chainId: "0x1",
+      chainId: '0x1',
       protocol: 'AAVE v3',
       underlyingTokenAddress: MOCK_USDC_MAINNET_ASSET.address,
       gasOptions: {
@@ -1192,7 +1192,7 @@ describe('EarnLendingDepositConfirmationView', () => {
       Engine.context.EarnController.executeLendingDeposit,
     ).toHaveBeenCalledWith({
       amount: '5000000',
-      chainId: "0x1",
+      chainId: '0x1',
       protocol: 'AAVE v3',
       underlyingTokenAddress: MOCK_USDC_MAINNET_ASSET.address,
       gasOptions: {
@@ -1345,7 +1345,7 @@ describe('EarnLendingDepositConfirmationView', () => {
       Engine.context.EarnController.executeLendingDeposit,
     ).toHaveBeenCalledWith({
       amount: '5000000',
-      chainId: "0x1",
+      chainId: '0x1',
       protocol: 'AAVE v3',
       underlyingTokenAddress: MOCK_USDC_MAINNET_ASSET.address,
       gasOptions: {
