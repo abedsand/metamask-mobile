@@ -267,6 +267,7 @@ export const calculateBuyMarketPrice = (
   amountToMatch: number,
   orderType: OrderType,
 ) => {
+  console.log('positions', positions);
   if (!positions.length) {
     throw new Error('no match');
   }
@@ -287,9 +288,12 @@ export const calculateBuyMarketPrice = (
       return parseFloat(p.price);
     }
   }
+  console.log('sum, yo', sum);
+  
   if (orderType === OrderType.FOK) {
     throw new Error('no match');
   }
+  console.log('positions[0], yo', positions[0]);
   return parseFloat(positions[0].price);
 };
 
@@ -304,6 +308,9 @@ export const calculateSellMarketPrice = (
   amountToMatch: number,
   orderType: OrderType,
 ) => {
+  console.log('positions', positions);
+  console.log('amountToMatch', amountToMatch);
+  console.log('orderType', orderType);
   if (!positions.length) {
     throw new Error('no match');
   }
@@ -336,6 +343,8 @@ export const calculateMarketPrice = async (
   amount: number,
   orderType: OrderType = OrderType.FOK,
 ): Promise<number> => {
+  debugger;
+  console.log('tokenID', tokenID);
   const book = await getOrderBook(tokenID);
   if (!book) {
     throw new Error('no orderbook');
@@ -349,6 +358,7 @@ export const calculateMarketPrice = async (
   if (!book.bids) {
     throw new Error('no match');
   }
+  console.log('book.bids', book.bids);
   return calculateSellMarketPrice(book.bids, amount, orderType);
 };
 

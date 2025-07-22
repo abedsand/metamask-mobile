@@ -14,7 +14,7 @@ import Routes from '../../../constants/navigation/Routes';
 import { Market } from '../../../util/predict/types';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
 
-import { GAMMA_API_ENDPOINT } from '../../../util/predict/constants/polymarket';
+import { GAMMA_API_ENDPOINT, CLOB_ENDPOINT } from '../../../util/predict/constants/polymarket';
 interface MetaMaskPredictProps {
   selectedIcon?: NavigationIcon;
   onNavigate?: (icon: NavigationIcon) => void;
@@ -27,7 +27,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   const { colors } = useTheme();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
-  const [marketData, setMarketData] = useState([]);
+  const [marketData, setMarketData] = useState<any[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
     propSelectedIcon || NavigationIcon.Storefront,
   );
@@ -43,7 +43,8 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
     try {
       setLoading(true);
       const response = await fetch(
-        `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true`,
+        // `${CLOB_ENDPOINT}/markets/0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1`,
+        `${CLOB_ENDPOINT}/markets/0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1`,
         {
           method: 'GET',
           headers: {
@@ -52,7 +53,8 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
         },
       );
       const marketsData = await response.json();
-      setMarketData(marketsData);
+      console.log('marketsData', marketsData);
+      setMarketData([marketsData]);
     } catch (error) {
       console.error('Error fetching trades:', error);
       setMarketData([]);
@@ -217,7 +219,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       style={styles.buyNoButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: market.conditionId,
+                          marketId: '0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1',
                         })
                       }
                       label={`Buy No`}
@@ -229,7 +231,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       style={styles.buyYesButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: market.conditionId,
+                          marketId: '0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1',
                         })
                       }
                       label={`Buy Yes`}

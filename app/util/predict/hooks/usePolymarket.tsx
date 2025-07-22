@@ -34,9 +34,15 @@ import {
 import { addTransaction } from '../../transaction-controller';
 import { signTypedMessage } from '../../keyring-controller';
 import StorageWrapper from '../../../store/storage-wrapper';
+import { AssetType } from '../../../components/UI/Bridge/hooks/useAssetMetadata';
 
 const API_KEY_STORAGE_KEY = 'api_key_storage';
 const MARKET_CACHE_KEY = 'market_cache';
+
+enum TEMP_AssetType {
+  COLLATERAL = 'COLLATERAL',
+  CONDITIONAL = 'CONDITIONAL',
+}
 
 const ClobAuthDomain = {
   ClobAuth: [
@@ -82,6 +88,7 @@ export const usePolymarket = () => {
 
   const contractConfig = useMemo(() => {
     try {
+      console.log('chainId', chainId);
       return getContractConfig(hexToNumber(chainId));
     } catch (error) {
       setIsNetworkSupported(false);
@@ -284,6 +291,31 @@ export const usePolymarket = () => {
     return transactionMeta;
   };
 
+  const fetchBalanceAllowance = async () => {
+    if (!contractConfig) return;
+
+    const body = {
+      asset_type: 'COLLATERAL',
+      token_id: contractConfig.collateral,
+    };
+
+    const l2Headers = await createL2Headers({
+      method: 'GET',
+      requestPath: '/balance-allowance',
+      body: JSON.stringify(body),
+    });
+
+    const response = await fetch(`${CLOB_ENDPOINT}/balance-allowance`, {
+      method: 'GET',
+      headers: l2Headers,
+      body: JSON.stringify(body),
+    });
+
+    const responseData = await response.json();
+    console.log('responseData', responseData);
+    return responseData;
+  };
+
   const approveConditionalExchange = async () => {
     if (!contractConfig) return;
 
@@ -434,6 +466,13 @@ export const usePolymarket = () => {
     negRisk: boolean;
     amount: number;
   }) => {
+    console.log('tokenId', tokenId);
+    console.log('side', side);
+    console.log('amount', amount);
+    console.log('tickSize', tickSize);
+    console.log('negRisk', negRisk);
+    console.log('min_size', min_size);
+
     const price = await calculateMarketPrice(
       tokenId,
       side,
@@ -449,10 +488,15 @@ export const usePolymarket = () => {
       );
     }
 
+    console.log('price', price);
+
     let size = Math.floor(amount / price);
 
+    console.log('size', size);
+    console.log('min_size', min_size);
+
     if (size < min_size) {
-      throw new Error('Size is less than min_size');
+      console.log('Size is less than min_size');
     }
 
     const cost = price * size;
@@ -474,6 +518,8 @@ export const usePolymarket = () => {
       },
       roundConfig: ROUNDING_CONFIG[tickSize],
     });
+
+    console.log('orderArgs', orderArgs);
 
     const order = {
       salt: hexToNumber(generateSalt()).toString(),
@@ -626,6 +672,7 @@ export const usePolymarket = () => {
     cancelOrder,
     setMarketTitle,
     getMarketTitles,
+    fetchBalanceAllowance,
     apiKey,
     isNetworkSupported,
     networkError,

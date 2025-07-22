@@ -25,7 +25,7 @@ const MetaMaskPredictBet: React.FC = () => {
   //   const { marketId } = useParams<{ marketId: string }>();
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
-  const { placeOrder } = usePolymarket();
+  const { placeOrder, approveAllowances, fetchBalanceAllowance } = usePolymarket();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
   const [isBuying, setIsBuying] = useState<boolean>(false);
 
@@ -144,6 +144,7 @@ const MetaMaskPredictBet: React.FC = () => {
     });
 
     const marketData = await response.json();
+    console.log('marketData', marketData);
     // await setMarketTitle(marketId, marketData.question);
     setMarket(marketData);
   }, [marketId]);
@@ -154,33 +155,71 @@ const MetaMaskPredictBet: React.FC = () => {
         return;
       }
       setIsBuying(true);
-      const response = await placeOrder({
-        tokenId: token.token_id,
-        min_size: Number(market?.minimum_order_size),
-        tickSize: market?.minimum_tick_size as TickSize,
-        side: Side.BUY,
-        negRisk: market?.neg_risk || false,
-        amount: selectedAmount,
-      });
-      if (response.error) {
-        Alert.alert('Error', response.error);
+      await approveAllowances();
+      
+      try {
+        // Approve allowances first
+        // await approveAllowances();
+        
+        // Wait for approvals to be confirmed (give time for blockchain confirmation)
+        // await new Promise(resolve => setTimeout(resolve, 10000)); // 10 seconds
+        
+        console.log('About to place order with:');
+        console.log('- Amount: 15 USDC');
+        console.log('- Side: BUY');
+        console.log('- Token: YES token');
+        console.log('- Market min size:', market?.minimum_order_size);
+        
+        const response = await placeOrder({
+          tokenId: '71321045679252212594626385532706912750332728571942532289631379312455583992563', // YES token
+          min_size: Number(market?.minimum_order_size),
+          tickSize: market?.minimum_tick_size as TickSize,
+          side: Side.BUY,
+          negRisk: market?.neg_risk || false,
+          amount: 15, // Keep at minimum since market requires 15
+        });
+        if (response.error) {
+          Alert.alert('Error', response.error);
+          console.log('Full error response:', response);
+          console.log('Error details:', response.error);
+          setIsBuying(false);
+          return;
+        }
+        if (response.status === 'live') {
+          navigation.navigate(Routes.PREDICT_VIEW);
+        }
+        if (response.status === 'matched') {
+          navigation.navigate(Routes.PREDICT_VIEW);
+        }
         setIsBuying(false);
-        return;
+      } catch (error) {
+        console.error('Error placing order:', error);
+        
+        // Provide more specific error messages
+        let errorMessage = 'Failed to place order. Please try again.';
+        if (error instanceof Error) {
+          if (error.message.includes('INVALID_ORDER_NOT_ENOUGH_BALANCE')) {
+            errorMessage = 'Insufficient balance or allowance. Please ensure you have enough USDC and approve the necessary allowances.';
+          } else if (error.message.includes('approval')) {
+            errorMessage = 'Approval failed. Please try again.';
+          }
+        }
+        
+        Alert.alert('Error', errorMessage);
+        setIsBuying(false);
       }
-      if (response.status === 'live') {
-        navigation.navigate(Routes.PREDICT_VIEW);
-      }
-      if (response.status === 'matched') {
-        navigation.navigate(Routes.PREDICT_VIEW);
-      }
-      setIsBuying(false);
     },
-    [market, navigation, placeOrder, selectedAmount],
+    [market, navigation, placeOrder, approveAllowances, selectedAmount],
   );
 
   useEffect(() => {
     getMarket();
   }, [getMarket]);
+
+  useEffect(() => {
+    const balanceAllowance = fetchBalanceAllowance();
+    console.log('balanceAllowance', balanceAllowance);
+  }, [fetchBalanceAllowance]);
 
   return (
     <View style={styles.container}>
@@ -190,6 +229,9 @@ const MetaMaskPredictBet: React.FC = () => {
           Select an amount and the outcome you think will happen to bet on this
           prediction market.
         </Text>
+        {/* <Text style={styles.balanceAllowance}>
+          {balanceAllowance}
+        </Text> */}
         <View style={styles.marketContainer}>
           <Text style={styles.marketTitle}>
             {market && `${market.question}`}

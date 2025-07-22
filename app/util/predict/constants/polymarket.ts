@@ -1,7 +1,7 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
-const isInternal = false; // process.env.PREDICT_INTERNAL_BUILD === 'true';  
+const isInternal = true; // process.env.PREDICT_INTERNAL_BUILD === 'true';  
 
 export const GAMMA_API_ENDPOINT = isInternal
   ? 'https://gamma-api-staging.polymarket.com'
@@ -10,7 +10,7 @@ export const CLOB_ENDPOINT = isInternal
   ? 'https://clob-staging.polymarket.com'
   : 'https://clob.polymarket.com';
 export const DATA_API_ENDPOINT = isInternal
-  ? 'https://data-api-staging.polymarket.com'
+  ? 'https://data-api.polymarket.com'
   : 'https://data-api.polymarket.com';
 
 interface ContractConfig {
@@ -43,8 +43,10 @@ const CONDITIONAL_TOKEN_DECIMALS = 6;
 const getContractConfig = (chainID: number): ContractConfig => {
   switch (chainID) {
     case 137:
+      console.log('POLYGON_CONTRACTS');
       return MATIC_CONTRACTS;
     case 80002:
+      console.log('AMOY_CONTRACTS');
       return AMOY_CONTRACTS;
     default:
       throw new Error('MetaMask Predict is only supported on Polygon mainnet and Amoy testnet');

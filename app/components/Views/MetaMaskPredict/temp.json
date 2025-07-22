@@ -1,0 +1,48 @@
+{
+    "accepting_order_timestamp": null,
+    "accepting_orders": true,
+    "active": true,
+    "archived": false,
+    "closed": false,
+    "condition_id": "0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1",
+    "description": "...",
+    "enable_order_book": true,
+    "end_date_iso": "2024-02-05T00: 00: 00Z",
+    "fpmm": "0x473dE157E17630Fb0B1cfc61197084F2a885ADBF",
+    "game_start_time": null,
+    "icon": "https: //polymarket-upload.s3.us-east-2.amazonaws.com/trump1+copy.png",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/trump1+copy.png",
+    "is_50_50_outcome": false,
+    "maker_base_fee": 0,
+    "market_slug": "will-trump-win-the-2024-iowa-caucus",
+    "minimum_order_size": 15,
+    "minimum_tick_size": 0.01,
+    "neg_risk": false,
+    "neg_risk_market_id": "",
+    "neg_risk_request_id": "",
+    "notifications_enabled": true,
+    "question": "Will Trump win the 2024 Iowa Caucus?",
+    "question_id": "0xfded887f31c0c020d224d42e3849159965df8ec68a4023ea93d2aca90b22aeb8",
+    "rewards": {
+        "max_spread": 99,
+        "min_size": 10,
+        "rates": null
+    },
+    "seconds_delay": 0,
+    "tags": null,
+    "taker_base_fee": 0,
+    "tokens": [
+        {
+            "outcome": "YES",
+            "price": 0.8,
+            "token_id": "71321045679252212594626385532706912750332728571942532289631379312455583992563",
+            "winner": false
+        },
+        {
+            "outcome": "NO",
+            "price": 0.2,
+            "token_id": "52114319501245915516055106046884209969926127482827954674443846427813813222426",
+            "winner": false
+        }
+    ]
+}
