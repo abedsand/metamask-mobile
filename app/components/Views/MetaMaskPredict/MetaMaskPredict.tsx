@@ -31,7 +31,8 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
     propSelectedIcon || NavigationIcon.Storefront,
   );
-  const { apiKey, createApiKey, isNetworkSupported, networkError } = usePolymarket();
+  const { apiKey, createApiKey, isNetworkSupported, networkError } =
+    usePolymarket();
 
   React.useEffect(() => {
     if (propSelectedIcon) {
@@ -214,18 +215,6 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       variant={ButtonVariants.Primary}
                       size={ButtonSize.Lg}
                       width={ButtonWidthTypes.Auto}
-                      style={styles.buyNoButton}
-                      onPress={() =>
-                        navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: market.conditionId,
-                        })
-                      }
-                      label={`Buy No`}
-                    />
-                    <Button
-                      variant={ButtonVariants.Primary}
-                      size={ButtonSize.Lg}
-                      width={ButtonWidthTypes.Auto}
                       style={styles.buyYesButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
@@ -233,6 +222,18 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                         })
                       }
                       label={`Buy Yes`}
+                    />
+                    <Button
+                      variant={ButtonVariants.Primary}
+                      size={ButtonSize.Lg}
+                      width={ButtonWidthTypes.Auto}
+                      style={styles.buyNoButton}
+                      onPress={() =>
+                        navigation.navigate(Routes.PREDICT_BET, {
+                          marketId: market.conditionId,
+                        })
+                      }
+                      label={`Buy No`}
                     />
                   </View>
                 </View>

@@ -248,7 +248,7 @@ export const buildMarketOrderCreationArgs = async ({
   } as OrderData;
 };
 
-const getOrderBook = async (tokenID: string) => {
+export const getOrderBook = async (tokenID: string) => {
   const response = await fetch(`${CLOB_ENDPOINT}/book?token_id=${tokenID}`, {
     method: 'GET',
   });
@@ -402,4 +402,111 @@ export const toBytes32 = (value: number | string): string => {
     throw new Error('Unsupported value type');
   }
   return hexZeroPad(hexValue, 32);
+};
+
+export const calculatePotentialProfit = (
+  orderBook: { asks?: OrderSummary[]; bids?: OrderSummary[] },
+  side: Side,
+  amount: number,
+) => {
+  if (!orderBook) {
+    throw new Error('No order book available');
+  }
+
+  let sharesToBuy = 0;
+  let totalCost = 0;
+  let averagePrice = 0;
+
+  if (side === Side.BUY) {
+    // For buying shares, we need to look at asks (sell orders)
+    if (!orderBook.asks || orderBook.asks.length === 0) {
+      throw new Error('No sell orders available');
+    }
+
+    let remainingAmount = amount;
+    let totalShares = 0;
+    let totalSpent = 0;
+
+    // Sort asks by price (lowest first for best deals)
+    const sortedAsks = [...orderBook.asks].sort(
+      (a, b) => parseFloat(a.price) - parseFloat(b.price),
+    );
+
+    for (const ask of sortedAsks) {
+      const price = parseFloat(ask.price);
+      const size = parseFloat(ask.size);
+
+      // Calculate how much we can buy from this order
+      const costForThisOrder = size * price;
+      const sharesFromThisOrder = size;
+
+      if (remainingAmount >= costForThisOrder) {
+        // We can buy the entire order
+        totalShares += sharesFromThisOrder;
+        totalSpent += costForThisOrder;
+        remainingAmount -= costForThisOrder;
+      } else {
+        // We can only buy part of this order
+        const sharesWeCanAfford = remainingAmount / price;
+        totalShares += sharesWeCanAfford;
+        totalSpent += remainingAmount;
+        remainingAmount = 0;
+        break;
+      }
+    }
+
+    sharesToBuy = totalShares;
+    totalCost = totalSpent;
+    averagePrice = totalSpent > 0 ? totalSpent / totalShares : 0;
+  } else {
+    // For selling shares, we need to look at bids (buy orders)
+    if (!orderBook.bids || orderBook.bids.length === 0) {
+      throw new Error('No buy orders available');
+    }
+
+    // For selling, amount represents the number of shares to sell
+    const sharesToSell = amount;
+    let totalReceived = 0;
+
+    // Sort bids by price (highest first for best deals)
+    const sortedBids = [...orderBook.bids].sort(
+      (a, b) => parseFloat(b.price) - parseFloat(a.price),
+    );
+
+    let remainingShares = sharesToSell;
+
+    for (const bid of sortedBids) {
+      const price = parseFloat(bid.price);
+      const size = parseFloat(bid.size);
+
+      if (remainingShares >= size) {
+        // We can sell the entire order
+        totalReceived += size * price;
+        remainingShares -= size;
+      } else {
+        // We can only sell part of this order
+        totalReceived += remainingShares * price;
+        remainingShares = 0;
+        break;
+      }
+    }
+
+    sharesToBuy = sharesToSell;
+    totalCost = sharesToSell; // Cost is the number of shares we're selling
+    averagePrice = sharesToSell > 0 ? totalReceived / sharesToSell : 0;
+  }
+
+  // Calculate potential profit
+  // If we win, each share is worth $1
+  const potentialWinnings = sharesToBuy * 1; // $1 per share
+  const potentialProfit = potentialWinnings - totalCost;
+
+  return {
+    sharesToBuy,
+    totalCost,
+    averagePrice,
+    potentialWinnings,
+    potentialProfit,
+    roi: totalCost > 0 ? (potentialProfit / totalCost) * 100 : 0, // Return on investment as percentage
+  };
 };
