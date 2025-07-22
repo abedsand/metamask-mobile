@@ -154,26 +154,31 @@ const MetaMaskPredictBet: React.FC = () => {
         return;
       }
       setIsBuying(true);
-      const response = await placeOrder({
-        tokenId: token.token_id,
-        min_size: Number(market?.minimum_order_size),
-        tickSize: market?.minimum_tick_size as TickSize,
-        side: Side.BUY,
-        negRisk: market?.neg_risk || false,
-        amount: selectedAmount,
-      });
-      if (response.error) {
-        Alert.alert('Error', response.error);
+      try {
+        const response = await placeOrder({
+          tokenId: token.token_id,
+          min_size: Number(market?.minimum_order_size),
+          tickSize: market?.minimum_tick_size as TickSize,
+          side: Side.BUY,
+          negRisk: market?.neg_risk || false,
+          amount: selectedAmount,
+        });
+        if (response.error) {
+          Alert.alert('Error', response.error);
+          setIsBuying(false);
+          return;
+        }
+        if (response.status === 'live') {
+          navigation.navigate(Routes.PREDICT_VIEW);
+        }
+        if (response.status === 'matched') {
+          navigation.navigate(Routes.PREDICT_VIEW);
+        }
         setIsBuying(false);
-        return;
+      } catch (error) {
+        Alert.alert('Error', (error as Error).message);
+        setIsBuying(false);
       }
-      if (response.status === 'live') {
-        navigation.navigate(Routes.PREDICT_VIEW);
-      }
-      if (response.status === 'matched') {
-        navigation.navigate(Routes.PREDICT_VIEW);
-      }
-      setIsBuying(false);
     },
     [market, navigation, placeOrder, selectedAmount],
   );

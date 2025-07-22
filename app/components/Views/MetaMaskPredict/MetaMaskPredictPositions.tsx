@@ -50,6 +50,7 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
       setLoading(true);
       const positionsData = await getPositions({
         address: selectedAccount?.address ?? '',
+        limit: 100,
       });
       setPositions(positionsData);
     } catch (error) {

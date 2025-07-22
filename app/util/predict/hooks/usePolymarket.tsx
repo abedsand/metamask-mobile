@@ -449,18 +449,6 @@ export const usePolymarket = () => {
       );
     }
 
-    let size = Math.floor(amount / price);
-
-    if (size < min_size) {
-      throw new Error('Size is less than min_size');
-    }
-
-    const cost = price * size;
-
-    if (cost < 1) {
-      size = Math.ceil(1 / price);
-    }
-
     const orderArgs = await buildMarketOrderCreationArgs({
       signer: account?.address ?? '',
       maker: account?.address ?? '',
@@ -558,7 +546,9 @@ export const usePolymarket = () => {
       headers: l2Headers,
       body,
     });
+
     const responseData = await response.json();
+
     return responseData;
   };
 
