@@ -1406,13 +1406,12 @@ export class Engine {
         name: 'EarnController',
         allowedEvents: [
           'AccountsController:selectedAccountChange',
-          'NetworkController:stateChange',
           'TransactionController:transactionConfirmed',
+          'NetworkController:networkDidChange',
         ],
         allowedActions: [
           'AccountsController:getSelectedAccount',
           'NetworkController:getNetworkClientById',
-          'NetworkController:getState',
         ],
       }),
       addTransactionFn: transactionController.addTransaction.bind(
