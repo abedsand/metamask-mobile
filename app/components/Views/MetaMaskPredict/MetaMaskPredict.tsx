@@ -14,11 +14,18 @@ import Routes from '../../../constants/navigation/Routes';
 import { Market } from '../../../util/predict/types';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
 
-import { GAMMA_API_ENDPOINT } from '../../../util/predict/constants/polymarket';
+import {
+  GAMMA_API_ENDPOINT,
+  IS_POLYMARKET_STAGING,
+  POLYMARKET_STAGING_CONSTS,
+} from '../../../util/predict/constants/polymarket';
+
 interface MetaMaskPredictProps {
   selectedIcon?: NavigationIcon;
   onNavigate?: (icon: NavigationIcon) => void;
 }
+
+// Note: Leaving a few commented out sections in here for future switching to polymarket's staging environment
 
 const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   selectedIcon: propSelectedIcon,
@@ -27,7 +34,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   const { colors } = useTheme();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
-  const [marketData, setMarketData] = useState([]);
+  const [marketData, setMarketData] = useState([]); // useState<any[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
     propSelectedIcon || NavigationIcon.Storefront,
   );
@@ -44,6 +51,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
     try {
       setLoading(true);
       const response = await fetch(
+        // `${CLOB_ENDPOINT}/markets/0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1`,
         `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true`,
         {
           method: 'GET',
@@ -53,7 +61,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
         },
       );
       const marketsData = await response.json();
-      setMarketData(marketsData);
+      setMarketData(marketsData); // setMarketData([marketsData]);
     } catch (error) {
       console.error('Error fetching trades:', error);
       setMarketData([]);
@@ -218,7 +226,9 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       style={styles.buyYesButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: market.conditionId,
+                          marketId: !IS_POLYMARKET_STAGING
+                            ? market.conditionId
+                            : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
                         })
                       }
                       label={`Buy Yes`}
@@ -230,7 +240,9 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       style={styles.buyNoButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: market.conditionId,
+                          marketId: !IS_POLYMARKET_STAGING
+                            ? market.conditionId
+                            : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
                         })
                       }
                       label={`Buy No`}

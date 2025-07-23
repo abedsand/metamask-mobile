@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 import ButtonIcon, {
   ButtonIconSizes,
@@ -7,6 +7,7 @@ import ButtonIcon, {
 import { IconName } from '../../../component-library/components/Icons/Icon';
 import { useTheme } from '../../../util/theme';
 import { WalletViewSelectorsIDs } from '../../../../e2e/selectors/wallet/WalletView.selectors';
+import { IS_POLYMARKET_STAGING } from '../../../util/predict/constants/polymarket';
 
 export enum NavigationIcon {
   Storefront = 'Storefront',
@@ -64,27 +65,50 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     selectedButton: {
       backgroundColor: colors.primary.default,
     },
+    environment: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: colors.warning.default,
+      backgroundColor: colors.warning.muted,
+      padding: 8,
+      borderRadius: 12,
+      marginBottom: 8,
+    },
+    environmentText: {
+      color: colors.text.default,
+      fontWeight: 'bold',
+    },
   });
 
   return (
-    <View style={styles.navigation}>
-      {navigationItems.map((item) => (
-        <View
-          key={item.icon}
-          style={[
-            styles.buttonCircularBorder,
-            selectedIcon === item.icon && styles.selectedButton,
-          ]}
-        >
-          <ButtonIcon
-            testID={WalletViewSelectorsIDs.SORT_BY}
-            size={ButtonIconSizes.Lg}
-            onPress={() => handleIconPress(item.icon)}
-            iconName={item.iconName}
-          />
-        </View>
-      ))}
-    </View>
+    <>
+      <View style={styles.navigation}>
+        {navigationItems.map((item) => (
+          <View
+            key={item.icon}
+            style={[
+              styles.buttonCircularBorder,
+              selectedIcon === item.icon && styles.selectedButton,
+            ]}
+          >
+            <ButtonIcon
+              testID={WalletViewSelectorsIDs.SORT_BY}
+              size={ButtonIconSizes.Lg}
+              onPress={() => handleIconPress(item.icon)}
+              iconName={item.iconName}
+            />
+          </View>
+        ))}
+      </View>
+      <View style={styles.environment}>
+        <Text style={styles.environmentText}>
+          Polymarket Environment:{' '}
+          {IS_POLYMARKET_STAGING ? 'Staging' : 'Production'}
+        </Text>
+      </View>
+    </>
   );
 };
 

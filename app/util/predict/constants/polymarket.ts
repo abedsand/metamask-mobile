@@ -1,17 +1,26 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
-const isInternal = false; // process.env.PREDICT_INTERNAL_BUILD === 'true';  
+export const IS_POLYMARKET_STAGING = false; // process.env.PREDICT_INTERNAL_BUILD === 'true';
 
-export const GAMMA_API_ENDPOINT = isInternal
+export const GAMMA_API_ENDPOINT = IS_POLYMARKET_STAGING
   ? 'https://gamma-api-staging.polymarket.com'
   : 'https://gamma-api.polymarket.com';
-export const CLOB_ENDPOINT = isInternal
+export const CLOB_ENDPOINT = IS_POLYMARKET_STAGING
   ? 'https://clob-staging.polymarket.com'
   : 'https://clob.polymarket.com';
-export const DATA_API_ENDPOINT = isInternal
+export const DATA_API_ENDPOINT = IS_POLYMARKET_STAGING
   ? 'https://data-api-staging.polymarket.com'
   : 'https://data-api.polymarket.com';
+
+  export const POLYMARKET_STAGING_CONSTS = {
+    YES_TOKEN_ID:
+      '71321045679252212594626385532706912750332728571942532289631379312455583992563',
+    NO_TOKEN_ID:
+      '52114319501245915516055106046884209969926127482827954674443846427813813222426',
+    CONDITION_ID:
+      '0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1',
+  } as const;
 
 interface ContractConfig {
   exchange: string;
@@ -47,7 +56,9 @@ const getContractConfig = (chainID: number): ContractConfig => {
     case 80002:
       return AMOY_CONTRACTS;
     default:
-      throw new Error('MetaMask Predict is only supported on Polygon mainnet and Amoy testnet');
+      throw new Error(
+        'MetaMask Predict is only supported on Polygon mainnet and Amoy testnet',
+      );
   }
 };
 

@@ -23,6 +23,10 @@ import {
   calculatePotentialProfit,
   getOrderBook,
 } from '../../../util/predict/utils/polymarket';
+import {
+  IS_POLYMARKET_STAGING,
+  POLYMARKET_STAGING_CONSTS,
+} from '../../../util/predict/constants/polymarket';
 
 interface MetaMaskPredictBetRouteParams {
   marketId: string;
@@ -34,7 +38,7 @@ const MetaMaskPredictBet: React.FC = () => {
   const navigation = useNavigation();
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
-  const { placeOrder } = usePolymarket();
+  const { placeOrder, approveAllowances } = usePolymarket();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
   const [isBuying, setIsBuying] = useState<boolean>(false);
   const [orderBooks, setOrderBooks] = useState<
@@ -161,6 +165,7 @@ const MetaMaskPredictBet: React.FC = () => {
       fontSize: 12,
       color: colors.text.alternative,
       textAlign: 'left',
+      marginTop: 4,
     },
   });
 
@@ -186,10 +191,13 @@ const MetaMaskPredictBet: React.FC = () => {
       if (!market) {
         return;
       }
+      // await approveAllowances();
       setIsBuying(true);
       try {
         const response = await placeOrder({
-          tokenId: token.token_id,
+          tokenId: !IS_POLYMARKET_STAGING
+            ? token.token_id
+            : POLYMARKET_STAGING_CONSTS.YES_TOKEN_ID,
           min_size: Number(market?.minimum_order_size),
           tickSize: market?.minimum_tick_size as TickSize,
           side: Side.BUY,
@@ -213,7 +221,7 @@ const MetaMaskPredictBet: React.FC = () => {
         setIsBuying(false);
       }
     },
-    [market, navigation, placeOrder, selectedAmount],
+    [market, navigation, placeOrder, approveAllowances, selectedAmount],
   );
 
   useEffect(() => {
@@ -317,12 +325,20 @@ const MetaMaskPredictBet: React.FC = () => {
                 />
                 {orderBooks[index] && (
                   <Text style={styles.potentialProfit}>
-                    Potential Profit: $
-                    {calculatePotentialProfit(
-                      orderBooks[index],
-                      Side.BUY,
-                      selectedAmount,
-                    ).potentialProfit.toFixed(2)}
+                    {(() => {
+                      try {
+                        return (
+                          'Potential Profit: $' +
+                          calculatePotentialProfit(
+                            orderBooks[index],
+                            Side.BUY,
+                            selectedAmount,
+                          ).potentialProfit.toFixed(2)
+                        );
+                      } catch (error) {
+                        return (error as Error).message;
+                      }
+                    })()}
                   </Text>
                 )}
               </View>
