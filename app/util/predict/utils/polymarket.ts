@@ -360,7 +360,7 @@ export const getPositions = async ({
   limit?: number;
 }): Promise<UserPosition[]> => {
   const response = await fetch(
-    `${DATA_API_ENDPOINT}/positions?limit=${limit}&user=${address}`,
+    `${GAMMA_API_ENDPOINT}/positions?limit=${limit}&user=${address}`,
     {
       method: 'GET',
       headers: {

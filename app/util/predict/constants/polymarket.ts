@@ -1,7 +1,7 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
-export const IS_POLYMARKET_STAGING = false; // process.env.PREDICT_INTERNAL_BUILD === 'true';
+export const IS_POLYMARKET_STAGING = true; // process.env.PREDICT_INTERNAL_BUILD === 'true';
 
 export const GAMMA_API_ENDPOINT = IS_POLYMARKET_STAGING
   ? 'https://gamma-api-staging.polymarket.com'
