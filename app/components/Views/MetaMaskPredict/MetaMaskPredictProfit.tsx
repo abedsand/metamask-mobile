@@ -8,9 +8,10 @@ import Button, {
 } from '../../../component-library/components/Buttons/Button';
 import { useSelector } from 'react-redux';
 import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
 import { Activity } from '../../../util/predict/types';
 
-import { DATA_API_ENDPOINT } from '../../../util/predict/constants/polymarket';
+import { getPolymarketEndpoints } from '../../../util/predict/constants/polymarket';
 
 interface MetaMaskPredictProfitProps {
   selectedIcon?: NavigationIcon;
@@ -23,6 +24,8 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
 }) => {
   const { colors } = useTheme();
   const selectedAccount = useSelector(selectSelectedInternalAccount);
+  const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  const { DATA_API_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
   const [loading, setLoading] = useState(true);
   const [activity, setActivity] = useState<Activity[]>([]);
   const [spent, setSpent] = useState(0);
@@ -63,7 +66,7 @@ const MetaMaskPredictProfit: React.FC<MetaMaskPredictProfitProps> = ({
     setPnl(earnsData - spentData);
 
     setLoading(false);
-  }, [selectedAccount]);
+  }, [selectedAccount, DATA_API_ENDPOINT]);
 
   useEffect(() => {
     getActivity();

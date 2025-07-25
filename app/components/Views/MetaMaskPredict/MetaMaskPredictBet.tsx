@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Image, Alert } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 import Button, {
   ButtonVariants,
@@ -17,16 +18,15 @@ import {
 } from '../../../util/predict/types';
 import ethereumImage from '../../../images/ethereum.png';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
-import { CLOB_ENDPOINT } from '../../../util/predict/constants';
 import Routes from '../../../constants/navigation/Routes';
 import {
   calculatePotentialProfit,
   getOrderBook,
 } from '../../../util/predict/utils/polymarket';
 import {
-  IS_POLYMARKET_STAGING,
   POLYMARKET_STAGING_CONSTS,
 } from '../../../util/predict/constants/polymarket';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
 
 interface MetaMaskPredictBetRouteParams {
   marketId: string;
@@ -36,9 +36,10 @@ const MetaMaskPredictBet: React.FC = () => {
   const { colors } = useTheme();
   const route = useRoute();
   const navigation = useNavigation();
+  const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
-  const { placeOrder, approveAllowances } = usePolymarket();
+  const { placeOrder, approveAllowances, CLOB_ENDPOINT } = usePolymarket();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
   const [isBuying, setIsBuying] = useState<boolean>(false);
   const [orderBooks, setOrderBooks] = useState<
@@ -195,7 +196,7 @@ const MetaMaskPredictBet: React.FC = () => {
       setIsBuying(true);
       try {
         const response = await placeOrder({
-          tokenId: !IS_POLYMARKET_STAGING
+          tokenId: !isPolymarketStaging
             ? token.token_id
             : POLYMARKET_STAGING_CONSTS.YES_TOKEN_ID,
           min_size: Number(market?.minimum_order_size),
@@ -221,7 +222,7 @@ const MetaMaskPredictBet: React.FC = () => {
         setIsBuying(false);
       }
     },
-    [market, navigation, placeOrder, approveAllowances, selectedAmount],
+    [market, navigation, placeOrder, approveAllowances, selectedAmount, isPolymarketStaging],
   );
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import BigNumber from 'bignumber.js';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 import Button, {
   ButtonVariants,
@@ -15,17 +16,15 @@ import { Market } from '../../../util/predict/types';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
 
 import {
-  GAMMA_API_ENDPOINT,
-  IS_POLYMARKET_STAGING,
   POLYMARKET_STAGING_CONSTS,
+  getPolymarketEndpoints,
 } from '../../../util/predict/constants/polymarket';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
 
 interface MetaMaskPredictProps {
   selectedIcon?: NavigationIcon;
   onNavigate?: (icon: NavigationIcon) => void;
 }
-
-// Note: Leaving a few commented out sections in here for future switching to polymarket's staging environment
 
 const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   selectedIcon: propSelectedIcon,
@@ -33,6 +32,8 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
 }) => {
   const { colors } = useTheme();
   const navigation = useNavigation();
+  const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  const { GAMMA_API_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
   const [loading, setLoading] = useState(false);
   const [marketData, setMarketData] = useState([]); // useState<any[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
@@ -51,7 +52,6 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
     try {
       setLoading(true);
       const response = await fetch(
-        // `${CLOB_ENDPOINT}/markets/0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1`,
         `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true`,
         {
           method: 'GET',
@@ -86,7 +86,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
 
   useEffect(() => {
     getMarkets();
-  }, []);
+  }, [GAMMA_API_ENDPOINT]);
 
   const styles = StyleSheet.create({
     container: {
@@ -226,7 +226,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       style={styles.buyYesButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: !IS_POLYMARKET_STAGING
+                          marketId: !isPolymarketStaging
                             ? market.conditionId
                             : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
                         })
@@ -240,7 +240,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                       style={styles.buyNoButton}
                       onPress={() =>
                         navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: !IS_POLYMARKET_STAGING
+                          marketId: !isPolymarketStaging
                             ? market.conditionId
                             : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
                         })

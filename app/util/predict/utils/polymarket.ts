@@ -1,6 +1,7 @@
 import { Interface } from '@ethersproject/abi';
 import { Hex } from '@metamask/utils';
 import { hexZeroPad, parseUnits } from 'ethers/lib/utils';
+import { store } from '../../../store';
 
 import { OrderData, RoundConfig, SignatureType } from '../types';
 import {
@@ -13,9 +14,8 @@ import {
   UtilsSide,
 } from '../types/polymarket';
 import {
-  CLOB_ENDPOINT,
   COLLATERAL_TOKEN_DECIMALS,
-  DATA_API_ENDPOINT,
+  getPolymarketEndpoints,
 } from '../constants';
 
 export const encodeApprove = ({
@@ -249,6 +249,10 @@ export const buildMarketOrderCreationArgs = async ({
 };
 
 export const getOrderBook = async (tokenID: string) => {
+  const state = store.getState();
+  const isPolymarketStaging = state.predict.isPolymarketStaging;
+  const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
+  
   const response = await fetch(`${CLOB_ENDPOINT}/book?token_id=${tokenID}`, {
     method: 'GET',
   });
@@ -359,8 +363,12 @@ export const getPositions = async ({
   address: string;
   limit?: number;
 }): Promise<UserPosition[]> => {
+  const state = store.getState();
+  const isPolymarketStaging = state.predict.isPolymarketStaging;
+  const { DATA_API_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
+  
   const response = await fetch(
-    `${GAMMA_API_ENDPOINT}/positions?limit=${limit}&user=${address}`,
+    `${DATA_API_ENDPOINT}/positions?limit=${limit}&user=${address}`,
     {
       method: 'GET',
       headers: {
@@ -373,6 +381,10 @@ export const getPositions = async ({
 };
 
 export const getTickSize = async (tokenID: string) => {
+  const state = store.getState();
+  const isPolymarketStaging = state.predict.isPolymarketStaging;
+  const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
+  
   const response = await fetch(
     `${CLOB_ENDPOINT}/tick-size?token_id=${tokenID}`,
     {

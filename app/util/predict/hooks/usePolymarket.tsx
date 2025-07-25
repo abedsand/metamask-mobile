@@ -25,12 +25,13 @@ import {
   TickSize,
   UserPosition,
 } from '../types';
-import { CLOB_ENDPOINT, getContractConfig, MSG_TO_SIGN } from '../constants';
+import { getPolymarketEndpoints, getContractConfig, MSG_TO_SIGN } from '../constants';
 import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
 import {
   selectEvmChainId,
   selectSelectedNetworkClientId,
 } from '../../../selectors/networkController';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
 import { addTransaction } from '../../transaction-controller';
 import { signTypedMessage } from '../../keyring-controller';
 import StorageWrapper from '../../../store/storage-wrapper';
@@ -56,6 +57,10 @@ export const usePolymarket = () => {
   const account = useSelector(selectSelectedInternalAccount);
   const selectedNetworkClientId = useSelector(selectSelectedNetworkClientId);
   const chainId = useSelector(selectEvmChainId);
+  const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  
+  // Get dynamic endpoints based on staging state
+  const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
 
   const [apiKeyStorage, setApiKeyStorage] = useState<Record<
     string,
@@ -434,12 +439,12 @@ export const usePolymarket = () => {
     negRisk: boolean;
     amount: number;
   }) => {
-    const price = await calculateMarketPrice(
-      tokenId,
-      side,
-      amount,
-      OrderType.FOK,
-    );
+      const price = await calculateMarketPrice(
+    tokenId,
+    side,
+    amount,
+    OrderType.FOK,
+  );
 
     if (!priceValid(price, tickSize)) {
       throw new Error(
@@ -619,5 +624,6 @@ export const usePolymarket = () => {
     apiKey,
     isNetworkSupported,
     networkError,
+    CLOB_ENDPOINT,
   };
 };

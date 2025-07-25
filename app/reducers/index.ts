@@ -34,6 +34,7 @@ import bridgeReducer from '../core/redux/slices/bridge';
 import performanceReducer, {
   PerformanceState,
 } from '../core/redux/slices/performance';
+import predictReducer from './predict';
 import { isTest } from '../util/test/utils';
 
 /**
@@ -124,6 +125,9 @@ export interface RootState {
   bridge: StateFromReducer<typeof bridgeReducer>;
   banners: BannersState;
   performance?: PerformanceState;
+  // TODO: Replace "any" with type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  predict: any;
 }
 
 const baseReducers = {
@@ -160,6 +164,7 @@ const baseReducers = {
   bridge: bridgeReducer,
   banners: bannersReducer,
   confirmationMetrics: confirmationMetricsReducer,
+  predict: predictReducer,
 };
 
 if (isTest) {

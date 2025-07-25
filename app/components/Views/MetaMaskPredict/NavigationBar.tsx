@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import ButtonIcon, {
   ButtonIconSizes,
@@ -7,11 +8,11 @@ import ButtonIcon, {
 import { IconName } from '../../../component-library/components/Icons/Icon';
 import { useTheme } from '../../../util/theme';
 import { WalletViewSelectorsIDs } from '../../../../e2e/selectors/wallet/WalletView.selectors';
-import { IS_POLYMARKET_STAGING } from '../../../util/predict/constants/polymarket';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
 
 export enum NavigationIcon {
   Storefront = 'Storefront',
-  Bank = 'Bank',
+  // Bank = 'Bank',
   Chart = 'Chart',
   Money = 'Money',
   Setting = 'Setting',
@@ -29,10 +30,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   onNavigate,
 }) => {
   const { colors } = useTheme();
+  const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
 
   const navigationItems = [
     { icon: NavigationIcon.Storefront, iconName: IconName.Storefront },
-    { icon: NavigationIcon.Bank, iconName: IconName.Bank },
+    // { icon: NavigationIcon.Bank, iconName: IconName.Bank },
     { icon: NavigationIcon.Chart, iconName: IconName.Chart },
     { icon: NavigationIcon.Money, iconName: IconName.Money },
     { icon: NavigationIcon.Setting, iconName: IconName.Setting },
@@ -74,7 +76,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       backgroundColor: colors.warning.muted,
       padding: 8,
       borderRadius: 12,
-      marginBottom: 8,
+      marginBottom: 12,
     },
     environmentText: {
       color: colors.text.default,
@@ -105,7 +107,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       <View style={styles.environment}>
         <Text style={styles.environmentText}>
           Polymarket Environment:{' '}
-          {IS_POLYMARKET_STAGING ? 'Staging' : 'Production'}
+          {isPolymarketStaging ? 'Staging' : 'Production'}
         </Text>
       </View>
     </>

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Text, View, StyleSheet, Switch, Alert, ScrollView } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
 import NavigationBar, { NavigationIcon } from './NavigationBar';
 import { useTheme } from '../../../util/theme';
@@ -9,6 +10,8 @@ import Button, {
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
+import { setPolymarketStaging } from '../../../actions/predict';
 
 interface MetaMaskPredictSettingsProps {
   selectedIcon?: NavigationIcon;
@@ -20,7 +23,8 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
   onNavigate,
 }) => {
   const { colors, brandColors } = useTheme();
-  const [isStaging, setIsStaging] = useState(false);
+  const dispatch = useDispatch();
+  const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
   const { approveAllowances, createApiKey } = usePolymarket();
 
   const styles = StyleSheet.create({
@@ -117,11 +121,13 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
           <View style={styles.titleContainer}>
             <Text
               style={styles.settingsTitle}
-            >Environment</Text>
+            >Use Staging Environment</Text>
             <View style={styles.switchElement}>
               <Switch
-                value={isStaging}
-                onValueChange={setIsStaging}
+                value={isPolymarketStaging}
+                onValueChange={(value) => {
+                  dispatch(setPolymarketStaging(value));
+                }}
                 trackColor={{
                   true: colors.primary.default,
                   false: colors.border.muted,
@@ -135,8 +141,7 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
           <Text
             style={styles.settingsText}
           >
-            Toggle between staging and production environments (on means
-            production, off means staging)
+            Toggle between staging and production environments.
           </Text>
         </View>
         <View style={styles.settingsSection}>

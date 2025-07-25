@@ -1,17 +1,20 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
-export const IS_POLYMARKET_STAGING = true; // process.env.PREDICT_INTERNAL_BUILD === 'true';
+// Function to get endpoints based on staging state
+export const getPolymarketEndpoints = (isStaging: boolean) => ({
+  GAMMA_API_ENDPOINT: isStaging
+    ? 'https://gamma-api-staging.polymarket.com'
+    : 'https://gamma-api.polymarket.com',
+  CLOB_ENDPOINT: isStaging
+    ? 'https://clob-staging.polymarket.com'
+    : 'https://clob.polymarket.com',
+  DATA_API_ENDPOINT: isStaging
+    ? 'https://data-api-staging.polymarket.com'
+    : 'https://data-api.polymarket.com',
+});
 
-export const GAMMA_API_ENDPOINT = IS_POLYMARKET_STAGING
-  ? 'https://gamma-api-staging.polymarket.com'
-  : 'https://gamma-api.polymarket.com';
-export const CLOB_ENDPOINT = IS_POLYMARKET_STAGING
-  ? 'https://clob-staging.polymarket.com'
-  : 'https://clob.polymarket.com';
-export const DATA_API_ENDPOINT = IS_POLYMARKET_STAGING
-  ? 'https://data-api-staging.polymarket.com'
-  : 'https://data-api.polymarket.com';
+
 
   export const POLYMARKET_STAGING_CONSTS = {
     YES_TOKEN_ID:
