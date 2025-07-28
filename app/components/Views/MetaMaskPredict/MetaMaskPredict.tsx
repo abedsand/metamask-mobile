@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import BigNumber from 'bignumber.js';
 import { useNavigation } from '@react-navigation/native';
@@ -14,6 +14,7 @@ import NavigationBar, { NavigationIcon } from './NavigationBar';
 import Routes from '../../../constants/navigation/Routes';
 import { Market } from '../../../util/predict/types';
 import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
+import SelectComponent from '../../../components/UI/SelectComponent';
 
 import {
   POLYMARKET_STAGING_CONSTS,
@@ -39,8 +40,43 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   const [selectedIcon, setSelectedIcon] = useState<NavigationIcon>(
     propSelectedIcon || NavigationIcon.Storefront,
   );
+  const [selectedCategory, setSelectedFilter] = useState('all');
+  const [selectedLiquidity, setSelectedLiquidity] = useState('all');
+  const [selectedSpread, setSelectedSpread] = useState('all');
+  const [selectedTerm, setSelectedTerm] = useState('all');
   const { apiKey, createApiKey, isNetworkSupported, networkError } =
     usePolymarket();
+
+  // Filter options for the dropdown
+  const filterOptions = [
+    { key: 'all', label: 'All Categories', value: 'all' },
+    { key: 'crypto', label: 'Crypto', value: '21' },
+    { key: 'sports', label: 'Sports', value: '1' },
+  ];
+
+  // Liquidity threshold options
+  const liquidityOptions = [
+    { key: 'all', label: 'All Liquidity', value: 'all' },
+    { key: 'low', label: 'Low (< $1K)', value: 'low' },
+    { key: 'medium', label: 'Medium ($1K - $10K)', value: 'medium' },
+    { key: 'high', label: 'High (> $10K)', value: 'high' },
+  ];
+
+  // Traders spread options
+  const spreadOptions = [
+    { key: 'all', label: 'All Spreads', value: 'all' },
+    { key: 'tight', label: 'Tight (< 5%)', value: 'tight' },
+    { key: 'medium', label: 'Medium (5-15%)', value: 'medium' },
+    { key: 'wide', label: 'Wide (> 15%)', value: 'wide' },
+  ];
+
+  // Term options
+  const termOptions = [
+    { key: 'all', label: 'All Terms', value: 'all' },
+    { key: 'short', label: 'Short Term (< 7 days)', value: 'short' },
+    { key: 'medium', label: 'Medium Term (7-30 days)', value: 'medium' },
+    { key: 'long', label: 'Long Term (> 30 days)', value: 'long' },
+  ];
 
   React.useEffect(() => {
     if (propSelectedIcon) {
@@ -48,18 +84,69 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
     }
   }, [propSelectedIcon]);
 
-  const getMarkets = async () => {
+  const getMarkets = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+      let url = `${GAMMA_API_ENDPOINT}/markets?limit=5&closed=false&active=true`;
+
+      if (selectedCategory !== 'all') {
+        url += `&tag_id=${selectedCategory}`;
+      }
+
+      if (selectedLiquidity !== 'all') {
+        switch (selectedLiquidity) {
+          case 'low':
+            url += `&liquidity_num_min=0&liquidity_num_max=1000&`;
+            break;
+          case 'medium':
+            url += `&liquidity_num_min=1000&liquidity_num_max=10000`;
+            break;
+          case 'high':
+            url += `&liquidity_num_min=10000&liquidity_num_max=100000`;
+            break;
+        }
+      }
+
+      if (selectedSpread !== 'all') {
+        url += `&spread=${selectedSpread}`;
+      }
+
+      if (selectedTerm !== 'all') {
+        const now = new Date();
+        switch (selectedTerm) {
+          case 'short':
+            const shortEndDate = new Date(
+              now.getTime() + 7 * 24 * 60 * 60 * 1000,
+            );
+            url += `&end_date_max=${shortEndDate.toISOString()}`;
+            break;
+          case 'medium':
+            const mediumStartDate = new Date(
+              now.getTime() + 7 * 24 * 60 * 60 * 1000,
+            );
+            const mediumEndDate = new Date(
+              now.getTime() + 30 * 24 * 60 * 60 * 1000,
+            );
+            url += `&end_date_min=${mediumStartDate.toISOString()}&end_date_max=${mediumEndDate.toISOString()}`;
+            break;
+          case 'long':
+            const longStartDate = new Date(
+              now.getTime() + 30 * 24 * 60 * 60 * 1000,
+            );
+            const longEndDate = new Date(
+              now.getTime() + 365 * 24 * 60 * 60 * 1000,
+            ); // 1 year max
+            url += `&end_date_min=${longStartDate.toISOString()}&end_date_max=${longEndDate.toISOString()}`;
+            break;
+        }
+      }
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+      });
       const marketsData = await response.json();
       setMarketData(marketsData); // setMarketData([marketsData]);
     } catch (error) {
@@ -68,7 +155,13 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [
+    GAMMA_API_ENDPOINT,
+    selectedCategory,
+    selectedLiquidity,
+    selectedSpread,
+    selectedTerm,
+  ]);
 
   const getDaysLeft = (endDateString: string) => {
     if (!endDateString) {
@@ -86,7 +179,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
 
   useEffect(() => {
     getMarkets();
-  }, [GAMMA_API_ENDPOINT]);
+  }, [getMarkets]);
 
   const styles = StyleSheet.create({
     container: {
@@ -149,6 +242,15 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
       flex: 1,
       marginTop: 20,
     },
+    filterRow: {
+      marginBottom: 40,
+    },
+    filterLabel: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: colors.text.default,
+      marginBottom: 2,
+    },
     noApiKeyContainer: {
       flex: 1,
       alignItems: 'center',
@@ -203,55 +305,97 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
           onIconPress={setSelectedIcon}
           onNavigate={onNavigate}
         />
+        <View style={styles.filterRow}>
+          <Text style={styles.filterLabel}>Markets</Text>
+          <SelectComponent
+            selectedValue={selectedCategory}
+            onValueChange={setSelectedFilter}
+            label="Filter Markets"
+            options={filterOptions}
+            defaultValue="All Markets"
+          />
+        </View>
+        <View style={styles.filterRow}>
+          <Text style={styles.filterLabel}>Liquidity</Text>
+          <SelectComponent
+            selectedValue={selectedLiquidity}
+            onValueChange={setSelectedLiquidity}
+            label="Liquidity Threshold"
+            options={liquidityOptions}
+            defaultValue="All Liquidity"
+          />
+        </View>
+        {/* <View style={styles.filterRow}>
+              <Text style={styles.filterLabel}>Spread</Text>
+              <SelectComponent
+                selectedValue={selectedSpread}
+                onValueChange={setSelectedSpread}
+                label="Traders Spread"
+                options={spreadOptions}
+                defaultValue="All Spreads"
+              />
+            </View> */}
+        <View style={styles.filterRow}>
+          <Text style={styles.filterLabel}>Term</Text>
+          <SelectComponent
+            selectedValue={selectedTerm}
+            onValueChange={setSelectedTerm}
+            label="Term"
+            options={termOptions}
+            defaultValue="All Terms"
+          />
+        </View>
         {loading ? (
           <Text>Loading...</Text>
         ) : (
-          <ScrollView
-            style={styles.scrollableContainer}
-            showsVerticalScrollIndicator={false}
-          >
-            {marketData.map((market: Market) => (
-              <View key={market.id}>
-                <View style={styles.marketContainer}>
-                  <Text style={styles.marketTitle}>{market.question}</Text>
-                  <Text style={styles.marketPricing}>
-                    {getDaysLeft(market.endDate)}&nbsp;$
-                    {calculateVolume(market.volume)} Vol
-                  </Text>
-                  <View style={styles.buttons}>
-                    <Button
-                      variant={ButtonVariants.Primary}
-                      size={ButtonSize.Lg}
-                      width={ButtonWidthTypes.Auto}
-                      style={styles.buyYesButton}
-                      onPress={() =>
-                        navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: !isPolymarketStaging
-                            ? market.conditionId
-                            : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
-                        })
-                      }
-                      label={`Buy Yes`}
-                    />
-                    <Button
-                      variant={ButtonVariants.Primary}
-                      size={ButtonSize.Lg}
-                      width={ButtonWidthTypes.Auto}
-                      style={styles.buyNoButton}
-                      onPress={() =>
-                        navigation.navigate(Routes.PREDICT_BET, {
-                          marketId: !isPolymarketStaging
-                            ? market.conditionId
-                            : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
-                        })
-                      }
-                      label={`Buy No`}
-                    />
+          <>
+            <ScrollView
+              style={styles.scrollableContainer}
+              showsVerticalScrollIndicator={false}
+            >
+              {marketData.map((market: Market) => (
+                <View key={market.id}>
+                  <View style={styles.marketContainer}>
+                    <Text style={styles.marketTitle}>{market.question}</Text>
+                    <Text style={styles.marketPricing}>
+                      {getDaysLeft(market.endDate)}&nbsp;$
+                      {calculateVolume(market.volume)} Vol
+                    </Text>
+                    <View style={styles.buttons}>
+                      <Button
+                        variant={ButtonVariants.Primary}
+                        size={ButtonSize.Lg}
+                        width={ButtonWidthTypes.Auto}
+                        style={styles.buyYesButton}
+                        onPress={() =>
+                          navigation.navigate(Routes.PREDICT_BET, {
+                            marketId: !isPolymarketStaging
+                              ? market.conditionId
+                              : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
+                          })
+                        }
+                        label={`Buy Yes`}
+                      />
+                      <Button
+                        variant={ButtonVariants.Primary}
+                        size={ButtonSize.Lg}
+                        width={ButtonWidthTypes.Auto}
+                        style={styles.buyNoButton}
+                        onPress={() =>
+                          navigation.navigate(Routes.PREDICT_BET, {
+                            marketId: !isPolymarketStaging
+                              ? market.conditionId
+                              : POLYMARKET_STAGING_CONSTS.CONDITION_ID,
+                          })
+                        }
+                        label={`Buy No`}
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            ))}
-          </ScrollView>
+              ))}
+            </ScrollView>
+          </>
         )}
       </View>
     </View>
