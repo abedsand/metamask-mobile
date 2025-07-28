@@ -38,6 +38,7 @@ import { getSeedlessOnboardingControllerMessenger } from './seedless-onboarding-
 import { getApprovalControllerMessenger } from './approval-controller-messenger';
 import { getPerpsControllerMessenger } from './perps-controller-messenger';
 import { getMultichainAccountServiceMessenger } from './multichain-account-service-messenger/multichain-account-service-messenger';
+import { getRewardsControllerMessenger } from './rewards-controller-messenger';
 /**
  * The messengers for the controllers that have been.
  */
@@ -144,6 +145,9 @@ export const CONTROLLER_MESSENGERS = {
   },
   MultichainAccountService: {
     getMessenger: getMultichainAccountServiceMessenger,
+  },
+  RewardsController: {
+    getMessenger: getRewardsControllerMessenger,
     getInitMessenger: noop,
   },
 } as const;
