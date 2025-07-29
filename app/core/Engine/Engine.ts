@@ -229,6 +229,10 @@ import {
 import { ErrorReportingService } from '@metamask/error-reporting-service';
 import { captureException } from '@sentry/react-native';
 import { WebSocketServiceInit } from './controllers/snaps/websocket-service-init';
+import { 
+  WebSocketServiceInit as BackendWebSocketServiceInit,
+  AccountActivityServiceInit
+} from './controllers/backend-platform';
 
 import { seedlessOnboardingControllerInit } from './controllers/seedless-onboarding-controller';
 import { perpsControllerInit } from './controllers/perps-controller';
@@ -1275,6 +1279,8 @@ export class Engine {
         ///: END:ONLY_INCLUDE_IF
         SeedlessOnboardingController: seedlessOnboardingControllerInit,
         PerpsController: perpsControllerInit,
+        BackendWebSocketService: BackendWebSocketServiceInit,
+        AccountActivityService: AccountActivityServiceInit,
       },
       persistedState: initialState as EngineState,
       existingControllersByName,
@@ -1291,6 +1297,8 @@ export class Engine {
     const seedlessOnboardingController =
       controllersByName.SeedlessOnboardingController;
     const perpsController = controllersByName.PerpsController;
+    const backendWebSocketService = controllersByName.BackendWebSocketService;
+    const accountActivityService = controllersByName.AccountActivityService;
     // Backwards compatibility for existing references
     this.accountsController = accountsController;
     this.gasFeeController = gasFeeController;
@@ -1525,6 +1533,7 @@ export class Engine {
             'PreferencesController:stateChange',
             'NetworkController:stateChange',
             'KeyringController:accountRemoved',
+            'AccountActivityService:balanceUpdated',
           ],
         }),
         // TODO: This is long, can we decrease it?
@@ -1647,6 +1656,8 @@ export class Engine {
       DeFiPositionsController: controllersByName.DeFiPositionsController,
       SeedlessOnboardingController: seedlessOnboardingController,
       PerpsController: perpsController,
+      BackendWebSocketService: backendWebSocketService,
+      AccountActivityService: accountActivityService,
     };
 
     const childControllers = Object.assign({}, this.context);

@@ -37,6 +37,10 @@ import { getSeedlessOnboardingControllerMessenger } from './seedless-onboarding-
 
 import { getApprovalControllerMessenger } from './approval-controller-messenger';
 import { getPerpsControllerMessenger } from './perps-controller-messenger';
+import { 
+  getWebSocketServiceMessenger as getBackendWebSocketServiceMessenger,
+  getAccountActivityServiceMessenger
+} from './backend-platform';
 /**
  * The messengers for the controllers that have been.
  */
@@ -139,6 +143,14 @@ export const CONTROLLER_MESSENGERS = {
   },
   PerpsController: {
     getMessenger: getPerpsControllerMessenger,
+    getInitMessenger: noop,
+  },
+  BackendWebSocketService: {
+    getMessenger: getBackendWebSocketServiceMessenger,
+    getInitMessenger: noop,
+  },
+  AccountActivityService: {
+    getMessenger: getAccountActivityServiceMessenger,
     getInitMessenger: noop,
   },
 } as const;

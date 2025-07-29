@@ -57,6 +57,10 @@ import { seedlessOnboardingControllerInit } from '../controllers/seedless-onboar
 import { AccountTreeController } from '@metamask/account-tree-controller';
 import { accountTreeControllerInit } from '../../../multichain-accounts/controllers/account-tree-controller';
 import { WebSocketServiceInit } from '../controllers/snaps/websocket-service-init';
+import { 
+  WebSocketServiceInit as BackendWebSocketServiceInit,
+  AccountActivityServiceInit
+} from '../controllers/backend-platform';
 import { perpsControllerInit } from '../controllers/perps-controller';
 
 jest.mock('../controllers/accounts-controller');
@@ -92,6 +96,7 @@ jest.mock(
   '../controllers/defi-positions-controller/defi-positions-controller-init',
 );
 jest.mock('../../../multichain-accounts/controllers/account-tree-controller');
+jest.mock('../controllers/backend-platform');
 
 describe('initModularizedControllers', () => {
   const mockAccountsControllerInit = jest.mocked(accountsControllerInit);
@@ -140,6 +145,8 @@ describe('initModularizedControllers', () => {
   );
   const mockAccountTreeControllerInit = jest.mocked(accountTreeControllerInit);
   const mockPerpsControllerInit = jest.mocked(perpsControllerInit);
+  const mockBackendWebSocketServiceInit = jest.mocked(BackendWebSocketServiceInit);
+  const mockAccountActivityServiceInit = jest.mocked(AccountActivityServiceInit);
 
   function buildModularizedControllerRequest(
     overrides?: Record<string, unknown>,
@@ -176,6 +183,8 @@ describe('initModularizedControllers', () => {
           DeFiPositionsController: mockDeFiPositionsControllerInit,
           SeedlessOnboardingController: mockSeedlessOnboardingControllerInit,
           PerpsController: mockPerpsControllerInit,
+          BackendWebSocketService: mockBackendWebSocketServiceInit,
+          AccountActivityService: mockAccountActivityServiceInit,
         },
         persistedState: {},
         baseControllerMessenger: new ExtendedControllerMessenger(),
@@ -251,6 +260,14 @@ describe('initModularizedControllers', () => {
     });
     mockAccountTreeControllerInit.mockReturnValue({
       controller: {} as unknown as AccountTreeController,
+    });
+    mockBackendWebSocketServiceInit.mockReturnValue({
+      controller: {} as unknown as import('../controllers/backend-platform').MobileBackendWebSocketService,
+    });
+    mockAccountActivityServiceInit.mockReturnValue({
+      memStateKey: null,
+      persistedStateKey: null,
+      controller: {} as unknown as import('@metamask/backend-platform').AccountActivityService,
     });
   });
 

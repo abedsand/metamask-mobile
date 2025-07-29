@@ -517,6 +517,8 @@ export type Controllers = {
   EarnController: EarnController;
   PerpsController: PerpsController;
   SeedlessOnboardingController: SeedlessOnboardingController<EncryptionKey>;
+  BackendWebSocketService: import('./controllers/backend-platform').MobileBackendWebSocketService;
+  AccountActivityService: import('@metamask/backend-platform').AccountActivityService;
 };
 
 /**
@@ -641,7 +643,9 @@ export type ControllersToInitialize =
   | 'SignatureController'
   | 'SeedlessOnboardingController'
   | 'TransactionController'
-  | 'PerpsController';
+  | 'PerpsController'
+  | 'BackendWebSocketService'
+  | 'AccountActivityService';
 
 /**
  * Callback that returns a controller messenger for a specific controller.
