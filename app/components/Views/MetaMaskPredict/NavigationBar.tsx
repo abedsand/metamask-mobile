@@ -12,7 +12,6 @@ import { selectIsPolymarketStaging } from '../../../selectors/predict';
 
 export enum NavigationIcon {
   Storefront = 'Storefront',
-  // Bank = 'Bank',
   Chart = 'Chart',
   Money = 'Money',
   Setting = 'Setting',

@@ -1,26 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import BigNumber from 'bignumber.js';
 import { useNavigation } from '@react-navigation/native';
+import BigNumber from 'bignumber.js';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Button, {
-  ButtonVariants,
   ButtonSize,
+  ButtonVariants,
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
-import { useTheme } from '../../../util/theme';
-import NavigationBar, { NavigationIcon } from './NavigationBar';
+import SelectComponent from '../../../components/UI/SelectComponent';
 import Routes from '../../../constants/navigation/Routes';
 import { Market } from '../../../util/predict/types';
-import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
-import SelectComponent from '../../../components/UI/SelectComponent';
+import { useTheme } from '../../../util/theme';
+import NavigationBar, { NavigationIcon } from './NavigationBar';
 
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
 import {
   POLYMARKET_STAGING_CONSTS,
   getPolymarketEndpoints,
 } from '../../../util/predict/constants/polymarket';
-import { selectIsPolymarketStaging } from '../../../selectors/predict';
+import {
+  usePolymarketApi,
+  usePolymarketAuth,
+} from '../../../util/predict/hooks';
 
 interface MetaMaskPredictProps {
   selectedIcon?: NavigationIcon;
@@ -42,10 +45,10 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   );
   const [selectedCategory, setSelectedFilter] = useState('all');
   const [selectedLiquidity, setSelectedLiquidity] = useState('all');
-  const [selectedSpread, setSelectedSpread] = useState('all');
+  const [selectedSpread] = useState('all');
   const [selectedTerm, setSelectedTerm] = useState('all');
-  const { apiKey, createApiKey, isNetworkSupported, networkError } =
-    usePolymarket();
+  const { apiKey, createApiKey } = usePolymarketAuth();
+  const { isNetworkSupported, networkError } = usePolymarketApi();
 
   // Filter options for the dropdown
   const filterOptions = [
@@ -63,12 +66,12 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
   ];
 
   // Traders spread options
-  const spreadOptions = [
+  /*   const spreadOptions = [
     { key: 'all', label: 'All Spreads', value: 'all' },
     { key: 'tight', label: 'Tight (< 5%)', value: 'tight' },
     { key: 'medium', label: 'Medium (5-15%)', value: 'medium' },
     { key: 'wide', label: 'Wide (> 15%)', value: 'wide' },
-  ];
+  ]; */
 
   // Term options
   const termOptions = [
@@ -114,13 +117,14 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
       if (selectedTerm !== 'all') {
         const now = new Date();
         switch (selectedTerm) {
-          case 'short':
+          case 'short': {
             const shortEndDate = new Date(
               now.getTime() + 7 * 24 * 60 * 60 * 1000,
             );
             url += `&end_date_max=${shortEndDate.toISOString()}`;
             break;
-          case 'medium':
+          }
+          case 'medium': {
             const mediumStartDate = new Date(
               now.getTime() + 7 * 24 * 60 * 60 * 1000,
             );
@@ -129,7 +133,8 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
             );
             url += `&end_date_min=${mediumStartDate.toISOString()}&end_date_max=${mediumEndDate.toISOString()}`;
             break;
-          case 'long':
+          }
+          case 'long': {
             const longStartDate = new Date(
               now.getTime() + 30 * 24 * 60 * 60 * 1000,
             );
@@ -138,6 +143,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
             ); // 1 year max
             url += `&end_date_min=${longStartDate.toISOString()}&end_date_max=${longEndDate.toISOString()}`;
             break;
+          }
         }
       }
 

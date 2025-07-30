@@ -1,66 +1,53 @@
-import { useSelector } from 'react-redux';
-import { hexToNumber } from '@metamask/utils';
 import { SignTypedDataVersion } from '@metamask/keyring-controller';
-import { useMemo, useState, useEffect } from 'react';
 import { TransactionType } from '@metamask/transaction-controller';
+import { hexToNumber } from '@metamask/utils';
+import { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectSelectedInternalAccount } from '../../../../selectors/accountsController';
 import {
-  buildMarketOrderCreationArgs,
+  selectEvmChainId,
+  selectSelectedNetworkClientId,
+} from '../../../../selectors/networkController';
+import { selectIsPolymarketStaging } from '../../../../selectors/predict';
+import StorageWrapper from '../../../../store/storage-wrapper';
+import { signTypedMessage } from '../../../../util/keyring-controller';
+import {
   buildPolyHmacSignature,
-  calculateMarketPrice,
   encodeApprove,
   encodeErc1155Approve,
-  encodeRedeemPositions,
-  generateSalt,
-  priceValid,
-  toBytes32,
-} from '..';
+  getPolymarketEndpoints,
+} from '../../../../util/predict/utils/polymarket';
+import { addTransaction } from '../../../../util/transaction-controller';
+
 import {
   ApiKeyCreds,
   ApiKeyRaw,
   L2HeaderArgs,
-  OrderType,
-  ROUNDING_CONFIG,
-  Side,
-  SignatureType,
-  TickSize,
-  UserPosition,
-} from '../types';
-import { getPolymarketEndpoints, getContractConfig, MSG_TO_SIGN } from '../constants';
-import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
+} from '../../../../util/predict/types';
 import {
-  selectEvmChainId,
-  selectSelectedNetworkClientId,
-} from '../../../selectors/networkController';
-import { selectIsPolymarketStaging } from '../../../selectors/predict';
-import { addTransaction } from '../../transaction-controller';
-import { signTypedMessage } from '../../keyring-controller';
-import StorageWrapper from '../../../store/storage-wrapper';
+  API_KEY_STORAGE_KEY,
+  ClobAuthDomain,
+  EIP712Domain,
+  getContractConfig,
+  MSG_TO_SIGN,
+} from '../../constants';
 
-const API_KEY_STORAGE_KEY = 'api_key_storage';
-const MARKET_CACHE_KEY = 'market_cache';
-
-const ClobAuthDomain = {
-  ClobAuth: [
-    { name: 'address', type: 'address' },
-    { name: 'timestamp', type: 'string' },
-    { name: 'nonce', type: 'uint256' },
-    { name: 'message', type: 'string' },
-  ],
-};
-const EIP712Domain = [
-  { name: 'name', type: 'string' },
-  { name: 'version', type: 'string' },
-  { name: 'chainId', type: 'uint256' },
-];
-
-export const usePolymarket = () => {
+export const usePolymarketAuth = () => {
   const account = useSelector(selectSelectedInternalAccount);
   const selectedNetworkClientId = useSelector(selectSelectedNetworkClientId);
   const chainId = useSelector(selectEvmChainId);
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
-  
+
   // Get dynamic endpoints based on staging state
   const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
+
+  const contractConfig = useMemo(() => {
+    try {
+      return getContractConfig(hexToNumber(chainId));
+    } catch (error) {
+      return null;
+    }
+  }, [chainId]);
 
   const [apiKeyStorage, setApiKeyStorage] = useState<Record<
     string,
@@ -81,19 +68,6 @@ export const usePolymarket = () => {
     }
     return null;
   }, [apiKeyStorage, account?.address]);
-
-  const [isNetworkSupported, setIsNetworkSupported] = useState(true);
-  const [networkError, setNetworkError] = useState<string | null>(null);
-
-  const contractConfig = useMemo(() => {
-    try {
-      return getContractConfig(hexToNumber(chainId));
-    } catch (error) {
-      setIsNetworkSupported(false);
-      setNetworkError(String(error));
-      return null;
-    }
-  }, [chainId]);
 
   const getL1Headers = async () => {
     const domain = {
@@ -135,30 +109,6 @@ export const usePolymarket = () => {
     };
 
     return headers;
-  };
-
-  const setMarketTitle = async (marketId: string, title: string) => {
-    const marketData = await StorageWrapper.getItem(MARKET_CACHE_KEY);
-    if (marketData) {
-      const market = JSON.parse(marketData);
-      market[marketId] = title;
-      await StorageWrapper.setItem(MARKET_CACHE_KEY, JSON.stringify(market));
-    } else {
-      const market = {
-        [marketId]: title,
-      };
-      await StorageWrapper.setItem(MARKET_CACHE_KEY, JSON.stringify(market));
-    }
-  };
-
-  const getMarketTitles = async () => {
-    const marketData = await StorageWrapper.getItem(MARKET_CACHE_KEY);
-
-    if (marketData) {
-      const market = JSON.parse(marketData);
-      return market;
-    }
-    return null;
   };
 
   const storeApiKey = async (apiKeyRaw: ApiKeyRaw) => {
@@ -239,12 +189,12 @@ export const usePolymarket = () => {
     return headers;
   };
 
-  const approveCollateralExchange = async () => {
+  const approveCollateralExchange = async (amount?: bigint) => {
     if (!contractConfig) return;
 
     const encodedCallData = encodeApprove({
       spender: contractConfig.exchange,
-      amount: 100n * 1_000_000n, // 100 USDC as BigInt with 6 decimals
+      amount: amount ?? 100n * 1_000_000n, // 100 USDC as BigInt with 6 decimals
     });
 
     const transactionMeta = await addTransaction(
@@ -424,206 +374,11 @@ export const usePolymarket = () => {
     await approveConditionalNegRiskAdapter();
   };
 
-  const placeOrder = async ({
-    tokenId,
-    min_size,
-    tickSize,
-    side,
-    negRisk,
-    amount,
-  }: {
-    tokenId: string;
-    min_size: number;
-    tickSize: TickSize;
-    side: Side;
-    negRisk: boolean;
-    amount: number;
-  }) => {
-      const price = await calculateMarketPrice(
-    tokenId,
-    side,
-    amount,
-    OrderType.FOK,
-  );
-
-    if (!priceValid(price, tickSize)) {
-      throw new Error(
-        `invalid price (${price}), min: ${parseFloat(tickSize)} - max: ${
-          1 - parseFloat(tickSize)
-        }`,
-      );
-    }
-
-    const orderArgs = await buildMarketOrderCreationArgs({
-      signer: account?.address ?? '',
-      maker: account?.address ?? '',
-      signatureType: SignatureType.EOA,
-      userMarketOrder: {
-        tokenID: tokenId,
-        price,
-        amount,
-        side,
-        orderType: OrderType.FOK,
-      },
-      roundConfig: ROUNDING_CONFIG[tickSize],
-    });
-
-    const order = {
-      salt: hexToNumber(generateSalt()).toString(),
-      maker: account?.address ?? '',
-      signer: orderArgs.signer ?? account?.address ?? '',
-      taker: orderArgs.taker,
-      tokenId: orderArgs.tokenId,
-      makerAmount: orderArgs.makerAmount,
-      takerAmount: orderArgs.takerAmount,
-      expiration: orderArgs.expiration ?? '0',
-      nonce: orderArgs.nonce,
-      feeRateBps: orderArgs.feeRateBps,
-      side: orderArgs.side,
-      signatureType: orderArgs.signatureType ?? SignatureType.EOA,
-    };
-
-    if (!contractConfig) return;
-
-    const verifyingContract = negRisk
-      ? contractConfig.negRiskExchange
-      : contractConfig.exchange;
-
-    const typedData = {
-      primaryType: 'Order',
-      domain: {
-        name: 'Polymarket CTF Exchange',
-        version: '1',
-        chainId: hexToNumber(chainId),
-        verifyingContract,
-      },
-      types: {
-        EIP712Domain: [
-          ...EIP712Domain,
-          { name: 'verifyingContract', type: 'address' },
-        ],
-        Order: [
-          { name: 'salt', type: 'uint256' },
-          { name: 'maker', type: 'address' },
-          { name: 'signer', type: 'address' },
-          { name: 'taker', type: 'address' },
-          { name: 'tokenId', type: 'uint256' },
-          { name: 'makerAmount', type: 'uint256' },
-          { name: 'takerAmount', type: 'uint256' },
-          { name: 'expiration', type: 'uint256' },
-          { name: 'nonce', type: 'uint256' },
-          { name: 'feeRateBps', type: 'uint256' },
-          { name: 'side', type: 'uint8' },
-          { name: 'signatureType', type: 'uint8' },
-        ],
-      },
-      message: order,
-    };
-
-    const signature = await signTypedMessage(
-      { data: typedData, from: account?.address ?? '' },
-      SignTypedDataVersion.V4,
-    );
-
-    const signedOrder = {
-      ...order,
-      signature,
-    };
-
-    const body = JSON.stringify({
-      order: {
-        ...signedOrder,
-        side,
-        salt: parseInt(signedOrder.salt, 10),
-      },
-      owner: apiKey?.key,
-      orderType: OrderType.FOK,
-    });
-
-    const l2Headers = await createL2Headers({
-      method: 'POST',
-      requestPath: `/order`,
-      body,
-    });
-
-    const response = await fetch(`${CLOB_ENDPOINT}/order`, {
-      method: 'POST',
-      headers: l2Headers,
-      body,
-    });
-
-    const responseData = await response.json();
-
-    return responseData;
-  };
-
-  const redeemPosition = async (position: UserPosition) => {
-    if (!contractConfig) return;
-
-    if (!position.redeemable) {
-      console.error('Position is not redeemable');
-      return;
-    }
-
-    const encodedCallData = encodeRedeemPositions({
-      collateralToken: contractConfig.collateral,
-      parentCollectionId: toBytes32('0x0'),
-      conditionId: position.conditionId,
-      indexSets: [position.outcomeIndex + 1],
-    });
-
-    try {
-      const transactionMeta = await addTransaction(
-        {
-          from: account?.address ?? '',
-          to: contractConfig.conditionalTokens,
-          data: encodedCallData,
-          value: '0x0',
-        },
-        {
-          networkClientId: selectedNetworkClientId,
-          type: TransactionType.contractInteraction,
-          requireApproval: false,
-        },
-      );
-      return transactionMeta;
-    } catch (error) {
-      console.error('Error redeeming position', error);
-      return;
-    }
-  };
-
-  const cancelOrder = async (orderId: string) => {
-    const body = JSON.stringify({
-      orderID: orderId,
-    });
-    const headers = await createL2Headers({
-      method: 'DELETE',
-      requestPath: `/order`,
-      body,
-    });
-    const response = await fetch(`${CLOB_ENDPOINT}/order`, {
-      method: 'DELETE',
-      headers,
-      body,
-    });
-    const responseData = await response.json();
-    return responseData;
-  };
-
   return {
     createApiKey,
     deriveApiKey,
     approveAllowances,
-    placeOrder,
-    redeemPosition,
     createL2Headers,
-    cancelOrder,
-    setMarketTitle,
-    getMarketTitles,
     apiKey,
-    isNetworkSupported,
-    networkError,
-    CLOB_ENDPOINT,
   };
 };

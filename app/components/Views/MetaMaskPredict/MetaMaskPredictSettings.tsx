@@ -1,5 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { Text, View, StyleSheet, Switch, Alert, ScrollView } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Switch,
+  Alert,
+  ScrollView,
+} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import NavigationBar, { NavigationIcon } from './NavigationBar';
@@ -9,7 +16,7 @@ import Button, {
   ButtonSize,
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
-import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
+import { usePolymarketAuth } from '../../../util/predict/hooks';
 import { selectIsPolymarketStaging } from '../../../selectors/predict';
 import { setPolymarketStaging } from '../../../actions/predict';
 
@@ -25,7 +32,7 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
   const { colors, brandColors } = useTheme();
   const dispatch = useDispatch();
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
-  const { approveAllowances, createApiKey } = usePolymarket();
+  const { approveAllowances, createApiKey } = usePolymarketAuth();
 
   const styles = StyleSheet.create({
     container: {
@@ -98,7 +105,7 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
   const handleResetApiKey = useCallback(async () => {
     await createApiKey();
     Alert.alert('API Key Reset', 'Your API key has been reset');
-  }, []);
+  }, [createApiKey]);
 
   return (
     <View style={styles.container}>
@@ -119,9 +126,7 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
       >
         <View style={styles.settingsSection}>
           <View style={styles.titleContainer}>
-            <Text
-              style={styles.settingsTitle}
-            >Use Staging Environment</Text>
+            <Text style={styles.settingsTitle}>Use Staging Environment</Text>
             <View style={styles.switchElement}>
               <Switch
                 value={isPolymarketStaging}
@@ -138,22 +143,14 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
               />
             </View>
           </View>
-          <Text
-            style={styles.settingsText}
-          >
+          <Text style={styles.settingsText}>
             Toggle between staging and production environments.
           </Text>
         </View>
         <View style={styles.settingsSection}>
-          <Text
-            style={styles.settingsTitle}
-          >
-            Approve Allowances
-          </Text>
+          <Text style={styles.settingsTitle}>Approve Allowances</Text>
 
-          <Text
-            style={styles.settingsText}
-          >
+          <Text style={styles.settingsText}>
             Restart the allowance approval flow
           </Text>
           <View style={styles.accessory}>
@@ -168,15 +165,9 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
         </View>
 
         <View style={styles.settingsSection}>
-          <Text
-            style={styles.settingsTitle}
-          >
-            Reset API Key
-          </Text>
+          <Text style={styles.settingsTitle}>Reset API Key</Text>
 
-          <Text
-            style={styles.settingsText}
-          >
+          <Text style={styles.settingsText}>
             Clear your current API key and generate a new one
           </Text>
           <View style={styles.accessory}>

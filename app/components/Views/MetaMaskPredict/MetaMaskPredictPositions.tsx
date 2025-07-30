@@ -13,7 +13,7 @@ import {
 } from '../../../util/predict/utils/polymarket';
 import { useSelector } from 'react-redux';
 import { selectSelectedInternalAccount } from '../../../selectors/accountsController';
-import { usePolymarket } from '../../../util/predict/hooks';
+import { usePolymarketApi } from '../../../util/predict/hooks';
 
 interface MetaMaskPredictPositionsProps {
   selectedIcon?: NavigationIcon;
@@ -29,14 +29,14 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
   const [redeemingPosition, setRedeemingPosition] =
     useState<UserPosition | null>(null);
   const selectedAccount = useSelector(selectSelectedInternalAccount);
-  const { placeOrder, redeemPosition } = usePolymarket();
+  const { placeOrder, redeemPosition } = usePolymarketApi();
   const [sellingPosition, setSellingPosition] = useState<UserPosition | null>(
     null,
   );
 
   const { colors } = useTheme();
   const [selectedIcon, setSelectedIcon] = React.useState<NavigationIcon>(
-    propSelectedIcon || NavigationIcon.Bank,
+    propSelectedIcon || NavigationIcon.Storefront,
   );
 
   useEffect(() => {
@@ -77,7 +77,6 @@ const MetaMaskPredictPositions: React.FC<MetaMaskPredictPositionsProps> = ({
     }
     await placeOrder({
       tokenId: position.asset,
-      min_size: Number(position.size),
       tickSize: tickSizeData.minimum_tick_size,
       side: Side.SELL,
       negRisk: position.negativeRisk,

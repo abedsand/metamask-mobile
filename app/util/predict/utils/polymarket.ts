@@ -252,7 +252,7 @@ export const getOrderBook = async (tokenID: string) => {
   const state = store.getState();
   const isPolymarketStaging = state.predict.isPolymarketStaging;
   const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
-  
+
   const response = await fetch(`${CLOB_ENDPOINT}/book?token_id=${tokenID}`, {
     method: 'GET',
   });
@@ -366,7 +366,7 @@ export const getPositions = async ({
   const state = store.getState();
   const isPolymarketStaging = state.predict.isPolymarketStaging;
   const { DATA_API_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
-  
+
   const response = await fetch(
     `${DATA_API_ENDPOINT}/positions?limit=${limit}&user=${address}`,
     {
@@ -384,7 +384,7 @@ export const getTickSize = async (tokenID: string) => {
   const state = store.getState();
   const isPolymarketStaging = state.predict.isPolymarketStaging;
   const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
-  
+
   const response = await fetch(
     `${CLOB_ENDPOINT}/tick-size?token_id=${tokenID}`,
     {
@@ -522,3 +522,5 @@ export const calculatePotentialProfit = (
     roi: totalCost > 0 ? (potentialProfit / totalCost) * 100 : 0, // Return on investment as percentage
   };
 };
+
+export { getPolymarketEndpoints };

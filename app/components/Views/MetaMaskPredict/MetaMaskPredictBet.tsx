@@ -1,14 +1,21 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, Image, Alert } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Alert, Image, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Button, {
-  ButtonVariants,
   ButtonSize,
+  ButtonVariants,
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
-import { useTheme } from '../../../util/theme';
+import Routes from '../../../constants/navigation/Routes';
+import ethereumImage from '../../../images/ethereum.png';
+import { selectIsPolymarketStaging } from '../../../selectors/predict';
+import {
+  getPolymarketEndpoints,
+  POLYMARKET_STAGING_CONSTS,
+} from '../../../util/predict/constants/polymarket';
+import { usePolymarketApi } from '../../../util/predict/hooks';
 import {
   Market,
   OrderSummary,
@@ -16,17 +23,11 @@ import {
   TickSize,
   Token,
 } from '../../../util/predict/types';
-import ethereumImage from '../../../images/ethereum.png';
-import { usePolymarket } from '../../../util/predict/hooks/usePolymarket';
-import Routes from '../../../constants/navigation/Routes';
 import {
   calculatePotentialProfit,
   getOrderBook,
 } from '../../../util/predict/utils/polymarket';
-import {
-  POLYMARKET_STAGING_CONSTS,
-} from '../../../util/predict/constants/polymarket';
-import { selectIsPolymarketStaging } from '../../../selectors/predict';
+import { useTheme } from '../../../util/theme';
 
 interface MetaMaskPredictBetRouteParams {
   marketId: string;
@@ -37,9 +38,10 @@ const MetaMaskPredictBet: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
-  const { placeOrder, approveAllowances, CLOB_ENDPOINT } = usePolymarket();
+  const { placeOrder } = usePolymarketApi();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
   const [isBuying, setIsBuying] = useState<boolean>(false);
   const [orderBooks, setOrderBooks] = useState<
@@ -185,7 +187,7 @@ const MetaMaskPredictBet: React.FC = () => {
     const marketData = await response.json();
     // await setMarketTitle(marketId, marketData.question);
     setMarket(marketData);
-  }, [marketId]);
+  }, [CLOB_ENDPOINT, marketId]);
 
   const handleBuy = useCallback(
     async (token: Token) => {
@@ -199,7 +201,6 @@ const MetaMaskPredictBet: React.FC = () => {
           tokenId: !isPolymarketStaging
             ? token.token_id
             : POLYMARKET_STAGING_CONSTS.YES_TOKEN_ID,
-          min_size: Number(market?.minimum_order_size),
           tickSize: market?.minimum_tick_size as TickSize,
           side: Side.BUY,
           negRisk: market?.neg_risk || false,
@@ -222,7 +223,7 @@ const MetaMaskPredictBet: React.FC = () => {
         setIsBuying(false);
       }
     },
-    [market, navigation, placeOrder, approveAllowances, selectedAmount, isPolymarketStaging],
+    [market, navigation, placeOrder, selectedAmount, isPolymarketStaging],
   );
 
   useEffect(() => {

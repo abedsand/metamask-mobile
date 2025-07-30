@@ -1,6 +1,24 @@
 export const MSG_TO_SIGN =
   'This message attests that I control the given wallet';
 
+export const API_KEY_STORAGE_KEY = 'api_key_storage';
+export const MARKET_CACHE_KEY = 'market_cache';
+
+export const ClobAuthDomain = {
+  ClobAuth: [
+    { name: 'address', type: 'address' },
+    { name: 'timestamp', type: 'string' },
+    { name: 'nonce', type: 'uint256' },
+    { name: 'message', type: 'string' },
+  ],
+};
+
+export const EIP712Domain = [
+  { name: 'name', type: 'string' },
+  { name: 'version', type: 'string' },
+  { name: 'chainId', type: 'uint256' },
+];
+
 // Function to get endpoints based on staging state
 export const getPolymarketEndpoints = (isStaging: boolean) => ({
   GAMMA_API_ENDPOINT: isStaging
@@ -14,16 +32,14 @@ export const getPolymarketEndpoints = (isStaging: boolean) => ({
     : 'https://data-api.polymarket.com',
 });
 
-
-
-  export const POLYMARKET_STAGING_CONSTS = {
-    YES_TOKEN_ID:
-      '71321045679252212594626385532706912750332728571942532289631379312455583992563',
-    NO_TOKEN_ID:
-      '52114319501245915516055106046884209969926127482827954674443846427813813222426',
-    CONDITION_ID:
-      '0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1',
-  } as const;
+export const POLYMARKET_STAGING_CONSTS = {
+  YES_TOKEN_ID:
+    '71321045679252212594626385532706912750332728571942532289631379312455583992563',
+  NO_TOKEN_ID:
+    '52114319501245915516055106046884209969926127482827954674443846427813813222426',
+  CONDITION_ID:
+    '0x5f65177b394277fd294cd75650044e32ba009a95022d88a0c1d565897d72f8f1',
+} as const;
 
 interface ContractConfig {
   exchange: string;
