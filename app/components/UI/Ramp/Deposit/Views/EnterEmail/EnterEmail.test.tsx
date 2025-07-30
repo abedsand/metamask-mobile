@@ -1,13 +1,16 @@
 import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
+import { BuyQuote } from '@consensys/native-ramps-sdk';
 import EnterEmail from './EnterEmail';
-import Routes from '../../../../../../constants/navigation/Routes';
 import { DepositSdkMethodResult } from '../../hooks/useDepositSdkMethod';
-import renderDepositTestComponent from '../../utils/renderDepositTestComponent';
+import { renderScreen } from '../../../../../../util/test/renderWithProvider';
+import initialRootState from '../../../../../../util/test/initial-root-state';
+import Routes from '../../../../../../constants/navigation/Routes';
 
 const mockNavigate = jest.fn();
 const mockGoBack = jest.fn();
 const mockSetNavigationOptions = jest.fn();
+const mockTrackEvent = jest.fn();
 
 const mockResponse = {
   data: null,
@@ -24,22 +27,13 @@ let mockUseDepositSdkMethodValues: DepositSdkMethodResult<'sendUserOtp'> = {
   ...mockUseDepositSdkMethodInitialValues,
 };
 
-interface MockQuote {
-  id: string;
-  amount: number;
-  currency: string;
-}
-
-// Mock the quote object
-const mockQuote: MockQuote = {
-  id: 'test-quote-id',
-  amount: 100,
-  currency: 'USD',
-};
+const mockQuote = { quoteId: 'test-quote-id' } as BuyQuote;
 
 jest.mock('../../hooks/useDepositSdkMethod', () => ({
   useDepositSdkMethod: () => mockUseDepositSdkMethodValues,
 }));
+
+jest.mock('../../../hooks/useAnalytics', () => () => mockTrackEvent);
 
 jest.mock('@react-navigation/native', () => {
   const actualReactNavigation = jest.requireActual('@react-navigation/native');
@@ -53,13 +47,23 @@ jest.mock('@react-navigation/native', () => {
       ),
     }),
     useRoute: () => ({
-      params: { quote: mockQuote },
+      params: {
+        quote: mockQuote,
+        paymentMethodId: 'test-payment-method-id',
+        cryptoCurrencyChainId: '1',
+      },
     }),
   };
 });
 
 function render(Component: React.ComponentType) {
-  return renderDepositTestComponent(Component, Routes.DEPOSIT.ENTER_EMAIL);
+  return renderScreen(
+    Component,
+    { name: Routes.DEPOSIT.ENTER_EMAIL },
+    {
+      state: initialRootState,
+    },
+  );
 }
 
 describe('EnterEmail Component', () => {
@@ -99,6 +103,20 @@ describe('EnterEmail Component', () => {
       expect(mockNavigate).toHaveBeenCalledWith(Routes.DEPOSIT.OTP_CODE, {
         email: 'test@example.com',
         quote: mockQuote,
+        paymentMethodId: 'test-payment-method-id',
+        cryptoCurrencyChainId: '1',
+      });
+    });
+  });
+
+  it('tracks analytics event when submit button is pressed with valid email', async () => {
+    render(EnterEmail);
+    const emailInput = screen.getByPlaceholderText('name@domain.com');
+    fireEvent.changeText(emailInput, 'test@example.com');
+    fireEvent.press(screen.getByRole('button', { name: 'Send email' }));
+    await waitFor(() => {
+      expect(mockTrackEvent).toHaveBeenCalledWith('RAMPS_EMAIL_SUBMITTED', {
+        ramp_type: 'DEPOSIT',
       });
     });
   });
