@@ -154,7 +154,22 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
         },
       });
       const marketsData = await response.json();
-      setMarketData(marketsData); // setMarketData([marketsData]);
+
+      // todo: pull from contentful (or quivalent source)
+      const excludedMarketIds = ['512644'];
+      const excludedKeywords = ['ARCH'];
+
+      const filteredMarketsData = marketsData.filter((market: Market) => {
+        const isExcludedById = excludedMarketIds.includes(market.id);
+
+        const hasOffensiveTitle = excludedKeywords.some((word) =>
+          market.question?.toLowerCase().includes(word.toLowerCase()),
+        );
+
+        return !isExcludedById && !hasOffensiveTitle;
+      });
+
+      setMarketData(filteredMarketsData);
     } catch (error) {
       console.error('Error fetching trades:', error);
       setMarketData([]);
@@ -363,6 +378,7 @@ const MetaMaskPredict: React.FC<MetaMaskPredictProps> = ({
                 <View key={market.id}>
                   <View style={styles.marketContainer}>
                     <Text style={styles.marketTitle}>{market.question}</Text>
+                    <Text style={styles.marketTitle}>{market.id}</Text>
                     <Text style={styles.marketPricing}>
                       {getDaysLeft(market.endDate)}&nbsp;$
                       {calculateVolume(market.volume)} Vol
