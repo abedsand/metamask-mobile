@@ -17,8 +17,16 @@ import Button, {
   ButtonWidthTypes,
 } from '../../../component-library/components/Buttons/Button';
 import { usePolymarketAuth } from '../../../util/predict/hooks';
-import { selectIsPolymarketStaging } from '../../../selectors/predict';
-import { setPolymarketStaging } from '../../../actions/predict';
+import {
+  selectIsPolymarketStaging,
+  selectIsGeolocationCheck,
+  selectGeolocationData,
+} from '../../../selectors/predict';
+import {
+  setPolymarketStaging,
+  setGeolocationCheck,
+} from '../../../actions/predict';
+import { formatCountryCode } from '../../../util/predict/geolocation';
 
 interface MetaMaskPredictSettingsProps {
   selectedIcon?: NavigationIcon;
@@ -32,6 +40,8 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
   const { colors, brandColors } = useTheme();
   const dispatch = useDispatch();
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  const isGeolocationCheck = useSelector(selectIsGeolocationCheck);
+  const countryCode = useSelector(selectGeolocationData);
   const { approveAllowances, createApiKey } = usePolymarketAuth();
 
   const styles = StyleSheet.create({
@@ -60,7 +70,7 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
       textAlign: 'center',
     },
     settingsSection: {
-      marginTop: 32,
+      marginTop: 16,
     },
     settingsTitle: {
       fontSize: 20,
@@ -68,9 +78,9 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
       color: colors.text.default,
     },
     settingsText: {
-      fontSize: 16,
-      color: colors.text.default,
-      marginTop: 8,
+      marginTop: 4,
+      fontSize: 14,
+      color: colors.text.alternative,
     },
     titleContainer: {
       flexDirection: 'row',
@@ -146,6 +156,34 @@ const MetaMaskPredictSettings: React.FC<MetaMaskPredictSettingsProps> = ({
           <Text style={styles.settingsText}>
             Toggle between staging and production environments.
           </Text>
+        </View>
+        <View style={styles.settingsSection}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.settingsTitle}>Check for Location</Text>
+            <View style={styles.switchElement}>
+              <Switch
+                value={isGeolocationCheck}
+                onValueChange={(value) => {
+                  dispatch(setGeolocationCheck(value));
+                }}
+                trackColor={{
+                  true: colors.primary.default,
+                  false: colors.border.muted,
+                }}
+                thumbColor={brandColors.white}
+                style={styles.switch}
+                ios_backgroundColor={colors.border.muted}
+              />
+            </View>
+          </View>
+          <Text style={styles.settingsText}>
+            Toggle location check on or off.
+          </Text>
+          {isGeolocationCheck && countryCode && (
+            <Text style={styles.settingsText}>
+              Detected location: {formatCountryCode(countryCode)}
+            </Text>
+          )}
         </View>
         <View style={styles.settingsSection}>
           <Text style={styles.settingsTitle}>Approve Allowances</Text>

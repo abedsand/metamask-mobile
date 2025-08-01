@@ -1,13 +1,24 @@
 import { REHYDRATE } from 'redux-persist';
 
 const initialState = {
-  isPolymarketStaging: true, // Default to staging
+  isPolymarketStaging: true,
+  isGeolocationCheck: false,
+  countryCode: '',
 };
 
-const predictReducer = (state = initialState, action: any) => {
+interface PredictAction {
+  type: string;
+  payload?: {
+    predict?: typeof initialState;
+  };
+  isPolymarketStaging?: boolean;
+  isGeolocationCheck?: boolean;
+  countryCode?: string;
+}
+
+const predictReducer = (action: PredictAction, state = initialState) => {
   switch (action.type) {
     case REHYDRATE:
-      // Merge persisted state with initial state
       return {
         ...initialState,
         ...(action.payload?.predict || {}),
@@ -17,9 +28,19 @@ const predictReducer = (state = initialState, action: any) => {
         ...state,
         isPolymarketStaging: action.isPolymarketStaging,
       };
+    case 'SET_GEOLOCATION_CHECK':
+      return {
+        ...state,
+        isGeolocationCheck: action.isGeolocationCheck,
+      };
+    case 'SET_GEOLOCATION_DATA':
+      return {
+        ...state,
+        countryCode: action.countryCode,
+      };
     default:
       return state;
   }
 };
 
-export default predictReducer; 
+export default predictReducer;

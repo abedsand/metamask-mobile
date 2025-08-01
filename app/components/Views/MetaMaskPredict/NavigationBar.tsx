@@ -8,7 +8,12 @@ import ButtonIcon, {
 import { IconName } from '../../../component-library/components/Icons/Icon';
 import { useTheme } from '../../../util/theme';
 import { WalletViewSelectorsIDs } from '../../../../e2e/selectors/wallet/WalletView.selectors';
-import { selectIsPolymarketStaging } from '../../../selectors/predict';
+import {
+  selectIsPolymarketStaging,
+  selectIsGeolocationCheck,
+  selectGeolocationData,
+} from '../../../selectors/predict';
+import { shouldBlockUserByLocation } from '../../../util/predict/geolocation';
 
 export enum NavigationIcon {
   Storefront = 'Storefront',
@@ -30,6 +35,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 }) => {
   const { colors } = useTheme();
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  const isGeolocationCheck = useSelector(selectIsGeolocationCheck);
+  const countryCode = useSelector(selectGeolocationData);
 
   const navigationItems = [
     { icon: NavigationIcon.Storefront, iconName: IconName.Storefront },
@@ -81,7 +88,28 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       color: colors.text.default,
       fontWeight: 'bold',
     },
+    locationRestriction: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: colors.error.default,
+      backgroundColor: colors.error.muted,
+      padding: 12,
+      borderRadius: 12,
+      marginBottom: 12,
+    },
+    locationRestrictionText: {
+      color: colors.text.default,
+      fontSize: 14,
+      textAlign: 'center',
+      lineHeight: 20,
+    },
   });
+
+  // Check if user should be blocked based on location
+  const isLocationBlocked =
+    isGeolocationCheck && countryCode && shouldBlockUserByLocation(countryCode);
 
   return (
     <>
@@ -109,6 +137,16 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
           {isPolymarketStaging ? 'Staging' : 'Production'}
         </Text>
       </View>
+      {isLocationBlocked && (
+        <View style={styles.locationRestriction}>
+          <Text style={styles.locationRestrictionText}>
+            Trading is not available to people or companies who are residents
+            of, or are located, incorporated or have a registered agent in, the
+            United States, France, or a restricted territory. See our Terms of
+            Use.
+          </Text>
+        </View>
+      )}
     </>
   );
 };

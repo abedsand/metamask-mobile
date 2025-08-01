@@ -10,12 +10,17 @@ import Button, {
 } from '../../../component-library/components/Buttons/Button';
 import Routes from '../../../constants/navigation/Routes';
 import ethereumImage from '../../../images/ethereum.png';
-import { selectIsPolymarketStaging } from '../../../selectors/predict';
+import {
+  selectIsPolymarketStaging,
+  selectGeolocationData,
+  selectIsGeolocationCheck,
+} from '../../../selectors/predict';
 import {
   getPolymarketEndpoints,
   POLYMARKET_STAGING_CONSTS,
 } from '../../../util/predict/constants/polymarket';
 import { usePolymarketApi } from '../../../util/predict/hooks';
+import { shouldBlockUserByLocation } from '../../../util/predict/geolocation';
 import {
   Market,
   OrderSummary,
@@ -38,6 +43,8 @@ const MetaMaskPredictBet: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
+  const countryCode = useSelector(selectGeolocationData);
+  const isGeolocationCheck = useSelector(selectIsGeolocationCheck);
   const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
@@ -47,6 +54,9 @@ const MetaMaskPredictBet: React.FC = () => {
   const [orderBooks, setOrderBooks] = useState<
     { asks?: OrderSummary[]; bids?: OrderSummary[] }[]
   >([]);
+
+  const isUserBlocked =
+    isGeolocationCheck && shouldBlockUserByLocation(countryCode);
 
   useEffect(() => {
     const fetchOrderBooks = async () => {
@@ -170,6 +180,21 @@ const MetaMaskPredictBet: React.FC = () => {
       textAlign: 'left',
       marginTop: 4,
     },
+    blockedMessageContainer: {
+      backgroundColor: colors.error.muted,
+      padding: 12,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: colors.error.default,
+      width: '100%',
+      marginTop: 12,
+    },
+    blockedMessage: {
+      fontSize: 14,
+      color: colors.error.default,
+      textAlign: 'center',
+      fontWeight: '500',
+    },
   });
 
   const getMarket = useCallback(async () => {
@@ -264,6 +289,7 @@ const MetaMaskPredictBet: React.FC = () => {
               setSelectedAmount(1);
             }}
             label={`$1`}
+            disabled={isUserBlocked}
           />
           <Button
             variant={ButtonVariants.Link}
@@ -278,6 +304,7 @@ const MetaMaskPredictBet: React.FC = () => {
               setSelectedAmount(5);
             }}
             label={`$5`}
+            disabled={isUserBlocked}
           />
           <Button
             variant={ButtonVariants.Link}
@@ -292,6 +319,7 @@ const MetaMaskPredictBet: React.FC = () => {
               setSelectedAmount(10);
             }}
             label={`$10`}
+            disabled={isUserBlocked}
           />
           <Button
             variant={ButtonVariants.Link}
@@ -306,8 +334,16 @@ const MetaMaskPredictBet: React.FC = () => {
               setSelectedAmount(0);
             }}
             label={`Other`}
+            disabled={isUserBlocked}
           />
         </View>
+        {isUserBlocked && (
+          <View style={styles.blockedMessageContainer}>
+            <Text style={styles.blockedMessage}>
+              Prediction markets are not available in your region.
+            </Text>
+          </View>
+        )}
         <View style={styles.buttons}>
           {market?.tokens ? (
             market.tokens.map((token: Token, index: number) => (
@@ -324,6 +360,7 @@ const MetaMaskPredictBet: React.FC = () => {
                   onPress={() => handleBuy(token)}
                   label={`Buy ${token.outcome}: $${token.price}`}
                   loading={isBuying}
+                  disabled={isUserBlocked}
                 />
                 {orderBooks[index] && (
                   <Text style={styles.potentialProfit}>
