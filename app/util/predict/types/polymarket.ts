@@ -366,3 +366,40 @@ export interface UserPosition {
   endDate: string;
   negativeRisk: boolean;
 }
+
+export interface PlaceOrderResponse {
+  /**
+   * Error message if the order placement failed
+   */
+  errorMsg: string;
+
+  /**
+   * Amount being made (sold) in the order
+   */
+  makingAmount: string;
+
+  /**
+   * Unique identifier for the placed order
+   */
+  orderID: string;
+
+  /**
+   * Status of the order (e.g., "matched", "pending", "cancelled")
+   */
+  status: string;
+
+  /**
+   * Whether the order placement was successful
+   */
+  success: boolean;
+
+  /**
+   * Amount being taken (bought) in the order
+   */
+  takingAmount: string;
+
+  /**
+   * Array of transaction hashes related to the order
+   */
+  transactionsHashes: string[];
+}
