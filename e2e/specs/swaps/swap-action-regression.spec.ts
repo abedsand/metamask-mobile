@@ -19,12 +19,12 @@ import {
 import { Regression } from '../../tags';
 import Assertions from '../../utils/Assertions';
 import { ActivitiesViewSelectorsText } from '../../selectors/Transactions/ActivitiesView.selectors';
-import { submitSwapUnifiedUI } from './helpers/swapUnifiedUI';
-import Ganache from '../../../app/util/test/ganache';
-import { testSpecificMock } from './helpers/constants';
+import { submitSwapUnifiedUI } from './helpers/swap-unified-ui';
+import { AnvilManager } from '../../seeder/anvil-manager';
+import { swapSpecificMock } from './helpers/constants';
 import { stopMockServer } from '../../api-mocking/mock-server.js';
 import { startMockServer } from './helpers/swap-mocks';
-import { defaultGanacheOptions } from '../../framework/Constants';
+import { prepareSwapsTestEnvironment } from './helpers/prepareSwapsTestEnvironment';
 
 const fixtureServer = new FixtureServer();
 
@@ -33,16 +33,19 @@ describe.skip(Regression('Multiple Swaps from Actions'), () => {
   const FIRST_ROW: number = 0;
   const SECOND_ROW: number = 1;
   let mockServer: Mockttp;
-  let localNode: Ganache;
+  let localNode = new AnvilManager();
 
   beforeAll(async () => {
     jest.setTimeout(2500000);
 
-    localNode = new Ganache();
-    await localNode.start({ ...defaultGanacheOptions, chainId: 1 });
+    localNode = new AnvilManager();
+    await localNode.start({
+      chainId: 1,
+      forkUrl: `https://mainnet.infura.io/v3/${process.env.MM_INFURA_PROJECT_ID}`,
+    });
 
     const mockServerPort = getMockServerPort();
-    mockServer = await startMockServer(testSpecificMock, mockServerPort);
+    mockServer = await startMockServer(swapSpecificMock, mockServerPort);
 
     await TestHelpers.reverseServerPort();
     const fixture = new FixtureBuilder()
@@ -59,6 +62,7 @@ describe.skip(Regression('Multiple Swaps from Actions'), () => {
       },
     });
     await loginToApp();
+    await prepareSwapsTestEnvironment();
   });
 
   afterAll(async () => {

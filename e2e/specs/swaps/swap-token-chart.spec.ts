@@ -3,7 +3,6 @@ import { loginToApp } from '../../viewHelper';
 import { Mockttp } from 'mockttp';
 import TabBarComponent from '../../pages/wallet/TabBarComponent';
 import WalletView from '../../pages/wallet/WalletView';
-import SettingsView from '../../pages/Settings/SettingsView';
 import TokenOverview from '../../pages/wallet/TokenOverview';
 import FixtureBuilder from '../../fixtures/fixture-builder';
 import {
@@ -13,21 +12,18 @@ import {
 } from '../../fixtures/fixture-helper';
 import TestHelpers from '../../helpers';
 import FixtureServer from '../../fixtures/fixture-server';
-import {
-  getFixturesServerPort,
-  getMockServerPort,
-} from '../../fixtures/utils.js';
+import { getFixturesServerPort, getMockServerPort } from '../../fixtures/utils';
 import { Regression } from '../../tags';
 import Assertions from '../../utils/Assertions';
 import ActivitiesView from '../../pages/Transactions/ActivitiesView';
 import { ActivitiesViewSelectorsText } from '../../selectors/Transactions/ActivitiesView.selectors';
 import Ganache from '../../../app/util/test/ganache';
-import { testSpecificMock } from '../swaps/helpers/constants';
-import AdvancedSettingsView from '../../pages/Settings/AdvancedView';
-import { submitSwapUnifiedUI } from '../swaps/helpers/swapUnifiedUI';
-import { stopMockServer } from '../../api-mocking/mock-server.js';
-import { startMockServer } from '../swaps/helpers/swap-mocks';
+import { swapSpecificMock } from './helpers/constants';
+import { submitSwapUnifiedUI } from './helpers/swap-unified-ui';
+import { stopMockServer } from '../../api-mocking/mock-server';
+import { startMockServer } from './helpers/swap-mocks';
 import { defaultGanacheOptions } from '../../framework/Constants';
+import { prepareSwapsTestEnvironment } from './helpers/prepareSwapsTestEnvironment';
 
 const fixtureServer: FixtureServer = new FixtureServer();
 
@@ -40,10 +36,13 @@ describe(Regression('Swap from Token view'), (): void => {
     await localNode.start({ ...defaultGanacheOptions, chainId: 1 });
 
     const mockServerPort = getMockServerPort();
-    mockServer = await startMockServer(testSpecificMock, mockServerPort);
+    mockServer = await startMockServer(swapSpecificMock, mockServerPort);
 
     await TestHelpers.reverseServerPort();
-    const fixture = new FixtureBuilder().withGanacheNetwork('0x1').build();
+    const fixture = new FixtureBuilder()
+      .withGanacheNetwork('0x1')
+      .withDisabledSmartTransactions()
+      .build();
     await startFixtureServer(fixtureServer);
     await loadFixture(fixtureServer, { fixture });
     await TestHelpers.launchApp({
@@ -54,6 +53,7 @@ describe(Regression('Swap from Token view'), (): void => {
       },
     });
     await loginToApp();
+    await prepareSwapsTestEnvironment();
   });
 
   afterAll(async (): Promise<void> => {
@@ -64,13 +64,6 @@ describe(Regression('Swap from Token view'), (): void => {
 
   beforeEach(async (): Promise<void> => {
     jest.setTimeout(150000);
-  });
-
-  it('should turn off stx', async (): Promise<void> => {
-    await TabBarComponent.tapSettings();
-    await SettingsView.tapAdvancedTitle();
-    await AdvancedSettingsView.tapSmartTransactionSwitch();
-    await TabBarComponent.tapWallet();
   });
 
   it('should complete a USDC to DAI swap from the token chart', async (): Promise<void> => {
