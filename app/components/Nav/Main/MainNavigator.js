@@ -109,7 +109,7 @@ import WalletRecovery from '../../Views/WalletRecovery';
 import MetaMaskPredictContainer from '../../Views/MetaMaskPredict/MetaMaskPredictContainer';
 import MetaMaskPredictBet from '../../Views/MetaMaskPredict/MetaMaskPredictBet';
 import { SendRoot } from '../../Views/confirmations/components/send/send-root';
-import { isSendRedesignEnabled } from '../../Views/confirmations/utils/confirm';
+import { isSendRedesignEnabled } from '../../Views/confirmations/utils/send';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
