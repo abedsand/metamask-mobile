@@ -1,5 +1,5 @@
 import { Interface } from '@ethersproject/abi';
-import { Hex } from '@metamask/utils';
+import { Hex, hexToNumber } from '@metamask/utils';
 import { hexZeroPad, parseUnits } from 'ethers/lib/utils';
 import { store } from '../../../store';
 
@@ -15,6 +15,7 @@ import {
 } from '../types/polymarket';
 import {
   COLLATERAL_TOKEN_DECIMALS,
+  EIP712Domain,
   getPolymarketEndpoints,
 } from '../constants';
 
@@ -192,7 +193,7 @@ export const buildMarketOrderCreationArgs = async ({
   signatureType: SignatureType;
   userMarketOrder: UserMarketOrder;
   roundConfig: RoundConfig;
-}): Promise<OrderData> => {
+}): Promise<OrderData & { salt: string }> => {
   const { side, rawMakerAmt, rawTakerAmt } = getMarketOrderRawAmounts(
     userMarketOrder.side,
     userMarketOrder.amount,
@@ -234,18 +235,19 @@ export const buildMarketOrderCreationArgs = async ({
   }
 
   return {
+    salt: hexToNumber(generateSalt()).toString(),
     maker,
+    signer,
     taker,
     tokenId: userMarketOrder.tokenID,
     makerAmount,
     takerAmount,
-    side,
-    feeRateBps,
-    nonce,
-    signer,
     expiration: '0',
+    nonce,
+    feeRateBps,
+    side,
     signatureType,
-  } as OrderData;
+  };
 };
 
 export const getOrderBook = async (tokenID: string) => {
@@ -522,5 +524,44 @@ export const calculatePotentialProfit = (
     roi: totalCost > 0 ? (potentialProfit / totalCost) * 100 : 0, // Return on investment as percentage
   };
 };
+
+export const getOrderTypedData = ({
+  order,
+  chainId,
+  verifyingContract,
+}: {
+  order: OrderData & { salt: string };
+  chainId: Hex;
+  verifyingContract: string;
+}) => ({
+  primaryType: 'Order',
+  domain: {
+    name: 'Polymarket CTF Exchange',
+    version: '1',
+    chainId: hexToNumber(chainId),
+    verifyingContract,
+  },
+  types: {
+    EIP712Domain: [
+      ...EIP712Domain,
+      { name: 'verifyingContract', type: 'address' },
+    ],
+    Order: [
+      { name: 'salt', type: 'uint256' },
+      { name: 'maker', type: 'address' },
+      { name: 'signer', type: 'address' },
+      { name: 'taker', type: 'address' },
+      { name: 'tokenId', type: 'uint256' },
+      { name: 'makerAmount', type: 'uint256' },
+      { name: 'takerAmount', type: 'uint256' },
+      { name: 'expiration', type: 'uint256' },
+      { name: 'nonce', type: 'uint256' },
+      { name: 'feeRateBps', type: 'uint256' },
+      { name: 'side', type: 'uint8' },
+      { name: 'signatureType', type: 'uint8' },
+    ],
+  },
+  message: order,
+});
 
 export { getPolymarketEndpoints };

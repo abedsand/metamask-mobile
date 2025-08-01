@@ -11,12 +11,13 @@ import {
 import { selectIsPolymarketStaging } from '../../../../selectors/predict';
 import { signTypedMessage } from '../../../../util/keyring-controller';
 import {
-  EIP712Domain,
   getContractConfig,
   getPolymarketEndpoints,
 } from '../../../../util/predict/constants/polymarket';
 import {
+  OrderData,
   OrderType,
+  PlaceOrderResponse,
   ROUNDING_CONFIG,
   Side,
   SignatureType,
@@ -27,19 +28,24 @@ import {
   buildMarketOrderCreationArgs,
   calculateMarketPrice,
   encodeRedeemPositions,
-  generateSalt,
+  getOrderTypedData,
   priceValid,
   toBytes32,
 } from '../../../../util/predict/utils/polymarket';
 import { addTransaction } from '../../../../util/transaction-controller';
 import { usePolymarketAuth } from './usePolymarketAuth';
+import Engine from '../../../../core/Engine';
 
 export const usePolymarketApi = () => {
   const account = useSelector(selectSelectedInternalAccount);
   const selectedNetworkClientId = useSelector(selectSelectedNetworkClientId);
   const chainId = useSelector(selectEvmChainId);
   const isPolymarketStaging = useSelector(selectIsPolymarketStaging);
-  const { createL2Headers, apiKey } = usePolymarketAuth();
+  const { createL2Headers, apiKey, approveCollateralExchange } =
+    usePolymarketAuth();
+  const [orderResponse, setOrderResponse] = useState<PlaceOrderResponse | null>(
+    null,
+  );
 
   // Get dynamic endpoints based on staging state
   const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
@@ -58,98 +64,25 @@ export const usePolymarketApi = () => {
   }, [chainId]);
 
   const placeOrder = async ({
-    tokenId,
-    tickSize,
-    side,
+    order,
     negRisk,
-    amount,
+    side,
   }: {
-    tokenId: string;
-    tickSize: TickSize;
-    side: Side;
+    order: OrderData & { salt: string };
     negRisk: boolean;
-    amount: number;
+    side: Side;
   }) => {
-    const price = await calculateMarketPrice(
-      tokenId,
-      side,
-      amount,
-      OrderType.FOK,
-    );
-
-    if (!priceValid(price, tickSize)) {
-      throw new Error(
-        `invalid price (${price}), min: ${parseFloat(tickSize)} - max: ${
-          1 - parseFloat(tickSize)
-        }`,
-      );
-    }
-
-    const orderArgs = await buildMarketOrderCreationArgs({
-      signer: account?.address ?? '',
-      maker: account?.address ?? '',
-      signatureType: SignatureType.EOA,
-      userMarketOrder: {
-        tokenID: tokenId,
-        price,
-        amount,
-        side,
-        orderType: OrderType.FOK,
-      },
-      roundConfig: ROUNDING_CONFIG[tickSize],
-    });
-
-    const order = {
-      salt: hexToNumber(generateSalt()).toString(),
-      maker: account?.address ?? '',
-      signer: orderArgs.signer ?? account?.address ?? '',
-      taker: orderArgs.taker,
-      tokenId: orderArgs.tokenId,
-      makerAmount: orderArgs.makerAmount,
-      takerAmount: orderArgs.takerAmount,
-      expiration: orderArgs.expiration ?? '0',
-      nonce: orderArgs.nonce,
-      feeRateBps: orderArgs.feeRateBps,
-      side: orderArgs.side,
-      signatureType: orderArgs.signatureType ?? SignatureType.EOA,
-    };
-
     if (!contractConfig) return;
 
     const verifyingContract = negRisk
       ? contractConfig.negRiskExchange
       : contractConfig.exchange;
 
-    const typedData = {
-      primaryType: 'Order',
-      domain: {
-        name: 'Polymarket CTF Exchange',
-        version: '1',
-        chainId: hexToNumber(chainId),
-        verifyingContract,
-      },
-      types: {
-        EIP712Domain: [
-          ...EIP712Domain,
-          { name: 'verifyingContract', type: 'address' },
-        ],
-        Order: [
-          { name: 'salt', type: 'uint256' },
-          { name: 'maker', type: 'address' },
-          { name: 'signer', type: 'address' },
-          { name: 'taker', type: 'address' },
-          { name: 'tokenId', type: 'uint256' },
-          { name: 'makerAmount', type: 'uint256' },
-          { name: 'takerAmount', type: 'uint256' },
-          { name: 'expiration', type: 'uint256' },
-          { name: 'nonce', type: 'uint256' },
-          { name: 'feeRateBps', type: 'uint256' },
-          { name: 'side', type: 'uint8' },
-          { name: 'signatureType', type: 'uint8' },
-        ],
-      },
-      message: order,
-    };
+    const typedData = getOrderTypedData({
+      order,
+      chainId,
+      verifyingContract,
+    });
 
     const signature = await signTypedMessage(
       { data: typedData, from: account?.address ?? '' },
@@ -186,6 +119,63 @@ export const usePolymarketApi = () => {
     const responseData = await response.json();
 
     return responseData;
+  };
+
+  const addOrder = async ({
+    tokenId,
+    tickSize,
+    side,
+    negRisk,
+    amount,
+  }: {
+    tokenId: string;
+    tickSize: TickSize;
+    side: Side;
+    negRisk: boolean;
+    amount: number;
+  }) => {
+    const price = await calculateMarketPrice(
+      tokenId,
+      side,
+      amount,
+      OrderType.FOK,
+    );
+
+    if (!priceValid(price, tickSize)) {
+      throw new Error(
+        `invalid price (${price}), min: ${parseFloat(tickSize)} - max: ${
+          1 - parseFloat(tickSize)
+        }`,
+      );
+    }
+
+    const order = await buildMarketOrderCreationArgs({
+      signer: account?.address ?? '',
+      maker: account?.address ?? '',
+      signatureType: SignatureType.EOA,
+      userMarketOrder: {
+        tokenID: tokenId,
+        price,
+        amount,
+        side,
+        orderType: OrderType.FOK,
+      },
+      roundConfig: ROUNDING_CONFIG[tickSize],
+    });
+
+    const allowanceTxMeta = await approveCollateralExchange(
+      BigInt(order.makerAmount),
+    );
+
+    Engine.controllerMessenger.subscribeOnceIf(
+      'TransactionController:transactionConfirmed',
+      async () => {
+        const orderTxMeta = await placeOrder({ order, negRisk, side });
+        setOrderResponse(orderTxMeta as PlaceOrderResponse);
+      },
+      (transactionMeta) =>
+        transactionMeta.id === allowanceTxMeta?.transactionMeta.id,
+    );
   };
 
   const redeemPosition = async (position: UserPosition) => {
@@ -243,11 +233,12 @@ export const usePolymarketApi = () => {
   };
 
   return {
+    addOrder,
     placeOrder,
     redeemPosition,
     cancelOrder,
     isNetworkSupported,
     networkError,
-    contractConfig,
+    orderResponse,
   };
 };

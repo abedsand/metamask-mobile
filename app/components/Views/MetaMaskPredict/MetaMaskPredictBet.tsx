@@ -41,12 +41,26 @@ const MetaMaskPredictBet: React.FC = () => {
   const { CLOB_ENDPOINT } = getPolymarketEndpoints(isPolymarketStaging);
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
   const [market, setMarket] = useState<Market | null>(null);
-  const { placeOrder } = usePolymarketApi();
+  const { addOrder, orderResponse } = usePolymarketApi();
   const { marketId } = route.params as MetaMaskPredictBetRouteParams;
   const [isBuying, setIsBuying] = useState<boolean>(false);
   const [orderBooks, setOrderBooks] = useState<
     { asks?: OrderSummary[]; bids?: OrderSummary[] }[]
   >([]);
+
+  useEffect(() => {
+    if (orderResponse?.errorMsg) {
+      Alert.alert('Error', orderResponse.errorMsg);
+      setIsBuying(false);
+      return;
+    }
+    if (orderResponse?.status === 'live') {
+      navigation.navigate(Routes.PREDICT_VIEW);
+    }
+    if (orderResponse?.status === 'matched') {
+      navigation.navigate(Routes.PREDICT_VIEW);
+    }
+  }, [orderResponse, navigation]);
 
   useEffect(() => {
     const fetchOrderBooks = async () => {
@@ -194,10 +208,9 @@ const MetaMaskPredictBet: React.FC = () => {
       if (!market) {
         return;
       }
-      // await approveAllowances();
       setIsBuying(true);
       try {
-        const response = await placeOrder({
+        await addOrder({
           tokenId: !isPolymarketStaging
             ? token.token_id
             : POLYMARKET_STAGING_CONSTS.YES_TOKEN_ID,
@@ -206,24 +219,14 @@ const MetaMaskPredictBet: React.FC = () => {
           negRisk: market?.neg_risk || false,
           amount: selectedAmount,
         });
-        if (response.error) {
-          Alert.alert('Error', response.error);
-          setIsBuying(false);
-          return;
-        }
-        if (response.status === 'live') {
-          navigation.navigate(Routes.PREDICT_VIEW);
-        }
-        if (response.status === 'matched') {
-          navigation.navigate(Routes.PREDICT_VIEW);
-        }
+
         setIsBuying(false);
       } catch (error) {
         Alert.alert('Error', (error as Error).message);
         setIsBuying(false);
       }
     },
-    [market, navigation, placeOrder, selectedAmount, isPolymarketStaging],
+    [market, addOrder, selectedAmount, isPolymarketStaging],
   );
 
   useEffect(() => {

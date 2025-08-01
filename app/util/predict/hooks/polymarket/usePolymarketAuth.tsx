@@ -378,6 +378,7 @@ export const usePolymarketAuth = () => {
     createApiKey,
     deriveApiKey,
     approveAllowances,
+    approveCollateralExchange,
     createL2Headers,
     apiKey,
   };
