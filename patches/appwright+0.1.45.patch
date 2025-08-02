@@ -1,12 +1,15 @@
 diff --git a/node_modules/appwright/dist/providers/browserstack/index.js b/node_modules/appwright/dist/providers/browserstack/index.js
-index 638c5df..572b3a1 100644
+index 638c5df..d4b71a7 100644
 --- a/node_modules/appwright/dist/providers/browserstack/index.js
 +++ b/node_modules/appwright/dist/providers/browserstack/index.js
-@@ -242,6 +242,8 @@ class BrowserStackDeviceProvider {
+@@ -241,7 +241,10 @@ class BrowserStackDeviceProvider {
+             capabilities: {
                  "bstack:options": {
                      debug: true,
-                     interactiveDebugging: true,
+-                    interactiveDebugging: true,
++                    interactiveDebugging: false,
 +                    local: true,
++                    localIdentifier: process.env.GITHUB_RUN_ID,
 +                    appProfiling: true,
                      networkLogs: true,
                      appiumVersion: "2.6.0",
