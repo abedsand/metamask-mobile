@@ -14,7 +14,7 @@ import { PerformanceTracker } from "../reporters/PerformanceTracker";
 import { AddAccountModal } from "../components/AddAccountModal";
 import { AccountListComponent } from "../components/AccountListComponent";
 
-test.only("Casual user imports SRP 1 and can import 2 more SRPs (Power user)", async ({ device }, testInfo) => {
+test("Casual user imports SRP 1 and can import 2 more SRPs (Power user)", async ({ device }, testInfo) => {
 
   const getStartedScreenTimer = new TimerHelper('getStartedScreenTimer');
   getStartedScreenTimer.start();  
