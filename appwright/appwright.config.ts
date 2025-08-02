@@ -32,9 +32,9 @@ export default defineConfig({
       use: {
         platform: Platform.ANDROID,
         device: {
-          provider: 'browserstack', // or 'local-device' or 'browserstack'
-          name: 'Samsung Galaxy S23 Ultra', // this can changed
-          osVersion: '13.0', // this can changed
+          provider: 'browserstack',
+          name: process.env.BROWSERSTACK_DEVICE || 'Samsung Galaxy S23 Ultra',
+          osVersion: process.env.BROWSERSTACK_OS_VERSION || '13.0',
         },
         // buildPath: 'bs://1f15f8c932c7019f6bcd26d5f496c52dd45b12bd',
         buildPath: process.env.BROWSERSTACK_ANDROID_APP_URL, // Path to Browserstack url bs:// link
