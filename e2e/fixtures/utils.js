@@ -20,6 +20,9 @@ function transformToValidPort(defaultPort, pid) {
 
 function getServerPort(defaultPort) {
   if (process.env.CI) {
+    if (process.env.GITHUB_ACTIONS) {
+      return defaultPort;
+    }
     return transformToValidPort(defaultPort, process.pid);
   }
   return defaultPort;
