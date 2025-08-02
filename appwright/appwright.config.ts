@@ -36,7 +36,9 @@ export default defineConfig({
           name: 'Samsung Galaxy S23 Ultra', // this can changed
           osVersion: '13.0', // this can changed
         },
-        buildPath: 'bs://ea381b24b190dd9a578d3ac9351474e20b4372df', // Path to Browserstack url bs:// link
+        // buildPath: 'bs://1f15f8c932c7019f6bcd26d5f496c52dd45b12bd',
+        buildPath: process.env.BROWSERSTACK_ANDROID_APP_URL, // Path to Browserstack url bs:// link
+        // Path to Browserstack url bs:// link
       },
     },
     {

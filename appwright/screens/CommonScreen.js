@@ -3,7 +3,8 @@ import { expect } from 'appwright';
 export class CommonScreen {
   constructor(device) {
     this.device = device;
-    this.platform = this.device.webDriverClient.capabilities.platformName;
+    // For appwright, we need to determine platform differently
+    this.platform = 'android'; // Default to android for now
   }
 
   async isIOS() {
@@ -11,10 +12,13 @@ export class CommonScreen {
   }
 
   async tapOnElement(id) {
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    (await this.isIOS())
-      ? await this.device.getById(id).tap()
-      : await this.device.getByXpath(`//*[@resource-id='${id}']`).tap();
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      await this.device.getById(id).tap();
+    } catch (error) {
+      // Fallback to resource-id for Android
+      await this.device.getByXpath(`//*[@resource-id='${id}']`).tap();
+    }
   }
 
   async tapOnElementByText(text) {
@@ -24,11 +28,12 @@ export class CommonScreen {
   }
 
   async fillInput(inputId, value) {
-    (await this.isIOS())
-      ? await this.device.getById(inputId).fill(value)
-      : await this.device
-          .getByXpath(`//*[@resource-id='${inputId}']`)
-          .fill(value);
+    try {
+      await this.device.getById(inputId).fill(value);
+    } catch (error) {
+      // Fallback to resource-id for Android
+      await this.device.getByXpath(`//*[@resource-id='${inputId}']`).fill(value);
+    }
   }
 
   /*async fillInput(inputId, value) {
