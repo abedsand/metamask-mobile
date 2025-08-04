@@ -41,7 +41,7 @@ const logger = createLogger({
   name: 'FixtureHelper',
 });
 
-const FIXTURE_SERVER_URL = `http://bs-local.com:${getFixturesServerPort()}/state.json`;
+const FIXTURE_SERVER_URL = `http://localhost:${getFixturesServerPort()}/state.json`;
 
 // checks if server has already been started
 const isFixtureServerStarted = async () => {
