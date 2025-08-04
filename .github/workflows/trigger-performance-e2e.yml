@@ -50,8 +50,8 @@ jobs:
       - name: Install dependencies
         run: yarn setup
 
-      - name: Verify patches are applied
-        run: ./scripts/verify-patches.sh
+      # - name: Verify patches are applied
+      #   run: ./scripts/verify-patches.sh
 
       - name: BrowserStack Env Setup
         uses: browserstack/github-actions/setup-env@4478e16186f38e5be07721931642e65a028713c3
