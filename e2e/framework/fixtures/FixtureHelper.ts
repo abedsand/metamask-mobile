@@ -41,7 +41,7 @@ const logger = createLogger({
   name: 'FixtureHelper',
 });
 
-const FIXTURE_SERVER_URL = `http://localhost:${getFixturesServerPort()}/state.json`;
+const FIXTURE_SERVER_URL = `http://bs-local.com:${getFixturesServerPort()}/state.json`;
 
 // checks if server has already been started
 const isFixtureServerStarted = async () => {
@@ -324,6 +324,7 @@ export const stopFixtureServer = async (fixtureServer: FixtureServer) => {
  * @throws {Error} - Throws an error if an exception occurs during the test suite execution.
  */
 export async function withFixtures(
+  framework: 'detox' | 'appwright',
   options: WithFixturesOptions,
   testSuite: TestSuiteFunction,
 ) {
@@ -356,7 +357,10 @@ export async function withFixtures(
   }
 
   // Prepare android devices for testing to avoid having this in all tests
-  await TestHelpers.reverseServerPort();
+  // Only do this for Detox
+  if (framework === 'detox') {
+    await TestHelpers.reverseServerPort();
+  }
 
   // Handle mock server
   let mockServer;
@@ -422,7 +426,8 @@ export async function withFixtures(
     );
     // Due to the fact that the app was already launched on `init.js`, it is necessary to
     // launch into a fresh installation of the app to apply the new fixture loaded perviously.
-    if (restartDevice) {
+    // Only restart device for Detox
+    if (restartDevice && framework === 'detox') {
       await TestHelpers.launchApp({
         delete: true,
         launchArgs: {
