@@ -16,7 +16,8 @@ interface PredictAction {
   countryCode?: string;
 }
 
-const predictReducer = (action: PredictAction, state = initialState) => {
+// eslint-disable-next-line @typescript-eslint/default-param-last
+const predictReducer = (state = initialState, action: PredictAction) => {
   switch (action.type) {
     case REHYDRATE:
       return {
