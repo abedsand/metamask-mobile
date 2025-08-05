@@ -3140,7 +3140,6 @@ workflows:
       - APP_NAME: "MetaMask-QA"
       - INFO_PLIST_NAME: "MetaMask-QA-Info.plist"
       - YARN_COMMAND: 'build:ios:qa:prod'
-      - IS_TEST: 'true'
     after_run:
       - _ios_build_template
   # TODO: Remove this workflow once new build configuration is consolidated
