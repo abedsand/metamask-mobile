@@ -1615,7 +1615,8 @@ workflows:
                 node -v
                 export METAMASK_ENVIRONMENT='local'
                 export METAMASK_BUILD_TYPE=${METAMASK_BUILD_TYPE:-'main'}
-                IGNORE_BOXLOGS_DEVELOPMENT="true" yarn test:e2e:ios:build:qa-release
+                # Build for device to generate IPA instead of .app
+                yarn build:ios:pre-qa
       - save-cocoapods-cache@1: {}
       - save-cache@1:
           title: Save CCache
@@ -1629,8 +1630,8 @@ workflows:
           inputs:
             - key: '{{ getenv "IOS_PR_BUILD_CACHE_KEY" }}'
             - paths: |-
-                ios/build/Build/Products/Release-iphonesimulator
-                ../Library/Detox/ios
+                ios/build/output
+                ios/build/MetaMask-QA.xcarchive
       - script@1:
           title: Save last successful build commit
           run_if: '{{getenv "GITHUB_PR_NUMBER" | ne ""}}'
@@ -1650,8 +1651,8 @@ workflows:
       - deploy-to-bitrise-io@2.2.3:
           inputs:
             - pipeline_intermediate_files: |-
-                ios/build/Build/Products/Release-iphonesimulator:INTERMEDIATE_IOS_BUILD_DIR
-                ../Library/Detox/ios:INTERMEDIATE_IOS_DETOX_DIR
+                ios/build/output/MetaMask-QA.ipa:INTERMEDIATE_IOS_IPA_PATH
+                ios/build/MetaMask-QA.xcarchive:INTERMEDIATE_IOS_ARCHIVE_PATH
           title: Save iOS build
       - save-cache@1:
           title: Save node_modules
