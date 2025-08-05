@@ -3007,7 +3007,7 @@ workflows:
   build_ios_main_e2e:
     envs:
       - CONFIGURATION: 'Release'
-      - IS_SIM_BUILD: 'true'
+      - IS_SIM_BUILD: 'false'
       - SHARE_WITH_DETOX: 'true'
       - NAME: $VERSION_NAME
       - NUMBER: $VERSION_NUMBER
