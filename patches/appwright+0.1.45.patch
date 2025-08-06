@@ -1,14 +1,65 @@
+diff --git a/node_modules/appwright/dist/config.js b/node_modules/appwright/dist/config.js
+index a51913b..8c0335c 100644
+--- a/node_modules/appwright/dist/config.js
++++ b/node_modules/appwright/dist/config.js
+@@ -25,7 +25,7 @@ const defaultConfig = {
+     fullyParallel: false,
+     forbidOnly: false,
+     retries: process.env.CI ? 2 : 0,
+-    workers: 2,
++    workers: 1,
+     reporter: [["list"], ["html", { open: "always" }]],
+     use: {
+         // TODO: Use this for actions
 diff --git a/node_modules/appwright/dist/providers/browserstack/index.js b/node_modules/appwright/dist/providers/browserstack/index.js
-index 638c5df..71b3d65 100644
+index 638c5df..9a190eb 100644
 --- a/node_modules/appwright/dist/providers/browserstack/index.js
 +++ b/node_modules/appwright/dist/providers/browserstack/index.js
-@@ -242,6 +242,9 @@ class BrowserStackDeviceProvider {
+@@ -10,6 +10,7 @@ const form_data_1 = __importDefault(require("form-data"));
+ const path_1 = __importDefault(require("path"));
+ const device_1 = require("../../device");
+ const logger_1 = require("../../logger");
++const types_1 = require("../../types");
+ const API_BASE_URL = "https://api-cloud.browserstack.com/app-automate";
+ const envVarKeyForBuild = (projectName) => `BROWSERSTACK_APP_URL_${projectName.toUpperCase()}`;
+ function getAuthHeader() {
+@@ -240,9 +241,13 @@ class BrowserStackDeviceProvider {
+             hostname: "hub.browserstack.com",
+             capabilities: {
                  "bstack:options": {
-                     debug: true,
+-                    debug: true,
++                    // debug: true,
                      interactiveDebugging: true,
-+                    local: process.env.BROWSERSTACK_LOCAL || false, // needed to run e2e on CI
++                    local: true, // need to run e2e on CI
 +                    localIdentifier: process.env.GITHUB_RUN_ID, // needed to run e2e on CI
-+                    appProfiling: true, // needed to profile the app
++                    appProfiling: true, // need to profile the app
                      networkLogs: true,
++                    enableBiometric: true, // enabling biometrics
                      appiumVersion: "2.6.0",
                      enableCameraImageInjection: this.project.use.device?.enableCameraImageInjection,
+                     idleTimeout: 180,
+@@ -258,9 +263,10 @@ class BrowserStackDeviceProvider {
+                 },
+                 "appium:autoGrantPermissions": true,
+                 "appium:app": process.env[envVarKey],
+-                "appium:autoAcceptAlerts": true,
+-                "appium:fullReset": true,
+                 "appium:settings[snapshotMaxDepth]": 62,
++                "appium:automationName": platformName == types_1.Platform.ANDROID ? "uiautomator2" : "xcuitest",
++                'appium:autoLaunch': false, // disable auto launch
++
+             },
+         };
+     }
+diff --git a/node_modules/appwright/dist/providers/emulator/index.js b/node_modules/appwright/dist/providers/emulator/index.js
+index f3bc150..689f0b2 100644
+--- a/node_modules/appwright/dist/providers/emulator/index.js
++++ b/node_modules/appwright/dist/providers/emulator/index.js
+@@ -77,6 +77,7 @@ Follow the steps mentioned in ${androidSimulatorConfigDocLink} to run test on An
+                 "appium:deviceOrientation": this.project.use.device?.orientation,
+                 "appium:settings[snapshotMaxDepth]": 62,
+                 "appium:wdaLaunchTimeout": 300_000,
++                'appium:autoLaunch': false, // disable auto launch
+             },
+         };
+     }
