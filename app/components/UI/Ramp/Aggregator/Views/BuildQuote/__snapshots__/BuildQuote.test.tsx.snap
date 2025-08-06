@@ -357,7 +357,7 @@ exports[`BuildQuote View Crypto Currency Data renders a special error page if cr
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={8}
+              handlerTag={19}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -1023,7 +1023,7 @@ exports[`BuildQuote View Crypto Currency Data renders a special error page if cr
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={9}
+              handlerTag={20}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -2354,7 +2354,7 @@ exports[`BuildQuote View Crypto Currency Data renders the loading page when cryp
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={7}
+              handlerTag={18}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -3959,7 +3959,7 @@ exports[`BuildQuote View Fiat Currency Data renders the loading page when fiats 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={11}
+              handlerTag={29}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -7118,7 +7118,6 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                             style={
                               [
                                 {
-                                  "display": "flex",
                                   "gap": 12,
                                 },
                                 {
@@ -7129,28 +7128,18 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -7297,7 +7286,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -7322,15 +7311,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -7477,7 +7460,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -7502,15 +7485,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -7657,7 +7634,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -7683,28 +7660,18 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -7851,7 +7818,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -7876,15 +7843,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -8031,7 +7992,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -8056,15 +8017,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -8211,7 +8166,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -8237,28 +8192,18 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -8405,7 +8350,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -8430,15 +8375,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -8585,7 +8524,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -8610,15 +8549,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -8765,7 +8698,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -8791,28 +8724,18 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -8959,7 +8882,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -8984,15 +8907,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -9139,7 +9056,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -9164,15 +9081,9 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -9776,7 +9687,7 @@ exports[`BuildQuote View Payment Method Data renders the loading page when payme
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={10}
+              handlerTag={24}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -11381,7 +11292,7 @@ exports[`BuildQuote View Regions data renders the loading page when regions are 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={6}
+              handlerTag={14}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -13921,7 +13832,6 @@ exports[`BuildQuote View renders correctly 1`] = `
                             style={
                               [
                                 {
-                                  "display": "flex",
                                   "gap": 12,
                                 },
                                 {
@@ -13932,28 +13842,18 @@ exports[`BuildQuote View renders correctly 1`] = `
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -14100,7 +14000,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -14125,15 +14025,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -14280,7 +14174,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -14305,15 +14199,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -14460,7 +14348,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -14486,28 +14374,18 @@ exports[`BuildQuote View renders correctly 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -14654,7 +14532,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -14679,15 +14557,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -14834,7 +14706,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -14859,15 +14731,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -15014,7 +14880,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -15040,28 +14906,18 @@ exports[`BuildQuote View renders correctly 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -15208,7 +15064,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -15233,15 +15089,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -15388,7 +15238,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -15413,15 +15263,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -15568,7 +15412,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -15594,28 +15438,18 @@ exports[`BuildQuote View renders correctly 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -15762,7 +15596,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -15787,15 +15621,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -15942,7 +15770,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -15967,15 +15795,9 @@ exports[`BuildQuote View renders correctly 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -18157,7 +17979,6 @@ exports[`BuildQuote View renders correctly 2`] = `
                             style={
                               [
                                 {
-                                  "display": "flex",
                                   "gap": 12,
                                 },
                                 {
@@ -18168,28 +17989,18 @@ exports[`BuildQuote View renders correctly 2`] = `
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -18336,7 +18147,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -18361,15 +18172,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -18516,7 +18321,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -18541,15 +18346,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -18696,7 +18495,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -18722,28 +18521,18 @@ exports[`BuildQuote View renders correctly 2`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -18890,7 +18679,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -18915,15 +18704,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -19070,7 +18853,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -19095,15 +18878,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -19250,7 +19027,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -19276,28 +19053,18 @@ exports[`BuildQuote View renders correctly 2`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -19444,7 +19211,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -19469,15 +19236,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -19624,7 +19385,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -19649,15 +19410,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -19804,7 +19559,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -19830,28 +19585,18 @@ exports[`BuildQuote View renders correctly 2`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexDirection": "row",
-                                    "gap": 12,
-                                    "justifyContent": "space-between",
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flexDirection": "row",
+                                  "gap": 12,
+                                  "justifyContent": "space-around",
+                                }
                               }
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -19998,7 +19743,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -20023,15 +19768,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -20178,7 +19917,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       testID="content-container"
                                     >
                                       <Text
-                                        accessibilityRole="text"
+                                        accessibilityRole="none"
                                         ellipsizeMode="clip"
                                         numberOfLines={1}
                                         style={
@@ -20203,15 +19942,9 @@ exports[`BuildQuote View renders correctly 2`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexBasis": "0%",
-                                      "flexGrow": 1,
-                                      "flexShrink": 1,
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flex": 1,
+                                  }
                                 }
                               >
                                 <View
@@ -20815,7 +20548,7 @@ exports[`BuildQuote View renders correctly when sdkError is present 1`] = `
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={1}
+              handlerTag={3}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -21480,7 +21213,7 @@ exports[`BuildQuote View renders correctly when sdkError is present 2`] = `
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={2}
+              handlerTag={4}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}

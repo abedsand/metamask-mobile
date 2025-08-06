@@ -66,6 +66,7 @@ const KeypadButton: React.FC<KeypadButtonProps> = ({ children, ...props }) => {
           variant: TextVariant.DisplayMd,
           // fontWeight: FontWeight.Medium, // TODO: @MetaMask/design-system-engineers this still doesn't work for some reason?
           twClassName: 'font-medium', // Workaround for font weight
+          accessibilityRole: 'none', // TODO: @MetaMask/design-system-engineers set this in ButtonBase component
         }}
         {...props}
         variant={ButtonVariant.Secondary} // Can't override variant
@@ -91,25 +92,29 @@ const KeypadDeleteButton: React.FC<KeypadDeleteButtonProps> = ({
   delayLongPress,
   testID,
   ...props
-}) => (
-  // Required wrapper to ensure the KeypadButton takes up space available in KeypadRow
-  <View style={styles.keypadButtonWrapper}>
-    <ButtonBase
-      isFullWidth
-      textProps={{
-        variant: TextVariant.DisplayMd,
-      }}
-      onPress={onPress}
-      onLongPress={onLongPress}
-      delayLongPress={delayLongPress}
-      twClassName="bg-transparent"
-      testID={testID}
-      {...props}
-    >
-      <Icon name={IconName.Backspace} size={IconSize.Xl} />
-    </ButtonBase>
-  </View>
-);
+}) => {
+  const styles = createStyles();
+  return (
+    // Required wrapper to ensure the KeypadButton takes up space available in KeypadRow
+    <View style={styles.keypadButtonWrapper}>
+      <ButtonBase
+        isFullWidth
+        textProps={{
+          variant: TextVariant.DisplayMd,
+          accessibilityRole: 'none', // TODO: @MetaMask/design-system-engineers set this in ButtonBase component
+        }}
+        onPress={onPress}
+        onLongPress={onLongPress}
+        delayLongPress={delayLongPress}
+        twClassName="bg-transparent"
+        testID={testID}
+        {...props}
+      >
+        <Icon name={IconName.Backspace} size={IconSize.Xl} />
+      </ButtonBase>
+    </View>
+  );
+};
 
 type KeypadType = React.FC<KeypadContainerProps> & {
   Row: React.FC<KeypadRowProps>;

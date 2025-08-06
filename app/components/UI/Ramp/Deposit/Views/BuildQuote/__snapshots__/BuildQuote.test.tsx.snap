@@ -1023,7 +1023,6 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -1034,28 +1033,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -1202,7 +1191,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -1227,15 +1216,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -1382,7 +1365,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -1407,15 +1390,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -1562,7 +1539,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -1588,28 +1565,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -1756,7 +1723,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -1781,15 +1748,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -1936,7 +1897,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -1961,15 +1922,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -2116,7 +2071,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -2142,28 +2097,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -2310,7 +2255,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -2335,15 +2280,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -2490,7 +2429,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -2515,15 +2454,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -2670,7 +2603,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -2696,28 +2629,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -2867,15 +2790,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -3022,7 +2939,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -3047,15 +2964,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -4311,7 +4222,6 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -4322,28 +4232,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -4490,7 +4390,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -4515,15 +4415,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -4670,7 +4564,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -4695,15 +4589,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -4850,7 +4738,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -4876,28 +4764,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -5044,7 +4922,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -5069,15 +4947,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -5224,7 +5096,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -5249,15 +5121,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -5404,7 +5270,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -5430,28 +5296,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -5598,7 +5454,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -5623,15 +5479,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -5778,7 +5628,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -5803,15 +5653,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -5958,7 +5802,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -5984,28 +5828,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -6155,15 +5989,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -6310,7 +6138,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -6335,15 +6163,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -7599,7 +7421,6 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -7610,28 +7431,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -7778,7 +7589,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -7803,15 +7614,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -7958,7 +7763,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -7983,15 +7788,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -8138,7 +7937,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -8164,28 +7963,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -8332,7 +8121,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -8357,15 +8146,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -8512,7 +8295,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -8537,15 +8320,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -8692,7 +8469,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -8718,28 +8495,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -8886,7 +8653,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -8911,15 +8678,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -9066,7 +8827,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -9091,15 +8852,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -9246,7 +9001,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -9272,28 +9027,18 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -9443,15 +9188,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -9598,7 +9337,7 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -9623,15 +9362,9 @@ exports[`BuildQuote Component Continue button functionality displays error when 
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -10863,7 +10596,6 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -10874,28 +10606,18 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -11042,7 +10764,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -11067,15 +10789,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -11222,7 +10938,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -11247,15 +10963,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -11402,7 +11112,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -11428,28 +11138,18 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -11596,7 +11296,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -11621,15 +11321,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -11776,7 +11470,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -11801,15 +11495,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -11956,7 +11644,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -11982,28 +11670,18 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -12150,7 +11828,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -12175,15 +11853,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -12330,7 +12002,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -12355,15 +12027,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -12510,7 +12176,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -12536,28 +12202,18 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -12707,15 +12363,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -12862,7 +12512,7 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -12887,15 +12537,9 @@ exports[`BuildQuote Component Keypad Functionality displays converted token amou
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -14127,7 +13771,6 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -14138,28 +13781,18 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -14306,7 +13939,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -14331,15 +13964,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -14486,7 +14113,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -14511,15 +14138,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -14666,7 +14287,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -14692,28 +14313,18 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -14860,7 +14471,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -14885,15 +14496,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -15040,7 +14645,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -15065,15 +14670,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -15220,7 +14819,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -15246,28 +14845,18 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -15414,7 +15003,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -15439,15 +15028,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -15594,7 +15177,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -15619,15 +15202,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -15774,7 +15351,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -15800,28 +15377,18 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -15971,15 +15538,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -16126,7 +15687,7 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -16151,15 +15712,9 @@ exports[`BuildQuote Component Keypad Functionality updates amount when keypad is
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -17390,7 +16945,6 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -17401,28 +16955,18 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -17569,7 +17113,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -17594,15 +17138,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -17749,7 +17287,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -17774,15 +17312,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -17929,7 +17461,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -17955,28 +17487,18 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -18123,7 +17645,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -18148,15 +17670,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -18303,7 +17819,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -18328,15 +17844,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -18483,7 +17993,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -18509,28 +18019,18 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -18677,7 +18177,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -18702,15 +18202,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -18857,7 +18351,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -18882,15 +18376,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -19037,7 +18525,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -19063,28 +18551,18 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -19234,15 +18712,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -19389,7 +18861,7 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -19414,15 +18886,9 @@ exports[`BuildQuote Component Region Selection displays EUR currency when select
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -20654,7 +20120,6 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -20665,28 +20130,18 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -20833,7 +20288,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -20858,15 +20313,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -21013,7 +20462,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -21038,15 +20487,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -21193,7 +20636,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -21219,28 +20662,18 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -21387,7 +20820,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -21412,15 +20845,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -21567,7 +20994,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -21592,15 +21019,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -21747,7 +21168,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -21773,28 +21194,18 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -21941,7 +21352,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -21966,15 +21377,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -22121,7 +21526,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -22146,15 +21551,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -22301,7 +21700,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -22327,28 +21726,18 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -22498,15 +21887,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -22653,7 +22036,7 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -22678,15 +22061,9 @@ exports[`BuildQuote Component Region Selection displays default US region on ini
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -23918,7 +23295,6 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                               style={
                                 [
                                   {
-                                    "display": "flex",
                                     "gap": 12,
                                   },
                                   {
@@ -23929,28 +23305,18 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                             >
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -24097,7 +23463,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -24122,15 +23488,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -24277,7 +23637,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -24302,15 +23662,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -24457,7 +23811,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -24483,28 +23837,18 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -24651,7 +23995,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -24676,15 +24020,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -24831,7 +24169,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -24856,15 +24194,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -25011,7 +24343,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -25037,28 +24369,18 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -25205,7 +24527,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -25230,15 +24552,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -25385,7 +24701,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -25410,15 +24726,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -25565,7 +24875,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -25591,28 +24901,18 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                               </View>
                               <View
                                 style={
-                                  [
-                                    {
-                                      "display": "flex",
-                                      "flexDirection": "row",
-                                      "gap": 12,
-                                      "justifyContent": "space-between",
-                                    },
-                                    undefined,
-                                  ]
+                                  {
+                                    "flexDirection": "row",
+                                    "gap": 12,
+                                    "justifyContent": "space-around",
+                                  }
                                 }
                               >
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -25762,15 +25062,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View
@@ -25917,7 +25211,7 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                         testID="content-container"
                                       >
                                         <Text
-                                          accessibilityRole="text"
+                                          accessibilityRole="none"
                                           ellipsizeMode="clip"
                                           numberOfLines={1}
                                           style={
@@ -25942,15 +25236,9 @@ exports[`BuildQuote Component render matches snapshot 1`] = `
                                 </View>
                                 <View
                                   style={
-                                    [
-                                      {
-                                        "display": "flex",
-                                        "flexBasis": "0%",
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
-                                      },
-                                      undefined,
-                                    ]
+                                    {
+                                      "flex": 1,
+                                    }
                                   }
                                 >
                                   <View

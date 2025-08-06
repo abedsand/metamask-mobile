@@ -727,7 +727,6 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                           style={
                             [
                               {
-                                "display": "flex",
                                 "gap": 12,
                               },
                               {
@@ -738,28 +737,18 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                         >
                           <View
                             style={
-                              [
-                                {
-                                  "display": "flex",
-                                  "flexDirection": "row",
-                                  "gap": 12,
-                                  "justifyContent": "space-between",
-                                },
-                                undefined,
-                              ]
+                              {
+                                "flexDirection": "row",
+                                "gap": 12,
+                                "justifyContent": "space-around",
+                              }
                             }
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -906,7 +895,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -931,15 +920,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -1086,7 +1069,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -1111,15 +1094,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -1266,7 +1243,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -1292,28 +1269,18 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                           </View>
                           <View
                             style={
-                              [
-                                {
-                                  "display": "flex",
-                                  "flexDirection": "row",
-                                  "gap": 12,
-                                  "justifyContent": "space-between",
-                                },
-                                undefined,
-                              ]
+                              {
+                                "flexDirection": "row",
+                                "gap": 12,
+                                "justifyContent": "space-around",
+                              }
                             }
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -1460,7 +1427,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -1485,15 +1452,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -1640,7 +1601,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -1665,15 +1626,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -1820,7 +1775,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -1846,28 +1801,18 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                           </View>
                           <View
                             style={
-                              [
-                                {
-                                  "display": "flex",
-                                  "flexDirection": "row",
-                                  "gap": 12,
-                                  "justifyContent": "space-between",
-                                },
-                                undefined,
-                              ]
+                              {
+                                "flexDirection": "row",
+                                "gap": 12,
+                                "justifyContent": "space-around",
+                              }
                             }
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -2014,7 +1959,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -2039,15 +1984,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -2194,7 +2133,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -2219,15 +2158,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -2374,7 +2307,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -2400,28 +2333,18 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                           </View>
                           <View
                             style={
-                              [
-                                {
-                                  "display": "flex",
-                                  "flexDirection": "row",
-                                  "gap": 12,
-                                  "justifyContent": "space-between",
-                                },
-                                undefined,
-                              ]
+                              {
+                                "flexDirection": "row",
+                                "gap": 12,
+                                "justifyContent": "space-around",
+                              }
                             }
                           >
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -2568,7 +2491,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -2593,15 +2516,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
@@ -2748,7 +2665,7 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                                     testID="content-container"
                                   >
                                     <Text
-                                      accessibilityRole="text"
+                                      accessibilityRole="none"
                                       ellipsizeMode="clip"
                                       numberOfLines={1}
                                       style={
@@ -2773,15 +2690,9 @@ exports[`EarnWithdrawInputView render matches snapshot 1`] = `
                             </View>
                             <View
                               style={
-                                [
-                                  {
-                                    "display": "flex",
-                                    "flexBasis": "0%",
-                                    "flexGrow": 1,
-                                    "flexShrink": 1,
-                                  },
-                                  undefined,
-                                ]
+                                {
+                                  "flex": 1,
+                                }
                               }
                             >
                               <View
