@@ -13,7 +13,7 @@ interface KeypadChangeData {
   pressedKey: Keys;
 }
 
-interface KeypadComponentProps extends KeypadContainerProps {
+interface KeypadComponentProps extends Omit<KeypadContainerProps, 'children'> {
   /**
    * Function that will be called when a key is pressed with arguments `(value, key)`
    */

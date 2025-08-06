@@ -12,7 +12,6 @@ import {
   type ButtonBaseProps,
   type BoxProps,
   type ButtonProps,
-  FontWeight,
   BoxJustifyContent,
 } from '@metamask/design-system-react-native';
 
@@ -20,10 +19,9 @@ interface KeypadContainerProps extends BoxProps {
   children?: React.ReactNode;
 }
 
-const KeypadContainer: React.FC<KeypadContainerProps> = ({
-  style,
-  ...props
-}) => <Box gap={3} style={style} {...props} />;
+const KeypadContainer: React.FC<KeypadContainerProps> = (props) => (
+  <Box gap={3} {...props} />
+);
 
 interface KeypadRowProps {
   children?: React.ReactNode;
@@ -54,7 +52,8 @@ const KeypadButton: React.FC<KeypadButtonProps> = ({
       isFullWidth
       textProps={{
         variant: TextVariant.DisplayMd,
-        fontWeight: FontWeight.Medium,
+        // fontWeight: FontWeight.Medium, // TODO: @MetaMask/design-system-engineers this still doesn't work for some reason?
+        twClassName: 'font-medium', // Workaround for font weight
       }}
       {...props}
       variant={ButtonVariant.Secondary} // Can't override variant
@@ -88,7 +87,6 @@ const KeypadDeleteButton: React.FC<KeypadDeleteButtonProps> = ({
       isFullWidth
       textProps={{
         variant: TextVariant.DisplayMd,
-        fontWeight: FontWeight.Medium,
       }}
       onPress={onPress}
       onLongPress={onLongPress}
@@ -97,7 +95,7 @@ const KeypadDeleteButton: React.FC<KeypadDeleteButtonProps> = ({
       testID={testID}
       {...props}
     >
-      <Icon name={IconName.Arrow2Left} size={IconSize.Lg} />
+      <Icon name={IconName.Backspace} size={IconSize.Xl} />
     </ButtonBase>
   </Box>
 );
