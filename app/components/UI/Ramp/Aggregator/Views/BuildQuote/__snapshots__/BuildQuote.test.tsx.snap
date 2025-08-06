@@ -357,7 +357,7 @@ exports[`BuildQuote View Crypto Currency Data renders a special error page if cr
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={19}
+              handlerTag={8}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -1023,7 +1023,7 @@ exports[`BuildQuote View Crypto Currency Data renders a special error page if cr
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={20}
+              handlerTag={9}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -2354,7 +2354,7 @@ exports[`BuildQuote View Crypto Currency Data renders the loading page when cryp
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={18}
+              handlerTag={7}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -3959,7 +3959,7 @@ exports[`BuildQuote View Fiat Currency Data renders the loading page when fiats 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={29}
+              handlerTag={11}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -9776,7 +9776,7 @@ exports[`BuildQuote View Payment Method Data renders the loading page when payme
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={24}
+              handlerTag={10}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -11381,7 +11381,7 @@ exports[`BuildQuote View Regions data renders the loading page when regions are 
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={14}
+              handlerTag={6}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -20815,7 +20815,7 @@ exports[`BuildQuote View renders correctly when sdkError is present 1`] = `
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={3}
+              handlerTag={1}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
@@ -21480,7 +21480,7 @@ exports[`BuildQuote View renders correctly when sdkError is present 2`] = `
             <View
               collapsable={false}
               enabled={false}
-              handlerTag={4}
+              handlerTag={2}
               handlerType="PanGestureHandler"
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}

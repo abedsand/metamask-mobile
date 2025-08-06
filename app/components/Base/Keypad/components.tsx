@@ -1,7 +1,6 @@
 import React from 'react';
+import { View, StyleSheet, ViewStyle } from 'react-native';
 import {
-  Box,
-  BoxFlexDirection,
   Button,
   ButtonBase,
   ButtonVariant,
@@ -10,58 +9,72 @@ import {
   IconSize,
   TextVariant,
   type ButtonBaseProps,
-  type BoxProps,
   type ButtonProps,
-  BoxJustifyContent,
 } from '@metamask/design-system-react-native';
 
-interface KeypadContainerProps extends BoxProps {
+const createStyles = () =>
+  StyleSheet.create({
+    keypad: {
+      gap: 12,
+    },
+    keypadRow: {
+      gap: 12,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+    },
+    keypadButtonWrapper: {
+      flex: 1,
+    },
+  });
+
+interface KeypadContainerProps {
+  style?: ViewStyle | ViewStyle[];
   children?: React.ReactNode;
 }
 
-const KeypadContainer: React.FC<KeypadContainerProps> = (props) => (
-  <Box gap={3} {...props} />
-);
+const KeypadContainer: React.FC<KeypadContainerProps> = ({
+  style,
+  ...props
+}) => {
+  const styles = createStyles();
+
+  return <View style={[styles.keypad, style]} {...props} />;
+};
 
 interface KeypadRowProps {
   children?: React.ReactNode;
 }
 
-const KeypadRow: React.FC<KeypadRowProps> = (props) => (
-  <Box
-    flexDirection={BoxFlexDirection.Row}
-    justifyContent={BoxJustifyContent.Between}
-    gap={3}
-    {...props}
-  />
-);
+const KeypadRow: React.FC<KeypadRowProps> = (props) => {
+  const styles = createStyles();
+
+  return <View style={styles.keypadRow} {...props} />;
+};
 
 type KeypadButtonProps = Omit<ButtonProps, 'variant' | 'children'> & {
   children: React.ReactNode;
-  boxWrapperProps?: BoxProps;
 };
 
-const KeypadButton: React.FC<KeypadButtonProps> = ({
-  children,
-  boxWrapperProps,
-  ...props
-}) => (
-  // Required wrapper to ensure the KeypadButton takes up space available in KeypadRow
-  <Box twClassName="flex-1" {...boxWrapperProps}>
-    <Button
-      isFullWidth
-      textProps={{
-        variant: TextVariant.DisplayMd,
-        // fontWeight: FontWeight.Medium, // TODO: @MetaMask/design-system-engineers this still doesn't work for some reason?
-        twClassName: 'font-medium', // Workaround for font weight
-      }}
-      {...props}
-      variant={ButtonVariant.Secondary} // Can't override variant
-    >
-      {children}
-    </Button>
-  </Box>
-);
+const KeypadButton: React.FC<KeypadButtonProps> = ({ children, ...props }) => {
+  const styles = createStyles();
+  return (
+    // Required wrapper to ensure the KeypadButton takes up space available in KeypadRow
+    <View style={styles.keypadButtonWrapper}>
+      <Button
+        isFullWidth
+        textProps={{
+          variant: TextVariant.DisplayMd,
+          // fontWeight: FontWeight.Medium, // TODO: @MetaMask/design-system-engineers this still doesn't work for some reason?
+          twClassName: 'font-medium', // Workaround for font weight
+        }}
+        {...props}
+        variant={ButtonVariant.Secondary} // Can't override variant
+      >
+        {children}
+      </Button>
+    </View>
+  );
+};
 
 type KeypadDeleteButtonProps = Omit<ButtonBaseProps, 'children'> & {
   children?: React.ReactNode;
@@ -70,7 +83,6 @@ type KeypadDeleteButtonProps = Omit<ButtonBaseProps, 'children'> & {
   onLongPress?: () => void;
   delayLongPress?: number;
   testID?: string;
-  boxWrapperProps?: BoxProps;
 };
 
 const KeypadDeleteButton: React.FC<KeypadDeleteButtonProps> = ({
@@ -78,11 +90,10 @@ const KeypadDeleteButton: React.FC<KeypadDeleteButtonProps> = ({
   onLongPress,
   delayLongPress,
   testID,
-  boxWrapperProps,
   ...props
 }) => (
   // Required wrapper to ensure the KeypadButton takes up space available in KeypadRow
-  <Box twClassName="flex-1" {...boxWrapperProps}>
+  <View style={styles.keypadButtonWrapper}>
     <ButtonBase
       isFullWidth
       textProps={{
@@ -97,7 +108,7 @@ const KeypadDeleteButton: React.FC<KeypadDeleteButtonProps> = ({
     >
       <Icon name={IconName.Backspace} size={IconSize.Xl} />
     </ButtonBase>
-  </Box>
+  </View>
 );
 
 type KeypadType = React.FC<KeypadContainerProps> & {
