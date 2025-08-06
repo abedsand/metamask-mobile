@@ -313,6 +313,7 @@
     "@xmldom/xmldom": "^0.8.10",
     "appium-adb": "^9.11.4",
     "appium-uiautomator2-driver": "^4.2.7",
+    "appium-xcuitest-driver": "^9.10.3",
     "asyncstorage-down": "4.2.0",
     "axios": "^1.8.2",
     "base-64": "1.0.0",
@@ -682,7 +683,8 @@
       "appwright>appium": false,
       "appwright>appium>@appium/support>sharp": false,
       "appwright>webdriver>@wdio/utils>edgedriver": false,
-      "appwright>webdriver>@wdio/utils>geckodriver": false
+      "appwright>webdriver>@wdio/utils>geckodriver": false,
+      "appium-xcuitest-driver>@appium/support>sharp": false
     }
   },
   "packageManager": "yarn@1.22.22",

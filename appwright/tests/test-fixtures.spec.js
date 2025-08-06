@@ -20,6 +20,14 @@ test.only('Test Fixture', async ({ device }, testInfo) => {
         .build(),
     },
     async () => {
+      // await device.terminateApp('io.metamask.MetaMask-QA');
+      // await device.activateApp('io.metamask.MetaMask-QA');
+
+            // await device.activateApp('io.metamask.MetaMask');
+
+      // await device.terminateApp('io.metamask.MetaMask');
+      // await device.activateApp('io.metamask.MetaMask');
+
       const getStartedScreenTimer = new TimerHelper('loginTimer');
       getStartedScreenTimer.start();
 

@@ -4,6 +4,7 @@ dotenv.config({ path: '.e2e.env' });
 import { defineConfig, Platform } from 'appwright';
 export default defineConfig({
   testDir: './tests',
+  workers: 1, // Use only one worker
   //reporter: [['./reporters/custom-reporter.js']],
   projects: [
     {
@@ -13,7 +14,7 @@ export default defineConfig({
         device: {
           provider: 'emulator', // or 'local-device' or 'browserstack'
         },
-        buildPath: './Users/curtisdavid/Downloads/app-qa-release.apk', // Path to your .apk file
+        buildPath: './appwright/metamask-main-e2e-2203-4.apk', // Path to your .apk file
         expectTimeout: 10000,
       },
     },
@@ -24,7 +25,7 @@ export default defineConfig({
         device: {
           provider: 'emulator', // or 'local-device' or 'browserstack'
         },
-        buildPath: 'Metamask-QA.ipa', // Path to your .app file
+        buildPath: './appwright/metamask-simulator-main-e2e.app', // Path to your .app file
       },
     },
     {
@@ -47,10 +48,13 @@ export default defineConfig({
         platform: Platform.IOS,
         device: {
           provider: 'browserstack',
-          name: 'iPhone 14 Pro Max', // this can changed
-          osVersion: '16.0', // this can changed
+          name: process.env.BROWSERSTACK_DEVICE || 'iPhone 16 Pro',
+          osVersion: process.env.BROWSERSTACK_OS_VERSION || '18.0',
         },
-        buildPath: 'bs://ffbc9a9f506c5d0a94eaf2dfaf39f16d0aff948d', // Path to Browserstack url bs:// link
+      buildPath: process.env.BROWSERSTACK_IOS_APP_URL, // Path to Browserstack url bs:// link
+
+        // buildPath: 'bs://44544a893ab789cd7bd8dd3a0d8e36973fc95119', // Path to your .app file
+        // buildPath: 'bs://7a42bf53dcdf1e51761f4c14a541500656b910bb', // Path to Browserstack url bs:// link
       },
     },
   ],
