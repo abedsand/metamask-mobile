@@ -21,9 +21,9 @@ test.only('Test Fixture', async ({ device }, testInfo) => {
     },
     async () => {
       // await device.terminateApp('io.metamask.MetaMask-QA');
-      // await device.activateApp('io.metamask.MetaMask-QA');
+      await device.activateApp('io.metamask.MetaMask-QA');
 
-            // await device.activateApp('io.metamask.MetaMask');
+      // await device.activateApp('io.metamask.MetaMask');
 
       // await device.terminateApp('io.metamask.MetaMask');
       // await device.activateApp('io.metamask.MetaMask');
@@ -40,6 +40,8 @@ test.only('Test Fixture', async ({ device }, testInfo) => {
       expect(
         await walletAccountScreen.isAccountNameLabelEqualTo('Account 1'),
       ).toBe(true);
+
+      // await walletAccountScreen.tapImportToken();
 
       getStartedScreenTimer.stop();
     },
