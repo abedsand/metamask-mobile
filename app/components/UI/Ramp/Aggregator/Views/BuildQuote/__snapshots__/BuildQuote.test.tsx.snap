@@ -7206,7 +7206,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -7304,15 +7304,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -7390,7 +7386,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -7488,15 +7484,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -7574,7 +7566,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -7672,15 +7664,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -7772,7 +7760,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -7870,15 +7858,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -7956,7 +7940,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -8054,15 +8038,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -8140,7 +8120,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -8238,15 +8218,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -8338,7 +8314,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -8436,15 +8412,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -8522,7 +8494,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -8620,15 +8592,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -8706,7 +8674,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -8804,15 +8772,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -9002,15 +8966,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -9088,7 +9048,7 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -9186,15 +9146,11 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -9362,13 +9318,13 @@ exports[`BuildQuote View Payment Method Data renders no icons if there are no pa
                                     >
                                       <SvgMock
                                         fill="currentColor"
-                                        name="Arrow2Left"
+                                        name="Backspace"
                                         style={
                                           [
                                             {
                                               "color": "#121314",
-                                              "height": 24,
-                                              "width": 24,
+                                              "height": 32,
+                                              "width": 32,
                                             },
                                             undefined,
                                           ]
@@ -14053,7 +14009,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -14151,15 +14107,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -14237,7 +14189,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -14335,15 +14287,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -14421,7 +14369,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -14519,15 +14467,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -14619,7 +14563,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -14717,15 +14661,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -14803,7 +14743,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -14901,15 +14841,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -14987,7 +14923,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -15085,15 +15021,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -15185,7 +15117,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -15283,15 +15215,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -15369,7 +15297,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -15467,15 +15395,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -15553,7 +15477,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -15651,15 +15575,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -15849,15 +15769,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -15935,7 +15851,7 @@ exports[`BuildQuote View renders correctly 1`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -16033,15 +15949,11 @@ exports[`BuildQuote View renders correctly 1`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -16209,13 +16121,13 @@ exports[`BuildQuote View renders correctly 1`] = `
                                     >
                                       <SvgMock
                                         fill="currentColor"
-                                        name="Arrow2Left"
+                                        name="Backspace"
                                         style={
                                           [
                                             {
                                               "color": "#121314",
-                                              "height": 24,
-                                              "width": 24,
+                                              "height": 32,
+                                              "width": 32,
                                             },
                                             undefined,
                                           ]
@@ -18333,7 +18245,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -18431,15 +18343,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -18517,7 +18425,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -18615,15 +18523,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -18701,7 +18605,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -18799,15 +18703,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -18899,7 +18799,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -18997,15 +18897,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -19083,7 +18979,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -19181,15 +19077,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -19267,7 +19159,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -19365,15 +19257,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -19465,7 +19353,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -19563,15 +19451,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -19649,7 +19533,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -19747,15 +19631,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -19833,7 +19713,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -19931,15 +19811,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -20129,15 +20005,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -20215,7 +20087,7 @@ exports[`BuildQuote View renders correctly 2`] = `
                                       [
                                         {
                                           "alignItems": "center",
-                                          "backgroundColor": "#3c4d9d1a",
+                                          "backgroundColor": "#3c4d9d0f",
                                           "borderColor": "transparent",
                                           "borderRadius": 12,
                                           "borderWidth": 1,
@@ -20313,15 +20185,11 @@ exports[`BuildQuote View renders correctly 2`] = `
                                           [
                                             {
                                               "color": "#121314",
-                                              "flexGrow": 0,
-                                              "flexShrink": 1,
-                                              "flexWrap": "wrap",
-                                              "fontFamily": "Geist-Medium",
+                                              "fontFamily": "Geist Medium",
                                               "fontSize": 32,
-                                              "fontWeight": 700,
+                                              "fontWeight": "500",
                                               "letterSpacing": 0,
                                               "lineHeight": 40,
-                                              "textAlign": "center",
                                             },
                                             undefined,
                                           ]
@@ -20489,13 +20357,13 @@ exports[`BuildQuote View renders correctly 2`] = `
                                     >
                                       <SvgMock
                                         fill="currentColor"
-                                        name="Arrow2Left"
+                                        name="Backspace"
                                         style={
                                           [
                                             {
                                               "color": "#121314",
-                                              "height": 24,
-                                              "width": 24,
+                                              "height": 32,
+                                              "width": 32,
                                             },
                                             undefined,
                                           ]

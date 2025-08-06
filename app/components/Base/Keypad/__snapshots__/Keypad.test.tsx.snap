@@ -19,7 +19,7 @@ exports[`Keypad components components should render correctly and match snapshot
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -91,7 +91,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -189,15 +189,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -275,7 +271,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -373,15 +369,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -459,7 +451,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -557,15 +549,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -585,7 +573,7 @@ exports[`Keypad components components should render correctly and match snapshot
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -657,7 +645,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -755,15 +743,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -841,7 +825,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -939,15 +923,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -1025,7 +1005,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -1123,15 +1103,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -1151,7 +1127,7 @@ exports[`Keypad components components should render correctly and match snapshot
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -1223,7 +1199,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -1321,15 +1297,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -1407,7 +1379,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -1505,15 +1477,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -1591,7 +1559,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -1689,15 +1657,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -1717,7 +1681,7 @@ exports[`Keypad components components should render correctly and match snapshot
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -1789,7 +1753,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -1887,15 +1851,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -1973,7 +1933,7 @@ exports[`Keypad components components should render correctly and match snapshot
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -2071,15 +2031,11 @@ exports[`Keypad components components should render correctly and match snapshot
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -2246,13 +2202,13 @@ exports[`Keypad components components should render correctly and match snapshot
           >
             <SvgMock
               fill="currentColor"
-              name="Arrow2Left"
+              name="Backspace"
               style={
                 [
                   {
                     "color": "#121314",
-                    "height": 24,
-                    "width": 24,
+                    "height": 32,
+                    "width": 32,
                   },
                   undefined,
                 ]
@@ -2285,7 +2241,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -2357,7 +2313,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -2455,15 +2411,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -2541,7 +2493,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -2639,15 +2591,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -2725,7 +2673,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -2823,15 +2771,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -2851,7 +2795,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -2923,7 +2867,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -3021,15 +2965,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -3107,7 +3047,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -3205,15 +3145,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -3291,7 +3227,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -3389,15 +3325,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -3417,7 +3349,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -3489,7 +3421,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -3587,15 +3519,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -3673,7 +3601,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -3771,15 +3699,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -3857,7 +3781,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -3955,15 +3879,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -3983,7 +3903,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "gap": 12,
-          "justifyContent": "space-around",
+          "justifyContent": "space-between",
         },
         undefined,
       ]
@@ -4153,15 +4073,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -4239,7 +4155,7 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#3c4d9d1a",
+                "backgroundColor": "#3c4d9d0f",
                 "borderColor": "transparent",
                 "borderRadius": 12,
                 "borderWidth": 1,
@@ -4337,15 +4253,11 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
                 [
                   {
                     "color": "#121314",
-                    "flexGrow": 0,
-                    "flexShrink": 1,
-                    "flexWrap": "wrap",
-                    "fontFamily": "Geist-Medium",
+                    "fontFamily": "Geist Medium",
                     "fontSize": 32,
-                    "fontWeight": 700,
+                    "fontWeight": "500",
                     "letterSpacing": 0,
                     "lineHeight": 40,
-                    "textAlign": "center",
                   },
                   undefined,
                 ]
@@ -4513,13 +4425,13 @@ exports[`Keypad should render correctly and match snapshot 1`] = `
           >
             <SvgMock
               fill="currentColor"
-              name="Arrow2Left"
+              name="Backspace"
               style={
                 [
                   {
                     "color": "#121314",
-                    "height": 24,
-                    "width": 24,
+                    "height": 32,
+                    "width": 32,
                   },
                   undefined,
                 ]
