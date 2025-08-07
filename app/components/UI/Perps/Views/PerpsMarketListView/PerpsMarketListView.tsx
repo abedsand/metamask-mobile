@@ -313,7 +313,7 @@ const PerpsMarketListView = ({
           color={TextColor.Default}
           style={styles.headerTitle}
         >
-          {strings('perps.perpetuals')}
+          {strings('perps.title')}
         </Text>
         {activeTab === 'markets' && (
           <TouchableOpacity
@@ -347,7 +347,7 @@ const PerpsMarketListView = ({
                 activeTab === 'markets' ? TextColor.Default : TextColor.Muted
               }
             >
-              {strings('perps.perpetual_markets')}
+              {strings('perps.perps_markets')}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
