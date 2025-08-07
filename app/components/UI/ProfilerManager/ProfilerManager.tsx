@@ -11,20 +11,13 @@ interface ProfilerManagerProps {
 }
 
 const ProfilerManager: React.FC<ProfilerManagerProps> = ({
-  enabled = true, // Force enable for testing
+  enabled = process.env.METAMASK_ENVIRONMENT !== 'production',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const appId = getBundleId();
   const tw = useTailwind();
-
-  // Debug: Check why profiler might not be enabled
-  console.log(
-    '🔧 ProfilerManager - Environment:',
-    process.env.METAMASK_ENVIRONMENT,
-  );
-  console.log('🔧 ProfilerManager - Enabled:', enabled);
 
   const handleShake = useCallback(() => {
     setIsVisible((prev) => !prev);
@@ -48,8 +41,7 @@ const ProfilerManager: React.FC<ProfilerManagerProps> = ({
     if (!sessionId) return;
 
     try {
-      const profile = await stopProfiling(true);
-      console.log('📊 Profiler stopped - data collected:', !!profile);
+      await stopProfiling(true);
     } catch (error) {
       // fail silently
     }
@@ -75,11 +67,7 @@ const ProfilerManager: React.FC<ProfilerManagerProps> = ({
 
   return (
     <>
-      <ShakeDetector
-        onShake={handleShake}
-        enabled={enabled}
-        sensibility={1.5}
-      />
+      <ShakeDetector onShake={handleShake} sensibility={3} />
       {isVisible && (
         <Box twClassName="absolute top-20 right-4 z-50 shadow-lg min-w-48">
           <Box twClassName="bg-default rounded-xl p-3 border border-muted">

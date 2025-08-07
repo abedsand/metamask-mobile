@@ -1,41 +1,37 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Accelerometer } from 'expo-sensors';
 
 interface ShakeDetectorProps {
   onShake: () => void;
-  enabled: boolean;
   sensibility?: number;
 }
 
 const ShakeDetector: React.FC<ShakeDetectorProps> = ({
   onShake,
-  enabled,
   sensibility = 1.8,
 }) => {
-  useEffect(() => {
-    if (!enabled) return;
+  const lastShakeTime = useRef(0);
 
-    // Configure shake detection
-    Accelerometer.setUpdateInterval(100);
+  useEffect(() => {
+    Accelerometer.setUpdateInterval(2);
 
     const onUpdate = ({ x, y, z }: { x: number; y: number; z: number }) => {
-      // Compute total acceleration (includes gravity)
       const acceleration = Math.sqrt(x * x + y * y + z * z);
-
-      // Detect shake when acceleration exceeds sensibility threshold
       if (acceleration >= sensibility) {
-        onShake();
+        const now = Date.now();
+        if (now - lastShakeTime.current > 1000) {
+          lastShakeTime.current = now;
+          onShake();
+        }
       }
     };
 
-    // Subscribe to accelerometer updates
-    const subscription = Accelerometer.addListener(onUpdate);
+    Accelerometer.addListener(onUpdate);
 
     return () => {
-      // Clean up subscription
       Accelerometer.removeAllListeners();
     };
-  }, [enabled, onShake, sensibility]);
+  }, [onShake, sensibility]);
 
   return null;
 };
