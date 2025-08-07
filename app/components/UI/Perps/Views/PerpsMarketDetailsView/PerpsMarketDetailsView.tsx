@@ -327,45 +327,30 @@ const PerpsMarketDetailsView: React.FC<PerpsMarketDetailsViewProps> = () => {
       </ScrollView>
 
       {/* Action Buttons */}
-      <View style={styles.actionsContainer}>
-        {!isLoadingPosition && hasExistingPosition && (
-          <View style={styles.positionWarning}>
-            <Text
-              variant={TextVariant.BodySM}
-              color={TextColor.Alternative}
-              style={styles.positionWarningText}
-            >
-              {strings('perps.market.existing_position_warning', {
-                asset: market.symbol,
-              })}
-            </Text>
-          </View>
-        )}
-        {!isLoadingPosition && !hasExistingPosition && (
-          <>
-            <Button
-              variant={ButtonVariants.Primary}
-              size={ButtonSize.Lg}
-              width={ButtonWidthTypes.Full}
-              label={strings('perps.market.long')}
-              onPress={handleLongPress}
-              style={[styles.actionButton, styles.longButton]}
-              testID={PerpsMarketDetailsViewSelectorsIDs.LONG_BUTTON}
-              disabled={hasExistingPosition}
-            />
-            <Button
-              variant={ButtonVariants.Primary}
-              size={ButtonSize.Lg}
-              width={ButtonWidthTypes.Full}
-              label={strings('perps.market.short')}
-              onPress={handleShortPress}
-              style={[styles.actionButton, styles.shortButton]}
-              testID={PerpsMarketDetailsViewSelectorsIDs.SHORT_BUTTON}
-              disabled={hasExistingPosition}
-            />
-          </>
-        )}
-      </View>
+      {!isLoadingPosition && !hasExistingPosition && (
+        <View style={styles.actionsContainer}>
+          <Button
+            variant={ButtonVariants.Primary}
+            size={ButtonSize.Lg}
+            width={ButtonWidthTypes.Full}
+            label={strings('perps.market.long')}
+            onPress={handleLongPress}
+            style={[styles.actionButton, styles.longButton]}
+            testID={PerpsMarketDetailsViewSelectorsIDs.LONG_BUTTON}
+            disabled={hasExistingPosition}
+          />
+          <Button
+            variant={ButtonVariants.Primary}
+            size={ButtonSize.Lg}
+            width={ButtonWidthTypes.Full}
+            label={strings('perps.market.short')}
+            onPress={handleShortPress}
+            style={[styles.actionButton, styles.shortButton]}
+            testID={PerpsMarketDetailsViewSelectorsIDs.SHORT_BUTTON}
+            disabled={hasExistingPosition}
+          />
+        </View>
+      )}
 
       {/* Candle Period Bottom Sheet */}
       {isCandlePeriodBottomSheetVisible && (
@@ -378,6 +363,7 @@ const PerpsMarketDetailsView: React.FC<PerpsMarketDetailsViewProps> = () => {
           testID={PerpsMarketDetailsViewSelectorsIDs.CANDLE_PERIOD_BOTTOM_SHEET}
         />
       )}
+
       {selectedTooltip && (
         <PerpsBottomSheetTooltip
           isVisible
