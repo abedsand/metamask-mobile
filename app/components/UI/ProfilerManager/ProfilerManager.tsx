@@ -70,10 +70,6 @@ const ProfilerManager: React.FC<ProfilerManagerProps> = ({
     setIsVisible(false);
   }, []);
 
-  if (!enabled) {
-    return null;
-  }
-
   return (
     <>
       <ShakeDetector onShake={handleShake} sensibility={3} />
@@ -111,6 +107,19 @@ const ProfilerManager: React.FC<ProfilerManagerProps> = ({
                 <Text variant={TextVariant.BodyXs}>App Id: {appId}</Text>
               </Box>
             )}
+
+            {/* Debug info */}
+            <Box twClassName="mb-3 bg-muted rounded-md p-2">
+              <Text variant={TextVariant.BodyXs}>
+                Build: {process.env.METAMASK_BUILD_TYPE || 'undefined'}
+              </Text>
+              <Text variant={TextVariant.BodyXs}>
+                Env: {process.env.METAMASK_ENVIRONMENT || 'undefined'}
+              </Text>
+              <Text variant={TextVariant.BodyXs}>
+                Dev: {__DEV__ ? 'true' : 'false'}
+              </Text>
+            </Box>
 
             {/* Controls */}
             <Box twClassName="flex-row gap-2 mb-3">
