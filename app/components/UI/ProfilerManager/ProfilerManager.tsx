@@ -14,7 +14,7 @@ const ProfilerManager: React.FC<ProfilerManagerProps> = ({
   enabled = process.env.METAMASK_BUILD_TYPE === 'beta' ||
     process.env.METAMASK_ENVIRONMENT === 'beta',
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isRecording, setIsRecording] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const appId = getBundleId();
