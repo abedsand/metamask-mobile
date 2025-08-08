@@ -11,8 +11,7 @@ interface ProfilerManagerProps {
 }
 
 const ProfilerManager: React.FC<ProfilerManagerProps> = ({
-  enabled = process.env.METAMASK_BUILD_TYPE === 'beta' ||
-    process.env.METAMASK_ENVIRONMENT === 'beta',
+  enabled = process.env.METAMASK_ENVIRONMENT === 'rc',
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isRecording, setIsRecording] = useState(false);
