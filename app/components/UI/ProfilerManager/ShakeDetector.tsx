@@ -13,7 +13,7 @@ const ShakeDetector: React.FC<ShakeDetectorProps> = ({
   const lastShakeTime = useRef(0);
 
   useEffect(() => {
-    Accelerometer.setUpdateInterval(2);
+    Accelerometer.setUpdateInterval(150);
 
     const onUpdate = ({ x, y, z }: { x: number; y: number; z: number }) => {
       const acceleration = Math.sqrt(x * x + y * y + z * z);

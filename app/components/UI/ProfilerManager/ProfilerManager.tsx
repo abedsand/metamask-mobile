@@ -13,19 +13,11 @@ interface ProfilerManagerProps {
 const ProfilerManager: React.FC<ProfilerManagerProps> = ({
   enabled = process.env.METAMASK_ENVIRONMENT === 'rc',
 }) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const appId = getBundleId();
   const tw = useTailwind();
-
-  // Debug: Log environment variables to verify build configuration
-  console.log('🔧 ProfilerManager Debug:', {
-    METAMASK_BUILD_TYPE: process.env.METAMASK_BUILD_TYPE,
-    METAMASK_ENVIRONMENT: process.env.METAMASK_ENVIRONMENT,
-    __DEV__,
-    enabled,
-  });
 
   const handleShake = useCallback(() => {
     setIsVisible((prev) => !prev);
@@ -68,6 +60,10 @@ const ProfilerManager: React.FC<ProfilerManagerProps> = ({
   const hideProfiler = useCallback(() => {
     setIsVisible(false);
   }, []);
+
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <>
