@@ -77,6 +77,7 @@ import type {
   OrderParams,
   OrderType,
   PerpsNavigationParamList,
+  Position,
 } from '../../controllers/types';
 import {
   useHasExistingPosition,
@@ -101,6 +102,7 @@ import {
   PerpsOrderProvider,
   usePerpsOrderContext,
 } from '../../contexts/PerpsOrderContext';
+import PerpsNotificationTooltip from '../../components/PerpsNotificationTooltip';
 
 // Navigation params interface
 interface OrderRouteParams {
@@ -166,6 +168,14 @@ const PerpsOrderViewContent: React.FC = () => {
     error: marketDataError,
   } = usePerpsMarketData(orderForm.asset);
 
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [delayedNavigation, setDelayedNavigation] = useState<{
+    route: string;
+    params?: {
+      position?: Position;
+    };
+  } | null>(null);
+
   // Order execution using new hook
   const { placeOrder: executeOrder, isPlacing: isPlacingOrder } =
     usePerpsOrderExecution({
@@ -188,11 +198,19 @@ const PerpsOrderViewContent: React.FC = () => {
           hasNoTimeout: false,
         });
 
+        // Store navigation destination for delayed execution
         if (position) {
-          navigation.navigate(Routes.PERPS.POSITION_DETAILS, { position });
+          setDelayedNavigation({
+            route: Routes.PERPS.POSITION_DETAILS,
+            params: { position },
+          });
         } else {
-          navigation.navigate(Routes.PERPS.POSITIONS);
+          setDelayedNavigation({
+            route: Routes.PERPS.POSITIONS,
+          });
         }
+
+        setOrderSuccess(true);
       },
       onError: (error) => {
         toastRef?.current?.showToast({
@@ -447,6 +465,21 @@ const PerpsOrderViewContent: React.FC = () => {
   const handleTooltipClose = useCallback(() => {
     setSelectedTooltip(null);
   }, []);
+
+  // Handle completion of notification tooltip and execute delayed navigation
+  const handleNotificationTooltipComplete = useCallback(() => {
+    setOrderSuccess(false);
+
+    if (delayedNavigation) {
+      if (delayedNavigation.params) {
+        navigation.navigate(delayedNavigation.route, delayedNavigation.params);
+      } else {
+        navigation.navigate(delayedNavigation.route);
+      }
+      // Clear the delayed navigation
+      setDelayedNavigation(null);
+    }
+  }, [delayedNavigation, navigation]);
 
   return (
     <SafeAreaView style={[styles.container, { marginTop: top }]}>
@@ -912,6 +945,15 @@ const PerpsOrderViewContent: React.FC = () => {
           contentKey={selectedTooltip}
           testID={PerpsOrderViewSelectorsIDs.BOTTOM_SHEET_TOOLTIP}
           key={selectedTooltip}
+        />
+      )}
+
+      {/* Notification Tooltip - Shows after first successful order */}
+      {orderSuccess && (
+        <PerpsNotificationTooltip
+          orderSuccess={orderSuccess}
+          onComplete={handleNotificationTooltipComplete}
+          testID={PerpsOrderViewSelectorsIDs.NOTIFICATION_TOOLTIP}
         />
       )}
     </SafeAreaView>

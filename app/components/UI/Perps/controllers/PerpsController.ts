@@ -109,6 +109,9 @@ export type PerpsControllerState = {
   // Eligibility (Geo-Blocking)
   isEligible: boolean;
 
+  // Notification tracking
+  hasPlacedFirstOrder: boolean;
+
   // Error handling
   lastError: string | null;
   lastUpdateTimestamp: number;
@@ -132,6 +135,7 @@ export const getDefaultPerpsControllerState = (): PerpsControllerState => ({
   lastError: null,
   lastUpdateTimestamp: 0,
   isEligible: false,
+  hasPlacedFirstOrder: false,
 });
 
 /**
@@ -152,6 +156,7 @@ const metadata = {
   lastError: { persist: false, anonymous: false },
   lastUpdateTimestamp: { persist: false, anonymous: false },
   isEligible: { persist: false, anonymous: false },
+  hasPlacedFirstOrder: { persist: true, anonymous: false },
 };
 
 /**
@@ -237,6 +242,10 @@ export type PerpsControllerActions =
   | {
       type: 'PerpsController:calculateFees';
       handler: PerpsController['calculateFees'];
+    }
+  | {
+      type: 'PerpsController:markFirstOrderCompleted';
+      handler: PerpsController['markFirstOrderCompleted'];
     };
 
 /**
@@ -1478,5 +1487,19 @@ export class PerpsController extends BaseController<
   getBlockExplorerUrl(address?: string): string {
     const provider = this.getActiveProvider();
     return provider.getBlockExplorerUrl(address);
+  }
+
+  /**
+   * Mark that user has placed their first successful order
+   * This prevents the notification tooltip from showing again
+   */
+  markFirstOrderCompleted(): void {
+    DevLogger.log('PerpsController: Marking first order completed', {
+      timestamp: new Date().toISOString(),
+    });
+
+    this.update((state) => {
+      state.hasPlacedFirstOrder = true;
+    });
   }
 }
