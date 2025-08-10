@@ -383,7 +383,8 @@
     "activeDepositTransactions": {},
     "lastError": null,
     "lastUpdateTimestamp": 0,
-    "isEligible": false
+    "isEligible": false,
+    "hasPlacedFirstOrder": false
   },
   "RemoteFeatureFlagController": {
     "cacheTimestamp": 0,

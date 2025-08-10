@@ -103,6 +103,7 @@ import {
   usePerpsOrderContext,
 } from '../../contexts/PerpsOrderContext';
 import PerpsNotificationTooltip from '../../components/PerpsNotificationTooltip';
+import { isNotificationsFeatureEnabled } from '../../../../../util/notifications';
 
 // Navigation params interface
 interface OrderRouteParams {
@@ -176,6 +177,9 @@ const PerpsOrderViewContent: React.FC = () => {
     };
   } | null>(null);
 
+  // Check if notifications feature is enabled once
+  const isNotificationsEnabled = isNotificationsFeatureEnabled();
+
   // Order execution using new hook
   const { placeOrder: executeOrder, isPlacing: isPlacingOrder } =
     usePerpsOrderExecution({
@@ -198,19 +202,28 @@ const PerpsOrderViewContent: React.FC = () => {
           hasNoTimeout: false,
         });
 
-        // Store navigation destination for delayed execution
-        if (position) {
-          setDelayedNavigation({
-            route: Routes.PERPS.POSITION_DETAILS,
-            params: { position },
-          });
+        if (!isNotificationsEnabled) {
+          // If notifications feature is disabled, navigate directly without showing tooltip
+          if (position) {
+            navigation.navigate(Routes.PERPS.POSITION_DETAILS, { position });
+          } else {
+            navigation.navigate(Routes.PERPS.POSITIONS);
+          }
         } else {
-          setDelayedNavigation({
-            route: Routes.PERPS.POSITIONS,
-          });
-        }
+          // Store navigation destination for delayed execution after tooltip
+          if (position) {
+            setDelayedNavigation({
+              route: Routes.PERPS.POSITION_DETAILS,
+              params: { position },
+            });
+          } else {
+            setDelayedNavigation({
+              route: Routes.PERPS.POSITIONS,
+            });
+          }
 
-        setOrderSuccess(true);
+          setOrderSuccess(true);
+        }
       },
       onError: (error) => {
         toastRef?.current?.showToast({
@@ -948,8 +961,8 @@ const PerpsOrderViewContent: React.FC = () => {
         />
       )}
 
-      {/* Notification Tooltip - Shows after first successful order */}
-      {orderSuccess && (
+      {/* Notification Tooltip - Shows after first successful order if notifications are enabled */}
+      {orderSuccess && isNotificationsEnabled && (
         <PerpsNotificationTooltip
           orderSuccess={orderSuccess}
           onComplete={handleNotificationTooltipComplete}
