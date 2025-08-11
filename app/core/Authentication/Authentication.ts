@@ -13,7 +13,6 @@ import {
   logOut,
   passwordSet,
   setExistingUser,
-  setIsConnectionRemoved,
 } from '../../actions/user';
 import AUTHENTICATION_TYPE from '../../constants/userProperties';
 import AuthenticationError from './AuthenticationError';
@@ -1040,7 +1039,6 @@ class AuthenticationService {
         await SeedlessOnboardingController.refreshAuthTokens();
         await this.rehydrateSeedPhrase(globalPassword);
         // skip the rest of the flow ( change password and sync keyring encryption key)
-        ReduxService.store.dispatch(setIsConnectionRemoved(true));
         return;
       } else if (
         errorMessage ===
