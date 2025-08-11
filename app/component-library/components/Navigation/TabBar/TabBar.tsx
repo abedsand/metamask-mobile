@@ -22,6 +22,7 @@ import { colors as importedColors } from '../../../../styles/common';
 import { AvatarSize } from '../../Avatars/Avatar';
 import OnboardingWizard from '../../../../components/UI/OnboardingWizard';
 import { selectChainId } from '../../../../selectors/networkController';
+import { selectRewardsEnabledFlag } from '../../../../selectors/featureFlagController/rewards';
 
 const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   const { colors } = useTheme();
@@ -29,6 +30,7 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   const { bottom: bottomInset } = useSafeAreaInsets();
   const { styles } = useStyles(styleSheet, { bottomInset });
   const chainId = useSelector(selectChainId);
+  const isRewardsEnabled = useSelector(selectRewardsEnabledFlag);
   const tabBarRef = useRef(null);
   /**
    * Current onboarding wizard step
@@ -91,7 +93,9 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             navigation.navigate(Routes.TRANSACTIONS_VIEW);
             break;
           case Routes.REWARDS_VIEW:
-            navigation.navigate(Routes.REWARDS_VIEW);
+            if (isRewardsEnabled) {
+              navigation.navigate(Routes.REWARDS_VIEW);
+            }
             break;
           case Routes.SETTINGS_VIEW:
             navigation.navigate(Routes.SETTINGS_VIEW, {
@@ -132,13 +136,16 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       );
     },
     [
-      state,
       descriptors,
+      state.index,
+      colors.primary.default,
+      colors.primary.inverse,
+      colors.icon.muted,
       navigation,
-      colors,
-      chainId,
       trackEvent,
       createEventBuilder,
+      chainId,
+      isRewardsEnabled,
     ],
   );
 
