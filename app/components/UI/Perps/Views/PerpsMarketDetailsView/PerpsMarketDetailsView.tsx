@@ -108,6 +108,7 @@ const PerpsMarketDetailsView: React.FC<PerpsMarketDetailsViewProps> = () => {
     hasPosition: hasExistingPosition,
     isLoading: isLoadingPosition,
     existingPosition,
+    refreshPosition,
   } = useHasExistingPosition({
     asset: market?.symbol || '',
     loadOnMount: true,
@@ -209,6 +210,7 @@ const PerpsMarketDetailsView: React.FC<PerpsMarketDetailsViewProps> = () => {
             position={existingPosition}
             isLoadingPosition={isLoadingPosition}
             unfilledOrders={openOrders}
+            onPositionUpdate={refreshPosition}
           />
         </View>
 

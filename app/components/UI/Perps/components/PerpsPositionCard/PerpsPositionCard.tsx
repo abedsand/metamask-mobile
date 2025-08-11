@@ -48,6 +48,7 @@ interface PerpsPositionCardProps {
   expanded?: boolean;
   showIcon?: boolean;
   rightAccessory?: React.ReactNode;
+  onPositionUpdate?: () => Promise<void>;
 }
 
 const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
@@ -56,6 +57,7 @@ const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
   expanded = true, // Default to expanded for backward compatibility
   showIcon = false, // Default to not showing icon
   rightAccessory,
+  onPositionUpdate,
 }) => {
   const { styles } = useStyles(styleSheet, {});
   const navigation = useNavigation<NavigationProp<PerpsNavigationParamList>>();
@@ -75,14 +77,24 @@ const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
   const { handleUpdateTPSL, isUpdating } = usePerpsTPSLUpdate({
     onSuccess: () => {
       // Refresh positions to show updated data
-      loadPositions({ isRefresh: true });
+      loadPositions({ isRefresh: true }).then(() => {
+        // Also call parent's position update callback if provided
+        if (onPositionUpdate) {
+          onPositionUpdate();
+        }
+      });
     },
   });
 
   const { handleClosePosition, isClosing } = usePerpsClosePosition({
     onSuccess: () => {
       // Refresh positions after successful close
-      loadPositions({ isRefresh: true });
+      loadPositions({ isRefresh: true }).then(() => {
+        // Also call parent's position update callback if provided
+        if (onPositionUpdate) {
+          onPositionUpdate();
+        }
+      });
       setIsClosePositionVisible(false);
       setSelectedPosition(null);
     },
