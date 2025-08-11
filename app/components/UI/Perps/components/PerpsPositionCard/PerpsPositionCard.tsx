@@ -33,6 +33,7 @@ import styleSheet from './PerpsPositionCard.styles';
 import { PerpsPositionCardSelectorsIDs } from '../../../../../../e2e/selectors/Perps/Perps.selectors';
 import { usePerpsAssetMetadata } from '../../hooks/usePerpsAssetsMetadata';
 import RemoteImage from '../../../../Base/RemoteImage';
+import { usePerpsMarkets } from '../../hooks';
 
 interface PerpsPositionCardProps {
   position: Position;
@@ -42,7 +43,6 @@ interface PerpsPositionCardProps {
   expanded?: boolean;
   showIcon?: boolean;
   rightAccessory?: React.ReactNode;
-  isInPerpsNavContext?: boolean; // NEW: Indicates if this is used within the Perps navigation stack
 }
 
 const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
@@ -53,7 +53,6 @@ const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
   expanded = true, // Default to expanded for backward compatibility
   showIcon = false, // Default to not showing icon
   rightAccessory,
-  isInPerpsNavContext = true, // Default to true since most usage is within Perps stack
 }) => {
   const { styles } = useStyles(styleSheet, {});
   const navigation = useNavigation<NavigationProp<PerpsNavigationParamList>>();
@@ -64,47 +63,42 @@ const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
   const direction = isLong ? 'long' : 'short';
   const absoluteSize = Math.abs(parseFloat(position.size));
 
+  const { markets, error, isLoading } = usePerpsMarkets();
+
   const handleCardPress = async () => {
-    // await triggerSelectionHaptic();
-    if (isInPerpsNavContext) {
-      // Direct navigation when already in Perps stack
-      navigation.navigate(Routes.PERPS.POSITION_DETAILS, {
-        position,
-        action: 'view',
-      });
-    } else {
-      // Navigate to nested Perps screen when in main navigation context
-      navigation.navigate(Routes.PERPS.ROOT, {
-        screen: Routes.PERPS.POSITION_DETAILS,
-        params: {
-          position,
-          action: 'view',
-        },
-      });
+    if (isLoading || error) {
+      DevLogger.log(
+        'Failed to redirect to market details. Error fetching market data: ',
+        error,
+      );
+      return;
     }
+
+    const marketData = markets.find((market) => market.name === position.coin);
+
+    navigation.navigate(Routes.PERPS.ROOT, {
+      screen: Routes.PERPS.MARKET_DETAILS,
+      params: {
+        market: marketData,
+      },
+    });
   };
 
   const handleClosePress = () => {
     // await triggerSelectionHaptic();
     if (onClose) {
       onClose(position);
-    } else {
-      // Navigate to position details with close action
-      if (isInPerpsNavContext) {
-        // Direct navigation when already in Perps stack
-        navigation.navigate(Routes.PERPS.POSITION_DETAILS, {
-          position,
-          action: 'close',
-        });
-      }
-      navigation.navigate(Routes.PERPS.ROOT, {
-        screen: Routes.PERPS.POSITION_DETAILS,
-        params: {
-          position,
-          action: 'close',
-        },
-      });
+      return;
     }
+
+    // Navigate to position details with close action
+    navigation.navigate(Routes.PERPS.ROOT, {
+      screen: Routes.PERPS.POSITION_DETAILS,
+      params: {
+        position,
+        action: 'close',
+      },
+    });
   };
 
   const handleEditPress = () => {
@@ -117,26 +111,16 @@ const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
     if (onEdit) {
       DevLogger.log('PerpsPositionCard: calling onEdit callback');
       onEdit(position);
-    } else {
-      DevLogger.log('PerpsPositionCard: navigating to position details');
-      // Navigate to position details with edit action
-      if (isInPerpsNavContext) {
-        // Direct navigation when already in Perps stack
-        navigation.navigate(Routes.PERPS.POSITION_DETAILS, {
-          position,
-          action: 'edit_tpsl',
-        });
-      } else {
-        // Navigate to nested Perps screen when in main navigation context
-        navigation.navigate(Routes.PERPS.ROOT, {
-          screen: Routes.PERPS.POSITION_DETAILS,
-          params: {
-            position,
-            action: 'edit_tpsl',
-          },
-        });
-      }
+      return;
     }
+    DevLogger.log('PerpsPositionCard: navigating to position details');
+    navigation.navigate(Routes.PERPS.ROOT, {
+      screen: Routes.PERPS.POSITION_DETAILS,
+      params: {
+        position,
+        action: 'edit_tpsl',
+      },
+    });
   };
 
   const pnlNum = parseFloat(position.unrealizedPnl);

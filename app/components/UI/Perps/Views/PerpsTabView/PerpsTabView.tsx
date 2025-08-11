@@ -130,7 +130,6 @@ const PerpsTabView: React.FC<PerpsTabViewProps> = () => {
               position={position}
               expanded={false}
               showIcon
-              isInPerpsNavContext={false}
               rightAccessory={
                 <ButtonIcon
                   iconName={IconName.Close}
