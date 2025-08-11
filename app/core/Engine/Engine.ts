@@ -2384,6 +2384,7 @@ export default {
       PerpsController,
       DeFiPositionsController,
       SeedlessOnboardingController,
+      RewardsController,
     } = instance.datamodel.state;
 
     return {
@@ -2439,6 +2440,7 @@ export default {
       PerpsController,
       DeFiPositionsController,
       SeedlessOnboardingController,
+      RewardsController,
     };
   },
 
